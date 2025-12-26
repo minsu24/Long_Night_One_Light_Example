@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3836399570204454176}
   - component: {fileID: 835170669798174015}
   - component: {fileID: 1310525016753386214}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BaseAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,6 +107,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fire
   speed: 10
+  isCharge: 0
+  backToPlayer: 0
+  playerController: {fileID: 0}
+  player: {fileID: 0}
 --- !u!50 &835170669798174015
 Rigidbody2D:
   serializedVersion: 5
@@ -115,7 +119,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3780673957017645484}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

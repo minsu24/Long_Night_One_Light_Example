@@ -7,48 +7,26 @@
             "id": "fd7aca26-a5d2-47dd-b212-11e6f13f2c3a",
             "actions": [
                 {
-                    "name": "Move",
-                    "type": "Value",
-                    "id": "61a924bc-f5b2-4d7a-a7a3-68ffe1d87482",
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "72b015c1-aaf6-4d66-a071-afce62f19ad8",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "1D Axis",
-                    "id": "2144efa4-a6ec-494c-b9d1-444911625193",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "8e716ca6-a0e5-4d22-a627-9580dc943db5",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "1064c5de-5d1d-4357-88cb-b7f3237f7ba2",
+                    "name": "",
+                    "id": "975816fa-c6cc-47f1-a659-2dd16f111f89",
                     "path": "<Keyboard>/a",
-                    "interactions": "",
+                    "interactions": "Hold(duration=1)",
                     "processors": "",
                     "groups": "",
-                    "action": "Move",
+                    "action": "Attack",
                     "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         }
