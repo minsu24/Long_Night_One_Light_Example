@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using NUnit.Framework;
 using UnityEngine;
 
@@ -14,7 +15,9 @@ public class Fire : MonoBehaviour
     [SerializeField]
     private GameObject player;
 
-    private Collider2D collider2D;
+    private GameObject enemy;
+
+    CircleCollider2D circleCollider2D;
 
     Rigidbody2D rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,8 +25,13 @@ public class Fire : MonoBehaviour
     {
         startPos = transform.position; // 시작 위치 저장
         rb = GetComponent<Rigidbody2D>();
-        playerController = GetComponent<PlayerController>();
+        circleCollider2D = GetComponent<CircleCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+        if(player != null)
+        {
+            playerController = player.GetComponent<PlayerController>();
+        }
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 
     // Update is called once per frame
@@ -39,7 +47,7 @@ public class Fire : MonoBehaviour
         }
         else
         {
-            if(Vector3.Distance(startPos, transform.position) <= 12.5f && !backToPlayer) // 일정 거리 이동
+            if(!backToPlayer) // 일정 거리 이동
             {
                 transform.Translate(moveDirection * speed * Time.deltaTime, Space.World); // 발사체 이동 로직
                 if(Vector3.Distance(startPos, transform.position) >= 12.5f)
@@ -47,13 +55,13 @@ public class Fire : MonoBehaviour
                     backToPlayer = true;
                 }
             }
-            else if(Vector3.Distance(startPos, transform.position) >= 0 && backToPlayer)
+            else
             {
                 moveDirection = (player.transform.position - transform.position).normalized;
                 rb.linearVelocity = moveDirection * speed;
-                if(Vector3.Distance(startPos, transform.position) <= 0)
+                if(Vector3.Distance(player.transform.position, transform.position) <= 0.5f)
                 {
-                    backToPlayer = false;
+                    Destroy(gameObject);
                 }
             }
         }
@@ -64,23 +72,21 @@ public class Fire : MonoBehaviour
         moveDirection = new Vector2(dir, 0).normalized; 
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.transform.tag == "Enemy" && !isCharge) 
-        {
-            rb.simulated = false;
-            Destroy(gameObject); //적과 충돌 시 삭제
-            
-        }
-        if(collision.transform.tag == "Enemy" && isCharge)
-        {
-            playerController.mp += 5;
-        }
-        if(collision.transform.tag == "Player" && backToPlayer)
-        {
-            Destroy(gameObject);
-        }
-        
-    }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Enemy"))
+        {
+            if(!isCharge) Destroy(gameObject);
+            else 
+            {
+                playerController.mp += 5;
+                Debug.Log(playerController.mp);
+            }
+        }
+        if(collision.transform.tag == "Player" && backToPlayer && isCharge)
+        {
+            Debug.Log("플레이어와 충돌");
+        }
+    }
 }

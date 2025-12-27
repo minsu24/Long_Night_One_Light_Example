@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float jumpPower = 2.0f;
     
-    public int hp, mp;
+    public int hp = 0, mp = 0;
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
