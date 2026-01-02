@@ -1,25 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.Intrinsics;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using Unity.VisualScripting.InputSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : Entity
 {
     [SerializeField]
     private float speed = 5f;
     [SerializeField]
     private float jumpPower = 2.0f;
-    
-    public int hp = 0, mp = 0;
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
     Animator animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private void Awake()
+    {
+        base.Setup();
+    }
     void Start()
     {
         //초기화
@@ -31,8 +35,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
         //점프
         if (Input.GetButtonDown("Jump") && !animator.GetBool("isJumping") && !animator.GetBool("isFalling")) 
         {   // 점프 횟수 제한 제어문(지금은 1회만 가능)
@@ -83,5 +85,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    
+    public override float maxHP => 100;
+    public override float maxMP => 100;
+
+    public override void TakeDamage(float damage)
+    {
+        HP -= damage;
+    }
+
 }

@@ -11,10 +11,11 @@ public class Fire : MonoBehaviour
     public bool isCharge, backToPlayer;
 
     public PlayerController playerController;
+    public PlayerAttackSystem playerAttackSystem;
 
     [SerializeField]
     private GameObject player;
-
+    private GameObject AtkSystem;
     private GameObject enemy;
 
     CircleCollider2D circleCollider2D;
@@ -31,6 +32,8 @@ public class Fire : MonoBehaviour
         {
             playerController = player.GetComponent<PlayerController>();
         }
+        AtkSystem = GameObject.FindGameObjectWithTag("AtkSystem");
+        playerAttackSystem = AtkSystem.GetComponent<PlayerAttackSystem>();
         enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 
@@ -43,6 +46,7 @@ public class Fire : MonoBehaviour
             if(Vector3.Distance(startPos, transform.position) >= 12.5f) // 일정 거리 이동하면 삭제
             {
                 Destroy(gameObject);
+                playerAttackSystem.baseAttacking = false;
             }
         }
         else
@@ -62,6 +66,7 @@ public class Fire : MonoBehaviour
                 if(Vector3.Distance(player.transform.position, transform.position) <= 0.5f)
                 {
                     Destroy(gameObject);
+                    playerAttackSystem.chargeAttaking = false;
                 }
             }
         }
@@ -77,11 +82,15 @@ public class Fire : MonoBehaviour
     {
         if(collision.CompareTag("Enemy"))
         {
-            if(!isCharge) Destroy(gameObject);
+            if(!isCharge) 
+            {
+                Destroy(gameObject);
+                playerAttackSystem.baseAttacking = false;
+            }
             else 
             {
-                playerController.mp += 5;
-                Debug.Log(playerController.mp);
+                playerController.MP += 5;
+                Debug.Log(playerController.MP);
             }
         }
         if(collision.transform.tag == "Player" && backToPlayer && isCharge)

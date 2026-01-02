@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1310525016753386214}
   m_Layer: 8
   m_Name: BaseAttack
-  m_TagString: Untagged
+  m_TagString: Fire
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,6 +110,7 @@ MonoBehaviour:
   isCharge: 0
   backToPlayer: 0
   playerController: {fileID: 0}
+  playerAttackSystem: {fileID: 0}
   player: {fileID: 0}
 --- !u!50 &835170669798174015
 Rigidbody2D:

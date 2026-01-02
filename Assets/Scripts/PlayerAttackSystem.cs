@@ -12,6 +12,10 @@ public class PlayerAttackSystem : MonoBehaviour
     private float curtime; // 쿨타임 계산을 위한 변수
     private float chargeCurtime; //차지 공격 쿨타임 계산을 위한 변수
 
+    public bool baseAttacking = false;
+    public bool chargeAttaking = false;
+    
+
     void Update()
     {
         if(curtime > 0) curtime -= Time.deltaTime;
@@ -20,10 +24,11 @@ public class PlayerAttackSystem : MonoBehaviour
     {
         if (context.canceled)
         {
-            if(curtime <= 0)
+            if(curtime <= 0 && !chargeAttaking)
             {
                 if(context.duration < 1.0f)
-                {
+                {   
+                    baseAttacking = true;
                     Debug.Log("일반 공격");
                     GameObject fire = Instantiate(BaseAttackPrefab, transform.position, Quaternion.identity); // 발사체 생성
                     Fire fireScript = fire.GetComponent<Fire>(); 
@@ -44,8 +49,9 @@ public class PlayerAttackSystem : MonoBehaviour
         }
         if (context.performed)
         {
-            if(chargeCurtime <= 0)
+            if(chargeCurtime <= 0 && !baseAttacking)
             {
+                chargeAttaking = true;
                 Debug.Log("차지 공격");
                 GameObject fire = Instantiate(BaseAttackPrefab, transform.position, Quaternion.identity); // 발사체 생성
                 Fire fireScript = fire.GetComponent<Fire>(); 
