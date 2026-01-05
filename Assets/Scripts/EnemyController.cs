@@ -23,21 +23,22 @@ public class EnemyController : Entity
     public override float maxHP => 100;
     public override float maxMP => 0;
 
-    public override void TakeDamage(float damage)
+    public override void TakeDamage(float damage) // 데미지 계산
     {
-        HP -= damage;
-        StartCoroutine("HitAnimation");
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Fire"))
+        if(HP > 0)
         {
-            target.TakeDamage(10.0f);        
+            HP -= damage;
         }
+        if(HP==0)
+        {
+            Destroy(gameObject);
+        }
+        Debug.Log("적 HP : " + HP);
+        StartCoroutine("HitAnimation");
+        
     }
 
-    private IEnumerator HitAnimation()
+    private IEnumerator HitAnimation() 
     {
         Color color = spriteRenderer.color;
 

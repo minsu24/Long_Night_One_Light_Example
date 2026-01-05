@@ -16,6 +16,10 @@ public class PlayerController : Entity
     [SerializeField]
     private float jumpPower = 2.0f;
 
+    public float baseDamage = 10f; // 기본 데미지
+    public float atkMultiplier = 1f; // 데미지 배율
+    public float FinalDamage => baseDamage * atkMultiplier; // 최종 데미지
+
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
     Animator animator;

@@ -10,6 +10,7 @@ public class Fire : MonoBehaviour
 
     public bool isCharge, backToPlayer;
 
+    public float damage;
     public PlayerController playerController;
     public PlayerAttackSystem playerAttackSystem;
 
@@ -19,9 +20,8 @@ public class Fire : MonoBehaviour
     private GameObject enemy;
 
     CircleCollider2D circleCollider2D;
-
     Rigidbody2D rb;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Start()
     {
         startPos = transform.position; // 시작 위치 저장
@@ -72,7 +72,7 @@ public class Fire : MonoBehaviour
         }
     }
     
-    public void SetDirection(float dir) // BaseAttack에서 방향 받아오는 함수
+    public void SetDirection(float dir) // PlayerAttackSystem에서 방향 받아오는 함수
     {
         moveDirection = new Vector2(dir, 0).normalized; 
     }
@@ -84,11 +84,13 @@ public class Fire : MonoBehaviour
         {
             if(!isCharge) 
             {
+                collision.GetComponent<Entity>().TakeDamage(damage); // 적에게 데미지
                 Destroy(gameObject);
                 playerAttackSystem.baseAttacking = false;
             }
             else 
             {
+                collision.GetComponent<Entity>().TakeDamage(damage);
                 playerController.MP += 5;
                 Debug.Log(playerController.MP);
             }
