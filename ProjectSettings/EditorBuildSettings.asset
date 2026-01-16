@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Option.unity
     guid: 606ae9e936bbd7b448f466d6e06316d6
+  - enabled: 1
+    path: Assets/Scenes/Vilage.unity
+    guid: 6fbf4f4e02bc3494ca540f46380c32d3
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

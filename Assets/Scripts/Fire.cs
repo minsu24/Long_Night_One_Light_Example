@@ -18,6 +18,7 @@ public class Fire : MonoBehaviour
     private GameObject player;
     private GameObject AtkSystem;
     private GameObject enemy;
+    private GameObject firespirit;
 
     CircleCollider2D circleCollider2D;
     Rigidbody2D rb;
@@ -37,6 +38,10 @@ public class Fire : MonoBehaviour
         enemy = GameObject.FindGameObjectWithTag("Enemy");
     }
 
+    public void Setup(GameObject Spirit)
+    {
+        firespirit = Spirit;   
+    }
     // Update is called once per frame
     void Update()
     {
@@ -67,6 +72,7 @@ public class Fire : MonoBehaviour
                 {
                     Destroy(gameObject);
                     playerAttackSystem.chargeAttaking = false;
+                    
                 }
             }
         }
@@ -97,6 +103,7 @@ public class Fire : MonoBehaviour
         }
         if(collision.transform.tag == "Player" && backToPlayer && isCharge)
         {
+            firespirit.SetActive(true);
             Debug.Log("플레이어와 충돌");
         }
     }

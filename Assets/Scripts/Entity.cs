@@ -1,3 +1,5 @@
+using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
@@ -18,14 +20,23 @@ public abstract class Entity : MonoBehaviour
         get => stats.MP;
     }
 
+    public float Mental
+    {
+        set => stats.Mental = Mathf.Clamp(value, 0, maxMental);
+        get => stats.Mental;
+    }
+
+
     public abstract float maxHP { get; }
     public abstract float maxMP { get; }
+    public abstract float maxMental { get; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     protected void Setup()
     {
         HP = maxHP;
         MP = maxHP;
+        Mental = 0;
     }
 
     //상대방을 공격할 때 상대방의 TakeDamage() 호출
@@ -39,5 +50,7 @@ public abstract class Entity : MonoBehaviour
         public float HP;
         [HideInInspector]
         public float MP;
+        [HideInInspector]
+        public float Mental;
     }
 }

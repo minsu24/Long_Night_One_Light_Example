@@ -26,6 +26,7 @@ public class PlayerController : Entity
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         base.Setup();
     }
     void Start()
@@ -44,6 +45,16 @@ public class PlayerController : Entity
         {   // 점프 횟수 제한 제어문(지금은 1회만 가능)
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse); 
             animator.SetBool("isJumping", true); // 애니메이션 재생을 위한 Bool 변수 값 지정
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log(Mental);
+            Mental -= 5f;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+        
+            Mental += 5f;
         }
         
         //애니메이션
@@ -89,9 +100,9 @@ public class PlayerController : Entity
         }
     }
 
-    public override float maxHP => 100;
-    public override float maxMP => 100;
-
+    public override float maxHP => 100f;
+    public override float maxMP => 100f;
+    public override float maxMental => 100f;
     public override void TakeDamage(float damage)
     {
         HP -= damage;

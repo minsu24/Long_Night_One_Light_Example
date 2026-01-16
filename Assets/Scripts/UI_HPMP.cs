@@ -16,6 +16,10 @@ public class UI_HPMP : MonoBehaviour
     private Slider sliderMP;
     [SerializeField]
     private TextMeshProUGUI textMP;
+    [SerializeField]
+    private Slider sliderMental;
+    [SerializeField]
+    private TextMeshProUGUI textMental;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,5 +35,8 @@ public class UI_HPMP : MonoBehaviour
 
         if(sliderMP != null) sliderMP.value = Utils.Percent(playerController.MP, playerController.maxMP); // 슬라이드를 이용한 MP 표시
         if(textMP != null) textMP.text = $"{playerController.MP:F0}/{playerController.maxMP:F0}";
+
+        if(sliderMental != null) sliderMental.value = Utils.Percent(playerController.Mental, playerController.maxMental);
+        if(textMental != null) textMental.text = $"{playerController.Mental:F0}/{playerController.maxMental:F0}";
     }
 }

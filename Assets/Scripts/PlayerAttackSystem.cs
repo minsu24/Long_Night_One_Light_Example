@@ -11,6 +11,7 @@ public class PlayerAttackSystem : MonoBehaviour
     private GameObject BaseAttackPrefab; // 발사체 프리팹
 
     private GameObject player;
+    private GameObject fireSpirit;
     private PlayerController playerController;
 
     public float cooltime; // 공격 쿨타임
@@ -29,6 +30,7 @@ public class PlayerAttackSystem : MonoBehaviour
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
+        fireSpirit = GameObject.FindGameObjectWithTag("Friend");
     }
 
     void Update()
@@ -69,9 +71,11 @@ public class PlayerAttackSystem : MonoBehaviour
                 if(chargeCurtime <= 0 && !baseAttacking)
                 {
                     chargeAttaking = true;
+                    fireSpirit.SetActive(false);
                     Debug.Log("차지 공격");
                     GameObject fire = Instantiate(BaseAttackPrefab, transform.position, Quaternion.identity); // 발사체 생성
                     Fire fireScript = fire.GetComponent<Fire>(); 
+                    fireScript.Setup(fireSpirit);
                     if(fireScript != null)
                     {
                         fireScript.damage = playerController.FinalDamage;
