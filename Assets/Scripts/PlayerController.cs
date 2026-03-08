@@ -87,7 +87,7 @@ public class PlayerController : Entity
             animator.SetBool("isJumping", false);
             animator.SetBool("isFalling", true);
             Debug.DrawRay(rb.position, Vector3.down, new Color(1,0,0));
-            RaycastHit2D rayHit = Physics2D.Raycast(rb.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
+            RaycastHit2D rayHit = Physics2D.Raycast(rb.position, Vector3.down, 1.5f, LayerMask.GetMask("Platform"));
             if (rayHit.collider != null)
             {
                 Debug.Log(rayHit.collider.name);
