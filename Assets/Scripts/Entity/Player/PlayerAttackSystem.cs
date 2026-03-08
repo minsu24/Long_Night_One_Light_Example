@@ -9,6 +9,7 @@ public class PlayerAttackSystem : MonoBehaviour
     public static PlayerAttackSystem instance;
     [SerializeField]
     private GameObject BaseAttackPrefab; // 발사체 프리팹
+    [SerializeField] private SkillBase sSkill;
 
     private GameObject player;
     private GameObject fireSpirit;
@@ -95,7 +96,7 @@ public class PlayerAttackSystem : MonoBehaviour
         else if(context.action.name == "S_Skill")
         {
             if(context.started){
-                if(playerController.MP < 50 && S_Skilling)
+                if(playerController.MP < 50 || !sSkill.IsReady)
                 {
                     Debug.Log("S스킬 사용불가");
                 }
@@ -104,7 +105,8 @@ public class PlayerAttackSystem : MonoBehaviour
                     Debug.Log("S스킬 사용가능");
                     playerController.MP -= 50;
                     icon = fireIcon;
-                    BuffManager.instance.CreateBuff("Atk", 300f, 7f, icon); // 버프 아이콘 생성에 필요한 데이터 전달
+                    BuffManager.instance.CreateBuff("Atk", 300f, 5f, icon); // 버프 아이콘 생성에 필요한 데이터 전달
+                    sSkill.ExecuteSkill();
                 }
             }
         }

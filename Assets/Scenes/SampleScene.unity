@@ -649,7 +649,7 @@ Transform:
   m_GameObject: {fileID: 299147795}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.425, y: 0.032000005, z: -10}
+  m_LocalPosition: {x: 49.08, y: -0.65, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1355,7 +1355,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.3724003, y: -0.8547573, z: -10}
+  m_LocalPosition: {x: 49.08001, y: -0.8547573, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9626,6 +9626,7 @@ GameObject:
   - component: {fileID: 1526959116}
   - component: {fileID: 1526959118}
   - component: {fileID: 1526959117}
+  - component: {fileID: 1526959119}
   m_Layer: 0
   m_Name: RightBaseAttack
   m_TagString: AtkSystem
@@ -9661,6 +9662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttackSystem
   BaseAttackPrefab: {fileID: 3780673957017645484, guid: 0675f0d519a5c154f935031189c4ac4c, type: 3}
+  sSkill: {fileID: 1526959119}
   cooltime: 2
   chargeCooltime: 2
   fireIcon: {fileID: 8273116211110717698, guid: d0acf4cba730f4f48aedff0e0f5d8f4b, type: 3}
@@ -9729,6 +9731,23 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1526959119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526959115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb4dca64e9a54d4c8a6dc0fa99d4cc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SweepSkill
+  coolDown: 5
+  sweepRadius: 3
+  sweepDamage: 15
+  enemy: {fileID: 0}
+  enemyController: {fileID: 0}
 --- !u!1 &1537677442
 GameObject:
   m_ObjectHideFlags: 0
@@ -10405,7 +10424,7 @@ Transform:
   m_GameObject: {fileID: 2053869889}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.425, y: -0.968, z: 0}
+  m_LocalPosition: {x: 49.08, y: -1.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
