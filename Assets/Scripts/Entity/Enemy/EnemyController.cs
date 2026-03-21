@@ -23,6 +23,7 @@ public class EnemyController : Entity
     public override float maxHP => 100;
     public override float maxMP => 0;
     public override float maxMental => 0f;
+    public override float maxStamina => 0f;
 
     public override void TakeDamage(float damage) // 데미지 계산
     {

@@ -13,7 +13,6 @@ public class SweepSkill : SkillBase
     {
         enemy = GameObject.FindGameObjectWithTag("Enemy");
         enemyController = enemy.GetComponent<EnemyController>();
-        
     }
     protected override void OnCast()
     {

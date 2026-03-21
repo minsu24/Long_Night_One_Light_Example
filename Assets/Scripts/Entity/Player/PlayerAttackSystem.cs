@@ -10,6 +10,7 @@ public class PlayerAttackSystem : MonoBehaviour
     [SerializeField]
     private GameObject BaseAttackPrefab; // 발사체 프리팹
     [SerializeField] private SkillBase sSkill;
+    [SerializeField] private SkillBase dashSkill;
 
     private GameObject player;
     private GameObject fireSpirit;
@@ -107,6 +108,22 @@ public class PlayerAttackSystem : MonoBehaviour
                     icon = fireIcon;
                     BuffManager.instance.CreateBuff("Atk", 300f, 5f, icon); // 버프 아이콘 생성에 필요한 데이터 전달
                     sSkill.ExecuteSkill();
+                }
+            }
+        }
+        else if(context.action.name == "Dash")
+        {
+            if (context.started)
+            {
+                if(playerController.Stamina < 20 || !dashSkill.IsReady)
+                {
+                    Debug.Log("대쉬 스킬 사용불가");
+                }
+                else
+                {
+                    Debug.Log("대쉬스킬 사용가능");
+                    playerController.Stamina -= 20;
+                    dashSkill.ExecuteSkill();
                 }
             }
         }

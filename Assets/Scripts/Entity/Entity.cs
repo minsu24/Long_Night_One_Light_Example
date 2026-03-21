@@ -26,10 +26,16 @@ public abstract class Entity : MonoBehaviour
         get => stats.Mental;
     }
 
+    public float Stamina
+    {
+        set => stats.Stamina = Mathf.Clamp(value, 0, maxStamina);
+        get => stats.Stamina;
+    }
 
     public abstract float maxHP { get; }
     public abstract float maxMP { get; }
     public abstract float maxMental { get; }
+    public abstract float maxStamina { get; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     protected void Setup()
@@ -37,6 +43,7 @@ public abstract class Entity : MonoBehaviour
         HP = maxHP;
         MP = maxHP;
         Mental = 0;
+        Stamina = maxStamina;
     }
 
     //상대방을 공격할 때 상대방의 TakeDamage() 호출
@@ -52,5 +59,7 @@ public abstract class Entity : MonoBehaviour
         public float MP;
         [HideInInspector]
         public float Mental;
+        [HideInInspector]
+        public float Stamina;
     }
 }

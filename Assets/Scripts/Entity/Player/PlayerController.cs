@@ -19,6 +19,8 @@ public class PlayerController : Entity
     public float baseDamage = 10f; // 기본 데미지
     public float atkMultiplier = 1f; // 데미지 배율
     public float FinalDamage => baseDamage * atkMultiplier; // 최종 데미지
+    public bool isDashing = false;
+
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
@@ -66,9 +68,16 @@ public class PlayerController : Entity
         {
             animator.SetBool("isMoving", true);
         }
+        
+        if(Stamina < maxStamina)
+        {
+            Stamina += 5f * Time.deltaTime;
+        }
+        
     }
     void FixedUpdate()
     {
+        if(isDashing){return; }
         //방향키 누르면 움직임
         float h = Input.GetAxisRaw("Horizontal");
         if(h > 0) // 움직이는 방향에 따라 localScale 함수를 이용해 방향 전환
@@ -81,7 +90,6 @@ public class PlayerController : Entity
         }
         //float v = Input.GetAxisRaw("Vertical");
         rb.linearVelocity = new Vector2(h * speed, rb.linearVelocity.y);
-
         //랜딩 플랫폼
         if(rb.linearVelocity.y < -0.5f){ // 바닥에 닿았을 때 애니메이션 전환 로직
             animator.SetBool("isJumping", false);
@@ -103,6 +111,7 @@ public class PlayerController : Entity
     public override float maxHP => 100f;
     public override float maxMP => 100f;
     public override float maxMental => 100f;
+    public override float maxStamina => 50f;
     public override void TakeDamage(float damage)
     {
         HP -= damage;
