@@ -22,6 +22,8 @@ public class PlayerAttackSystem : MonoBehaviour
     private float chargeCurtime; //차지 공격 쿨타임 계산을 위한 변수
 
     public Sprite fireIcon;
+
+    public Sprite speedIcon;
     private Sprite icon;
     public bool baseAttacking = false;
     public bool chargeAttaking = false;
@@ -125,6 +127,14 @@ public class PlayerAttackSystem : MonoBehaviour
                     playerController.Stamina -= 20;
                     dashSkill.ExecuteSkill();
                 }
+            }
+        }
+        else if(context.action.name == "Speed_Up")
+        {
+            if (context.started)
+            {
+                icon = speedIcon;
+                BuffManager.instance.CreateBuff("SPEED", 150f, 5f, icon);
             }
         }
     }

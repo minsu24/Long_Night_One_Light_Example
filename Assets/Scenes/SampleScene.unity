@@ -9190,6 +9190,50 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1 &1195849011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1195849013}
+  - component: {fileID: 1195849012}
+  m_Layer: 0
+  m_Name: MentalSystem
+  m_TagString: MentalSystem
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1195849012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195849011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b9d9b304685a69469c63205e26863e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MentalSystem
+--- !u!4 &1195849013
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195849011}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 34.56038, y: -13.33044, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1306901513
 GameObject:
   m_ObjectHideFlags: 0
@@ -10081,6 +10125,7 @@ MonoBehaviour:
   cooltime: 2
   chargeCooltime: 2
   fireIcon: {fileID: 8273116211110717698, guid: d0acf4cba730f4f48aedff0e0f5d8f4b, type: 3}
+  speedIcon: {fileID: -2003576716167278366, guid: 004eebd4536d09a4f9d50d87168c97a2, type: 3}
   baseAttacking: 0
   chargeAttaking: 0
   S_Skilling: 0
@@ -10157,6 +10202,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fc247fb5-45e7-4faa-bd0d-367d4a09a835
     m_ActionName: 'Player/Dash[/Keyboard/shift]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1526959117}
+        m_TargetAssemblyTypeName: PlayerAttackSystem, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 00310b01-6dc7-4de6-94d1-d8947b82cd59
+    m_ActionName: 'Player/Speed_Up[/Keyboard/c]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -11161,3 +11222,4 @@ SceneRoots:
   - {fileID: 2016482495}
   - {fileID: 230609148}
   - {fileID: 88523639}
+  - {fileID: 1195849013}

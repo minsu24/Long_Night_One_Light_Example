@@ -1,13 +1,17 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class EnemyController : Entity
 {
     SpriteRenderer spriteRenderer;
+    private PlayerController playerController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         base.Setup();
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
     }
     void Start()
     {
@@ -31,13 +35,13 @@ public class EnemyController : Entity
         {
             HP -= damage;
         }
-        if(HP==0)
+        if(HP<=0)
         {
+            ReduceMental();
             Destroy(gameObject);
         }
         Debug.Log("적 HP : " + HP);
         StartCoroutine("HitAnimation");
-        
     }
 
     private IEnumerator HitAnimation() 
@@ -53,4 +57,8 @@ public class EnemyController : Entity
         spriteRenderer.color = color;
     }
 
+    private void ReduceMental()
+    {
+        playerController.Mental -= 2;
+    }
 }

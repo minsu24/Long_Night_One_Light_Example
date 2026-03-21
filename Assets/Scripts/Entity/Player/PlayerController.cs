@@ -11,8 +11,7 @@ using UnityEngine.PlayerLoop;
 
 public class PlayerController : Entity
 {
-    [SerializeField]
-    private float speed = 5f;
+    public float speed = 5f;
     [SerializeField]
     private float jumpPower = 2.0f;
 
@@ -50,13 +49,13 @@ public class PlayerController : Entity
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log(Mental);
             Mental -= 5f;
+            Debug.Log(Mental);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-        
             Mental += 5f;
+            Debug.Log(Mental);
         }
         
         //애니메이션
