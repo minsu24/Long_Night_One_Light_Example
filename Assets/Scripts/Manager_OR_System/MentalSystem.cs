@@ -1,9 +1,10 @@
 using Mono.Cecil.Cil;
 using UnityEngine;
 
+public enum MentalState{ Normal, Sad, Angry, Despair, Madness }
+
 public class MentalSystem : MonoBehaviour
 {
-    string state;
     private PlayerController player;
     
 
@@ -20,25 +21,36 @@ public class MentalSystem : MonoBehaviour
 
     public void ChangeMental(float currentMental)
     {
-        if(currentMental <= 10)
+        MentalState state;
+        if(currentMental <= 10){state = MentalState.Madness;}
+        else if(currentMental <= 30) {state = MentalState.Despair;}
+        else if(currentMental <= 50) {state = MentalState.Angry;}
+        else if(currentMental <= 70) {state = MentalState.Sad;}
+        else {state = MentalState.Normal;}
+
+        ApplyMentalEffect(state);
+    }
+
+    private void ApplyMentalEffect(MentalState state)
+    {
+        switch (state)
         {
-            
-        }
-        else if(currentMental <= 30)
-        {
-            
-        }
-        else if(currentMental <= 50)
-        {
-            
-        }
-        else if(currentMental <= 70)
-        {
-            
-        }
-        else
-        {
-            
+            case MentalState.Normal:
+                player.speedMultiplier = 1f;
+                player.atkMultiplier = 1f;
+                break;
+            case MentalState.Sad:
+                player.atkMultiplier = 1.15f;
+                break;
+            case MentalState.Angry:
+                player.speedMultiplier = 1.1f;
+                Debug.Log(player.FinalSpeed);
+                break;
+            case MentalState.Despair:
+                break;
+            case MentalState.Madness:
+                player.atkMultiplier = 1.3f;
+                break;
         }
     }
 }

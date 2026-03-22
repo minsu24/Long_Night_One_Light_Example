@@ -8,6 +8,7 @@ using System.IO;
 public class MainScreenController : MonoBehaviour
 {
     public GameObject creat;
+    public GameObject saveWindow;
     public TextMeshProUGUI[] slotText;
     public TextMeshProUGUI newPlayerName;
 
@@ -27,7 +28,7 @@ public class MainScreenController : MonoBehaviour
                 savefile[i] = true;
                 DataManager.instance.nowSlot = i;
                 DataManager.instance.GameLoad();
-                slotText[i].text = DataManager.instance.nowPlayer.name;
+                slotText[i].text = DataManager.instance.nowPlayer.name + "\n" + DataManager.instance.nowPlayer.lastPlayTime;
             }
             else
             {
@@ -58,6 +59,15 @@ public class MainScreenController : MonoBehaviour
             Create();  
         }
     }   
+    public void OpenSaveWindow()
+    {
+        saveWindow.gameObject.SetActive(true);
+    }
+
+    public void CloseSaveWindow()
+    {
+        saveWindow.gameObject.SetActive(false);
+    }
 
     public void Create()
     {
@@ -67,8 +77,9 @@ public class MainScreenController : MonoBehaviour
     public void GameStart()
     {
         if (!savefile[DataManager.instance.nowSlot])
-        {
+        { 
             DataManager.instance.nowPlayer.name = newPlayerName.text;
+            DataManager.instance.nowPlayer.lastPlayTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             DataManager.instance.GameSave();
         }
         SceneManager.LoadScene(sceneName);

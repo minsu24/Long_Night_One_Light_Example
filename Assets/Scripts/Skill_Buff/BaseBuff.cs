@@ -29,7 +29,7 @@ public class BaseBuff : MonoBehaviour
         }
         else if(type == "SPEED")
         {
-            player.speed *= (percentage / 100f);
+            player.speedMultiplier *= (percentage / 100f);
         }
         duration = du;
         currentTime = duration;
@@ -64,7 +64,7 @@ public class BaseBuff : MonoBehaviour
             player.atkMultiplier *= (100f / percentage);
         }
         else if(type == "SPEED"){
-            player.speed *= (100f / percentage);
+            player.speedMultiplier *= (100f / percentage);
         }
         Destroy(gameObject);
     }
