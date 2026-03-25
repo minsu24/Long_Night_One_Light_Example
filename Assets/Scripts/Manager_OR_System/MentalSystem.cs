@@ -18,14 +18,13 @@ public class MentalSystem : MonoBehaviour
         var entity = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
         entity.OnMentalChanged += ChangeMental;
     }
-
     public void ChangeMental(float currentMental)
     {
         MentalState state;
-        if(currentMental <= 10){state = MentalState.Madness;}
-        else if(currentMental <= 30) {state = MentalState.Despair;}
-        else if(currentMental <= 50) {state = MentalState.Angry;}
-        else if(currentMental <= 70) {state = MentalState.Sad;}
+        if(currentMental/player.maxMental <= 0.1f){state = MentalState.Madness;}
+        else if(currentMental/player.maxMental <= 0.3f) {state = MentalState.Despair;}
+        else if(currentMental/player.maxMental <= 0.5f) {state = MentalState.Angry;}
+        else if(currentMental/player.maxMental <= 0.7f) {state = MentalState.Sad;}
         else {state = MentalState.Normal;}
 
         ApplyMentalEffect(state);
