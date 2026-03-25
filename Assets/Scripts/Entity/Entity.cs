@@ -63,3 +63,6 @@ public abstract class Entity : MonoBehaviour
         public float Stamina;
     }
 }
+
+
+//잘 수정됬는지 확인부탁함
