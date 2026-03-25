@@ -23,21 +23,28 @@ public class BaseBuff : MonoBehaviour
     {
         this.type = type;
         percentage = per;
-        player.atkMultiplier *= (percentage / 100f); // 공격력 증가 식
+        if(type == "Atk")
+        {
+            player.atkMultiplier *= (percentage / 100f); // 공격력 증가 식
+        }
+        else if(type == "SPEED")
+        {
+            player.speedMultiplier *= (percentage / 100f);
+        }
         duration = du;
         currentTime = duration;
         icon.fillAmount = 1;
         icon.sprite = buffSprite;
-        Execute();
+        Execute(type);
     }
 
     WaitForSeconds seconds = new WaitForSeconds(0.1f);
-    public void Execute() 
+    public void Execute(string type) 
     {
-        StartCoroutine(Activation());
+        StartCoroutine(Activation(type));
     }
 
-    IEnumerator Activation() // 버프 아이콘을 남은 시간에 따라 변경
+    IEnumerator Activation(string type) // 버프 아이콘을 남은 시간에 따라 변경
     {
         while(currentTime > 0)
         {
@@ -47,13 +54,18 @@ public class BaseBuff : MonoBehaviour
         }
 
         currentTime = 0;
-        DeActivation();
+        DeActivation(type);
     }
 
-    public void DeActivation() // 버프 아이콘 제거
+    public void DeActivation(string type) // 버프 아이콘 제거
     {
-        PlayerAttackSystem.instance.S_Skilling = false;
-        player.atkMultiplier *= (100f / percentage);
+        if(type == "Atk"){
+            PlayerAttackSystem.instance.S_Skilling = false;
+            player.atkMultiplier *= (100f / percentage);
+        }
+        else if(type == "SPEED"){
+            player.speedMultiplier *= (100f / percentage);
+        }
         Destroy(gameObject);
     }
 }

@@ -4,11 +4,12 @@ using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
+    public event Action<float> OnMentalChanged;
     private Stats stats; //캐릭터 정보
     public Entity target; //공격 대상
-    
+
     // 체력(HP) 프로퍼티 : 0 ~ maxHP 사이의 값을 넘어갈 수 없도록 설정
-     public float HP
+    public float HP
     {
         set => stats.HP = Mathf.Clamp(value, 0, maxHP);
         get => stats.HP;
@@ -22,7 +23,15 @@ public abstract class Entity : MonoBehaviour
 
     public float Mental
     {
-        set => stats.Mental = Mathf.Clamp(value, 0, maxMental);
+        //set => stats.Mental = Mathf.Clamp(value, 0, maxMental);
+        set
+        {
+            float previousValue = stats.Mental;
+            stats.Mental = Mathf.Clamp(value, 0, maxMental);
+            if(previousValue != stats.Mental){
+                OnMentalChanged?.Invoke(stats.Mental);
+            }
+        }
         get => stats.Mental;
     }
 
@@ -42,7 +51,7 @@ public abstract class Entity : MonoBehaviour
     {
         HP = maxHP;
         MP = maxHP;
-        Mental = 0;
+        Mental = 70;
         Stamina = maxStamina;
     }
 

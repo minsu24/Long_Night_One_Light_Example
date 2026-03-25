@@ -8,6 +8,7 @@ public class PlayerData
     public float mp;
     public int mental;
     public int item;
+    public string lastPlayTime;
 }
 
 public class DataManager : MonoBehaviour

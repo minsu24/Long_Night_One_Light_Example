@@ -11,13 +11,14 @@ using UnityEngine.PlayerLoop;
 
 public class PlayerController : Entity
 {
-    [SerializeField]
-    private float speed = 5f;
+    public float speed = 5f;
     [SerializeField]
     private float jumpPower = 2.0f;
 
     public float baseDamage = 10f; // 기본 데미지
     public float atkMultiplier = 1f; // 데미지 배율
+    public float speedMultiplier = 1f; // 스피드 배율
+    public float FinalSpeed => speed * speedMultiplier; // 최종 스피드 
     public float FinalDamage => baseDamage * atkMultiplier; // 최종 데미지
     public bool isDashing = false;
 
@@ -50,13 +51,13 @@ public class PlayerController : Entity
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Debug.Log(Mental);
             Mental -= 5f;
+            Debug.Log(Mental);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-        
             Mental += 5f;
+            Debug.Log(Mental);
         }
         
         //애니메이션
@@ -89,7 +90,7 @@ public class PlayerController : Entity
             transform.localScale = new Vector3(-1, 1, 1);
         }
         //float v = Input.GetAxisRaw("Vertical");
-        rb.linearVelocity = new Vector2(h * speed, rb.linearVelocity.y);
+        rb.linearVelocity = new Vector2(h * FinalSpeed, rb.linearVelocity.y);
         //랜딩 플랫폼
         if(rb.linearVelocity.y < -0.5f){ // 바닥에 닿았을 때 애니메이션 전환 로직
             animator.SetBool("isJumping", false);
