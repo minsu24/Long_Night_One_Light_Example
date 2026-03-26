@@ -9,6 +9,7 @@ TagManager:
   - Fire
   - Friend
   - MentalSystem
+  - FieldItem
   layers:
   - Default
   - TransparentFX
