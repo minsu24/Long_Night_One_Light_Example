@@ -1,5 +1,5 @@
 using System;
-using Unity.Mathematics;
+using Unity.Mathematics;  //삭제해도 됨
 using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
@@ -50,10 +50,12 @@ public abstract class Entity : MonoBehaviour
     protected void Setup()
     {
         HP = maxHP;
-        MP = maxHP;
-        Mental = 70;
+        MP = maxMP; //오타 수정 3/28
+        Mental = maxMental; // 각자의 최대치로 초기화 3/28, 기존의 시작값 70은 플레이어 컨트롤러에서 따로 처리 요망
         Stamina = maxStamina;
     }
+
+
 
     //상대방을 공격할 때 상대방의 TakeDamage() 호출
     // 매개변수 damage는 공격하는 본인 공격력

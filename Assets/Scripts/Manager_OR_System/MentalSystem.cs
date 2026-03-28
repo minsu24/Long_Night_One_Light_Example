@@ -45,7 +45,7 @@ public class MentalSystem : MonoBehaviour
                 player.speedMultiplier = 1.1f;
                 Debug.Log(player.FinalSpeed);
                 break;
-            case MentalState.Despair:
+            case MentalState.Despair: 
                 break;
             case MentalState.Madness:
                 player.atkMultiplier = 1.3f;

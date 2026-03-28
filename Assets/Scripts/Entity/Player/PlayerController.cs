@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.Intrinsics;
-using Unity.Mathematics;
-using Unity.VisualScripting;
-using Unity.VisualScripting.InputSystem;
+using System.Security.Principal;
+using Unity.Burst.Intrinsics; //삭제해도 됨
+using Unity.Mathematics;      //삭제해도 됨
+using Unity.VisualScripting;  //삭제해도 됨
+using Unity.VisualScripting.InputSystem; //삭제해도 됨
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.PlayerLoop;
+using UnityEngine.PlayerLoop;     //삭제해도 됨
 
 
 public class PlayerController : Entity
@@ -72,7 +73,7 @@ public class PlayerController : Entity
         
         if(Stamina < maxStamina)
         {
-            Stamina += 5f * Time.deltaTime;
+            Stamina += 2f * Time.deltaTime; //기획서 내용에 따라 2로 변경 3/28
         }
         
     }
@@ -116,6 +117,10 @@ public class PlayerController : Entity
     public override void TakeDamage(float damage)
     {
         HP -= damage;
+        if(HP <= 0)
+        {
+            HP = 0; //플레이어 사망처리
+        }
     }
 
 }

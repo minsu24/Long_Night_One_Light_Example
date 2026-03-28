@@ -21,7 +21,7 @@ public class EnemyController : Entity
     // Update is called once per frame
     void Update()
     {
-        
+        //몬스터 이동 및 AI 로직 추가 예정 
     }
 
     public override float maxHP => 100;

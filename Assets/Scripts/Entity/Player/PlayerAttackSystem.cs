@@ -40,6 +40,7 @@ public class PlayerAttackSystem : MonoBehaviour
     void Update()
     {
         if(curtime > 0) curtime -= Time.deltaTime;
+        if(chargeCurtime > 0) chargeCurtime -=Time.deltaTime; // 쿨타임 동작을 위해 추가함 3/28
     }
     public void OnAttack(InputAction.CallbackContext context)
     {
@@ -79,9 +80,9 @@ public class PlayerAttackSystem : MonoBehaviour
                     Debug.Log("차지 공격");
                     GameObject fire = Instantiate(BaseAttackPrefab, transform.position, Quaternion.identity); // 발사체 생성
                     Fire fireScript = fire.GetComponent<Fire>(); 
-                    fireScript.Setup(fireSpirit);
                     if(fireScript != null)
                     {
+                        fireScript.Setup(fireSpirit); // 차지 공격이 Setup()을 먼저 호출해서 순서를 마추기 위해 수정 3/28
                         fireScript.damage = playerController.FinalDamage;
                         fireScript.isCharge = true;
                         float dir = transform.root.localScale.x; // 발사체 방향 전달 

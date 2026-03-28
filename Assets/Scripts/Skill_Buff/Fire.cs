@@ -104,6 +104,8 @@ public class Fire : MonoBehaviour
         if(collision.transform.tag == "Player" && backToPlayer && isCharge)
         {
             firespirit.SetActive(true);
+            playerAttackSystem.chargeAttaking = false;
+            Destroy(gameObject);
             Debug.Log("플레이어와 충돌");
         }
     }
