@@ -47,9 +47,9 @@ public class PlayerAttackSystem : MonoBehaviour
         if(context.action.name == "Attack"){
             if (context.canceled)
             {
-                if(curtime <= 0 && !chargeAttaking)
+                if(curtime <= 0 && !chargeAttaking) // 차지 공격 중이 아니고 쿨타임이 돌았다면 
                 {
-                    if(context.duration < 1.0f)
+                    if(context.duration < 1.0f) // 공격 키를 1초 미만으로 눌렀을 때
                     {   
                         baseAttacking = true;
                         Debug.Log("일반 공격");
@@ -71,9 +71,9 @@ public class PlayerAttackSystem : MonoBehaviour
                 }
 
             }
-            if (context.performed)
+            if (context.performed) //  공격 키를 1초 이상으로 눌렀을 때
             {
-                if(chargeCurtime <= 0 && !baseAttacking)
+                if(chargeCurtime <= 0 && !baseAttacking) // 기본 공격중이 아니고 차지 공격 쿨타임이 돌았다면  
                 {
                     chargeAttaking = true;
                     fireSpirit.SetActive(false);
@@ -97,7 +97,7 @@ public class PlayerAttackSystem : MonoBehaviour
 
             }
         }
-        else if(context.action.name == "S_Skill")
+        else if(context.action.name == "S_Skill") //화염 휩쓸기
         {
             if(context.started){
                 if(playerController.MP < 50 || !sSkill.IsReady)
@@ -114,7 +114,7 @@ public class PlayerAttackSystem : MonoBehaviour
                 }
             }
         }
-        else if(context.action.name == "Dash")
+        else if(context.action.name == "Dash") // 대쉬 
         {
             if (context.started)
             {
@@ -130,7 +130,7 @@ public class PlayerAttackSystem : MonoBehaviour
                 }
             }
         }
-        else if(context.action.name == "Speed_Up")
+        else if(context.action.name == "Speed_Up") // 이속 증가 스킬
         {
             if (context.started)
             {

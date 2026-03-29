@@ -39,6 +39,7 @@ public class PlayerController : Entity
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        Mental = 70f;
     }
 
     // Update is called once per frame

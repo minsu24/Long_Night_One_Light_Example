@@ -6,7 +6,6 @@ public class EnemyController : Entity
 {
     SpriteRenderer spriteRenderer;
     private PlayerController playerController;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
         base.Setup();
@@ -18,7 +17,6 @@ public class EnemyController : Entity
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //몬스터 이동 및 AI 로직 추가 예정 
@@ -37,7 +35,7 @@ public class EnemyController : Entity
         }
         if(HP<=0)
         {
-            ReduceMental();
+            ReduceMental(); // 죽으면 멘탈 감소
             Destroy(gameObject);
         }
         Debug.Log("적 HP : " + HP);

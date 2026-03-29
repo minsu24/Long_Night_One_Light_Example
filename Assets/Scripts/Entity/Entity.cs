@@ -45,7 +45,6 @@ public abstract class Entity : MonoBehaviour
     public abstract float maxMP { get; }
     public abstract float maxMental { get; }
     public abstract float maxStamina { get; }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     protected void Setup()
     {

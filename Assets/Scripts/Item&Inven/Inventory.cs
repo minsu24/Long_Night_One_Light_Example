@@ -38,14 +38,14 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        SlotCnt = 4;
+        SlotCnt = 4; // 첫 인벤토리 칸 수 지정
     }
 
     public bool AddItem(Item _item)
     {
-        if(items.Count < SlotCnt)
+        if(items.Count < SlotCnt) // 아이템 칸이 비어있으면
         {
-            items.Add(_item);
+            items.Add(_item); //아이템 추가
             if(onChangeItem != null) onChangeItem.Invoke();
             return true;
         }
