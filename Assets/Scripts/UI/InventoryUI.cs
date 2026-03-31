@@ -23,6 +23,7 @@ public class InventoryUI : MonoBehaviour
 
     private void Update()
     {
+        if(GameManager.instance.isInputLocked) return;
         if (Input.GetKeyDown(KeyCode.I)) 
         {
             activeInventory = !activeInventory;

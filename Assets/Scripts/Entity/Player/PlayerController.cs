@@ -45,6 +45,7 @@ public class PlayerController : Entity
     // Update is called once per frame
     void Update()
     {
+        if(GameManager.instance.isInputLocked) return;
         //점프
         if (Input.GetButtonDown("Jump") && !animator.GetBool("isJumping") && !animator.GetBool("isFalling")) 
         {   // 점프 횟수 제한 제어문(지금은 1회만 가능)

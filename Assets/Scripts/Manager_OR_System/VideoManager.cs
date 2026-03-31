@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,11 +16,15 @@ public class VideoManager : MonoBehaviour
         videoPlayer = GetComponent<VideoPlayer>();
     }
 
+    void Start()
+    {
+        GameManager.instance.LockInput();
+    }
     void Update()
     {
         if(videoEnd && Input.anyKeyDown)
         {
-            ResumeGame();
+            StartCoroutine(ResumeWithDelay());
         }
     }
     void OnEnable()
@@ -48,5 +53,12 @@ public class VideoManager : MonoBehaviour
         rawImage.SetActive(false);
         if(pressAnyKeyUI != null) pressAnyKeyUI.SetActive(true);
         videoEnd = true;
+    }
+
+    IEnumerator ResumeWithDelay()
+    {
+        ResumeGame();
+        yield return null;
+        GameManager.instance.UnLockInput();
     }
 }
