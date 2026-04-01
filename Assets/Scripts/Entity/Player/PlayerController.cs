@@ -23,16 +23,19 @@ public class PlayerController : Entity
     public float FinalDamage => baseDamage * atkMultiplier; // 최종 데미지
     public bool isDashing = false;
 
+    public DialogueManager dialogueManager; // 대화 중 입력 제어용 DialogueManager
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
     Animator animator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         base.Setup();
     }
+
     void Start()
     {
         //초기화
@@ -45,12 +48,20 @@ public class PlayerController : Entity
     // Update is called once per frame
     void Update()
     {
+        // 대화 중이거나 대화 직후 입력 잠금 중이면 점프/이동 입력 막기
+        if (dialogueManager != null && dialogueManager.IsInputBlocked())
+        {
+            animator.SetBool("isMoving", false);
+            return;
+        }
+
         //점프
-        if (Input.GetButtonDown("Jump") && !animator.GetBool("isJumping") && !animator.GetBool("isFalling")) 
+        if (Input.GetButtonDown("Jump") && !animator.GetBool("isJumping") && !animator.GetBool("isFalling"))
         {   // 점프 횟수 제한 제어문(지금은 1회만 가능)
-            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse); 
+            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             animator.SetBool("isJumping", true); // 애니메이션 재생을 위한 Bool 변수 값 지정
         }
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Mental -= 5f;
@@ -61,9 +72,9 @@ public class PlayerController : Entity
             Mental += 5f;
             Debug.Log(Mental);
         }
-        
+
         //애니메이션
-        if(rb.linearVelocity.normalized.x == 0) // Idle과 Run 애니메이션 제어문
+        if (rb.linearVelocity.normalized.x == 0) // Idle과 Run 애니메이션 제어문
         {
             animator.SetBool("isMoving", false);
         }
@@ -71,42 +82,53 @@ public class PlayerController : Entity
         {
             animator.SetBool("isMoving", true);
         }
-        
-        if(Stamina < maxStamina)
+
+        if (Stamina < maxStamina)
         {
             Stamina += 2f * Time.deltaTime; //기획서 내용에 따라 2로 변경 3/28
         }
-        
     }
+
     void FixedUpdate()
     {
-        if(isDashing){return; }
+        // 대화 중이거나 대화 직후 입력 잠금 중이면 좌우 이동 막기
+        if (dialogueManager != null && dialogueManager.IsInputBlocked())
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            return;
+        }
+
+        if (isDashing) { return; }
+
         //방향키 누르면 움직임
         float h = Input.GetAxisRaw("Horizontal");
-        if(h > 0) // 움직이는 방향에 따라 localScale 함수를 이용해 방향 전환
+
+        if (h > 0) // 움직이는 방향에 따라 localScale 함수를 이용해 방향 전환
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
-        else if(h < 0)
+        else if (h < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
+
         //float v = Input.GetAxisRaw("Vertical");
         rb.linearVelocity = new Vector2(h * FinalSpeed, rb.linearVelocity.y);
+
         //랜딩 플랫폼
-        if(rb.linearVelocity.y < -0.5f){ // 바닥에 닿았을 때 애니메이션 전환 로직
+        if (rb.linearVelocity.y < -0.5f)
+        { // 바닥에 닿았을 때 애니메이션 전환 로직
             animator.SetBool("isJumping", false);
             animator.SetBool("isFalling", true);
-            Debug.DrawRay(rb.position, Vector3.down, new Color(1,0,0));
+            Debug.DrawRay(rb.position, Vector3.down, new Color(1, 0, 0));
             RaycastHit2D rayHit = Physics2D.Raycast(rb.position, Vector3.down, 1.5f, LayerMask.GetMask("Platform"));
             if (rayHit.collider != null)
             {
                 Debug.Log(rayHit.collider.name);
-                if(rayHit.distance < 1.2f)
+                if (rayHit.distance < 1.2f)
                 {
                     animator.SetBool("isFalling", false);
                 }
-                
             }
         }
     }
@@ -115,13 +137,13 @@ public class PlayerController : Entity
     public override float maxMP => 100f;
     public override float maxMental => 100f;
     public override float maxStamina => 50f;
+
     public override void TakeDamage(float damage)
     {
         HP -= damage;
-        if(HP <= 0)
+        if (HP <= 0)
         {
             HP = 0; //플레이어 사망처리
         }
     }
-
 }
