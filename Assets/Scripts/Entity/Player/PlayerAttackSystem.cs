@@ -44,6 +44,7 @@ public class PlayerAttackSystem : MonoBehaviour
     }
     public void OnAttack(InputAction.CallbackContext context)
     {
+        if(GameManager.instance.isInputLocked) return;
         if(context.action.name == "Attack"){
             if (context.canceled)
             {

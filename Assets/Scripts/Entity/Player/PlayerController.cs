@@ -28,14 +28,12 @@ public class PlayerController : Entity
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
     Animator animator;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         base.Setup();
     }
-
     void Start()
     {
         //초기화
@@ -55,13 +53,15 @@ public class PlayerController : Entity
             return;
         }
 
+        // 다른 시스템에서 입력 잠금이 걸린 경우도 입력 막기
+        if (GameManager.instance.isInputLocked) return;
+
         //점프
         if (Input.GetButtonDown("Jump") && !animator.GetBool("isJumping") && !animator.GetBool("isFalling"))
         {   // 점프 횟수 제한 제어문(지금은 1회만 가능)
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             animator.SetBool("isJumping", true); // 애니메이션 재생을 위한 Bool 변수 값 지정
         }
-
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             Mental -= 5f;
@@ -87,8 +87,8 @@ public class PlayerController : Entity
         {
             Stamina += 2f * Time.deltaTime; //기획서 내용에 따라 2로 변경 3/28
         }
-    }
 
+    }
     void FixedUpdate()
     {
         // 대화 중이거나 대화 직후 입력 잠금 중이면 좌우 이동 막기
@@ -98,11 +98,16 @@ public class PlayerController : Entity
             return;
         }
 
-        if (isDashing) { return; }
+        // 다른 시스템에서 입력 잠금이 걸린 경우도 좌우 이동 막기
+        if (GameManager.instance.isInputLocked)
+        {
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            return;
+        }
 
+        if (isDashing) { return; }
         //방향키 누르면 움직임
         float h = Input.GetAxisRaw("Horizontal");
-
         if (h > 0) // 움직이는 방향에 따라 localScale 함수를 이용해 방향 전환
         {
             transform.localScale = new Vector3(1, 1, 1);
@@ -111,10 +116,8 @@ public class PlayerController : Entity
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }
-
         //float v = Input.GetAxisRaw("Vertical");
         rb.linearVelocity = new Vector2(h * FinalSpeed, rb.linearVelocity.y);
-
         //랜딩 플랫폼
         if (rb.linearVelocity.y < -0.5f)
         { // 바닥에 닿았을 때 애니메이션 전환 로직
@@ -129,6 +132,7 @@ public class PlayerController : Entity
                 {
                     animator.SetBool("isFalling", false);
                 }
+
             }
         }
     }
@@ -137,7 +141,6 @@ public class PlayerController : Entity
     public override float maxMP => 100f;
     public override float maxMental => 100f;
     public override float maxStamina => 50f;
-
     public override void TakeDamage(float damage)
     {
         HP -= damage;
@@ -146,4 +149,5 @@ public class PlayerController : Entity
             HP = 0; //플레이어 사망처리
         }
     }
+
 }
