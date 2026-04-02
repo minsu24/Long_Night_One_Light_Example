@@ -1,29 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Principal;
-using Unity.Burst.Intrinsics; //삭제해도 됨
-using Unity.Mathematics;      //삭제해도 됨
-using Unity.VisualScripting;  //삭제해도 됨
-using Unity.VisualScripting.InputSystem; //삭제해도 됨
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.PlayerLoop;     //삭제해도 됨
 
 
 public class PlayerController : Entity
 {
-    public float speed = 5f;
     [SerializeField]
     private float jumpPower = 2.0f;
-
-    public float baseDamage = 10f; // 기본 데미지
+    private float _stamina;
     public float atkMultiplier = 1f; // 데미지 배율
     public float speedMultiplier = 1f; // 스피드 배율
-    public float FinalSpeed => speed * speedMultiplier; // 최종 스피드 
-    public float FinalDamage => baseDamage * atkMultiplier; // 최종 데미지
+    public float FinalSpeed => Speed * speedMultiplier; // 최종 스피드 
+    public float FinalDamage => Attack_Power * atkMultiplier; // 최종 데미지
     public bool isDashing = false;
 
     public DialogueManager dialogueManager; // 대화 중 입력 제어용 DialogueManager
+
+    public float Stamina
+    {
+        set => _stamina = Mathf.Clamp(value, 0, maxStamina);
+        get => _stamina;
+    }
 
     Rigidbody2D rb;
     SpriteRenderer spriteRenderer;
@@ -41,6 +40,9 @@ public class PlayerController : Entity
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         Mental = 70f;
+        Speed = 10f;
+        Attack_Power = 10f;
+        Stamina = maxStamina;
     }
 
     // Update is called once per frame
@@ -140,7 +142,7 @@ public class PlayerController : Entity
     public override float maxHP => 100f;
     public override float maxMP => 100f;
     public override float maxMental => 100f;
-    public override float maxStamina => 50f;
+    public float maxStamina => 50f;
     public override void TakeDamage(float damage)
     {
         HP -= damage;

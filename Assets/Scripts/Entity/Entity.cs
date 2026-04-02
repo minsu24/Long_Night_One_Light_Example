@@ -1,5 +1,4 @@
 using System;
-using Unity.Mathematics;  //삭제해도 됨
 using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
@@ -35,23 +34,36 @@ public abstract class Entity : MonoBehaviour
         get => stats.Mental;
     }
 
-    public float Stamina
+    // public float Stamina
+    // {
+    //     set => stats.Stamina = Mathf.Clamp(value, 0, maxStamina);
+    //     get => stats.Stamina;
+    // }
+
+    public float Speed
     {
-        set => stats.Stamina = Mathf.Clamp(value, 0, maxStamina);
-        get => stats.Stamina;
+        set => stats.Speed = Mathf.Max(0, value);
+        get => stats.Speed;
     }
+
+    public float Attack_Power
+    {
+        set => stats.AttacK_Power = Mathf.Max(0, value);
+        get => stats.AttacK_Power;
+    }
+
 
     public abstract float maxHP { get; }
     public abstract float maxMP { get; }
     public abstract float maxMental { get; }
-    public abstract float maxStamina { get; }
+    //public abstract float maxStamina { get; }
 
     protected void Setup()
     {
         HP = maxHP;
         MP = maxMP; //오타 수정 3/28
         Mental = maxMental; // 각자의 최대치로 초기화 3/28, 기존의 시작값 70은 플레이어 컨트롤러에서 따로 처리 요망
-        Stamina = maxStamina;
+        //Stamina = maxStamina;
     }
 
 
@@ -69,8 +81,12 @@ public abstract class Entity : MonoBehaviour
         public float MP;
         [HideInInspector]
         public float Mental;
+        //[HideInInspector]
+        //public float Stamina;
         [HideInInspector]
-        public float Stamina;
+        public float AttacK_Power;
+        [HideInInspector]
+        public float Speed;
     }
 }
 
