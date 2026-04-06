@@ -29,6 +29,7 @@ public class DialogueManager : MonoBehaviour
     public AudioClip typingSound;          // 타자 효과음 파일
 
     NPCDialogue currentNPC;                // 현재 대화 중인 NPC 저장
+    bool justStartedDialogue = false;      // 대화 시작 직후 E 키 유지 입력 무시용
 
     void Update()
     {
@@ -54,6 +55,19 @@ public class DialogueManager : MonoBehaviour
             }
 
             return;
+        }
+
+        // 대화 시작에 사용된 E 키가 아직 눌린 상태면 입력 무시
+        if (justStartedDialogue)
+        {
+            if (!Input.GetKey(KeyCode.E))
+            {
+                justStartedDialogue = false;
+            }
+            else
+            {
+                return;
+            }
         }
 
         // 대화 중 E 입력 처리
@@ -90,9 +104,19 @@ public class DialogueManager : MonoBehaviour
     // 대화 시작
     public void StartDialogue(string npcName, string[] newLines)
     {
+        // 이전 타이핑 코루틴이 남아 있으면 정리
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+        }
+
         lines = newLines;
         currentLine = 0;
         isDialogueActive = true;
+        justStartedDialogue = true;
+        isTyping = false;
+        dialogueText.text = "";
 
         dialoguePanel.SetActive(true);
 
@@ -106,7 +130,10 @@ public class DialogueManager : MonoBehaviour
         currentNPC = FindCurrentNPC();
 
         // 첫 줄부터 바로 타이핑 시작
-        StartTyping(lines[currentLine]);
+        if (lines != null && lines.Length > 0)
+        {
+            StartTyping(lines[currentLine]);
+        }
     }
 
     // 현재 플레이어와 접촉 중인 NPC 찾기
@@ -174,7 +201,17 @@ public class DialogueManager : MonoBehaviour
     // 대화 종료
     void EndDialogue()
     {
+        // 타이핑 코루틴이 남아 있으면 정리
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+        }
+
         isDialogueActive = false;
+        isTyping = false;
+        justStartedDialogue = false;
+
         dialoguePanel.SetActive(false);
 
         currentLine = 0;
@@ -204,7 +241,11 @@ public class DialogueManager : MonoBehaviour
         if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
         }
+
+        dialogueText.text = "";
+        isTyping = false;
 
         typingCoroutine = StartCoroutine(TypeLine(line));
     }
@@ -229,6 +270,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         isTyping = false;
+        typingCoroutine = null;
     }
 
     // 타이핑 중 E 누르면 전체 문장 즉시 표시
@@ -237,6 +279,7 @@ public class DialogueManager : MonoBehaviour
         if (typingCoroutine != null)
         {
             StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
         }
 
         dialogueText.text = lines[currentLine];
