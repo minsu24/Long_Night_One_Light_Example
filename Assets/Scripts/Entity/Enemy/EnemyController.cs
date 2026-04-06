@@ -4,6 +4,12 @@ using UnityEngine.Assertions.Must;
 
 public class EnemyController : Entity
 {
+    [SerializeField] private float _maxHP;
+    [SerializeField] private float _attackPower;
+    [SerializeField] private float _moveSpeed;
+    [SerializeField] private float _detectRange;
+    [SerializeField] private float _onDeath_Mental;
+    [SerializeField] private float _reward_EXP;
     SpriteRenderer spriteRenderer;
     private PlayerController playerController;
     void Awake()
@@ -22,10 +28,11 @@ public class EnemyController : Entity
         //몬스터 이동 및 AI 로직 추가 예정 
     }
 
-    public override float maxHP => 100;
+    public override float maxHP => _maxHP;
     public override float maxMP => 0;
     public override float maxMental => 0f;
     //public override float maxStamina => 0f;
+
 
     public override void TakeDamage(float damage) // 데미지 계산
     {
