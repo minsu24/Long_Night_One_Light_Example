@@ -10,13 +10,20 @@ public class EnemyController : Entity
     [SerializeField] private float _detectRange;
     [SerializeField] private float _onDeath_Mental;
     [SerializeField] private float _reward_EXP;
+    private Vector3 moveDirection; //플레이어 따라가기 위한 벡터 값.
     SpriteRenderer spriteRenderer;
+    private GameObject player;
     private PlayerController playerController;
+    [SerializeField] private LayerMask _playerLayer;
+    Rigidbody2D rb;
     void Awake()
     {
         base.Setup();
-        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-
+        rb = GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<PlayerController>();
+        Attack_Power = _attackPower;
+        Speed = _moveSpeed;
     }
     void Start()
     {
@@ -25,7 +32,22 @@ public class EnemyController : Entity
 
     void Update()
     {
-        //몬스터 이동 및 AI 로직 추가 예정 
+        
+    }
+    void FixedUpdate()
+    {
+        Collider2D detectPlayer = Physics2D.OverlapCircle(transform.position, _detectRange, _playerLayer);
+        if(detectPlayer != null){
+            if (detectPlayer.CompareTag("Player"))
+            {
+                moveDirection = (player.transform.position - transform.position).normalized;
+                rb.linearVelocity = moveDirection * _moveSpeed;
+            }
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(0, 0);
+        }
     }
 
     public override float maxHP => _maxHP;
@@ -64,6 +86,13 @@ public class EnemyController : Entity
 
     private void ReduceMental()
     {
-        playerController.Mental -= 2;
+        playerController.Mental -= _onDeath_Mental;
     }
+
+        private void OnDrawGizmosSelected()
+    {
+        // Gizmos 색상을 노란색으로 설정
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, _detectRange);
+    }  
 }

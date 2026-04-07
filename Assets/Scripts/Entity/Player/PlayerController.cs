@@ -25,6 +25,7 @@ public class PlayerController : Entity
     }
 
     Rigidbody2D rb;
+    Collider2D collider2D;
     SpriteRenderer spriteRenderer;
     Animator animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,6 +38,7 @@ public class PlayerController : Entity
     {
         //초기화
         rb = GetComponent<Rigidbody2D>();
+        collider2D = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         Mental = 70f;
@@ -139,17 +141,42 @@ public class PlayerController : Entity
         }
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            EnemyController enemyController = collision.collider.GetComponent<EnemyController>();
+            if(enemyController != null)
+            {
+                Debug.Log("적이랑 충돌");
+                TakeDamage(enemyController.Attack_Power);
+                Debug.Log(enemyController.Attack_Power);
+            }
+            else
+            {
+                Debug.Log("에너미컨트롤러 없음");
+            }
+
+        }
+    }
+
     public override float maxHP => 100f;
     public override float maxMP => 100f;
     public override float maxMental => 100f;
     public float maxStamina => 50f;
     public override void TakeDamage(float damage)
     {
-        HP -= damage;
+        Debug.Log("데미지");
+        if(HP > 0)
+        {
+            HP -= damage;
+        }
         if (HP <= 0)
         {
             HP = 0; //플레이어 사망처리
+            rb.simulated = false;
         }
+        Debug.Log(HP);
     }
 
 }

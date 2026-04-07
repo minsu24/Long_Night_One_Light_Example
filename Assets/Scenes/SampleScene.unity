@@ -3265,9 +3265,12 @@ GameObject:
   - component: {fileID: 635344682}
   - component: {fileID: 635344681}
   - component: {fileID: 635344683}
+  - component: {fileID: 635344684}
+  - component: {fileID: 635344686}
+  - component: {fileID: 635344685}
   m_Layer: 0
   m_Name: Skull
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3340,7 +3343,7 @@ Transform:
   m_GameObject: {fileID: 635344680}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.26, y: -32.53, z: 0}
+  m_LocalPosition: {x: 43.05, y: -22.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3368,6 +3371,91 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &635344684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635344680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 876a14cce09c0ec479446a5093c2186a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  target: {fileID: 0}
+  _maxHP: 200
+  _attackPower: 15
+  _moveSpeed: 6
+  _detectRange: 10
+  _onDeath_Mental: -3
+  _reward_EXP: 100
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!58 &635344685
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635344680}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 1.125
+--- !u!50 &635344686
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635344680}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1 &646696882
 GameObject:
   m_ObjectHideFlags: 0
@@ -13406,6 +13494,9 @@ MonoBehaviour:
   _detectRange: 0
   _onDeath_Mental: 0
   _reward_EXP: 0
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!224 &1483590929 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4548261236120790350, guid: 906c1af2af7ffbb45bea072f7f87ef10, type: 3}
@@ -14568,7 +14659,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1878094245
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15117,7 +15208,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2093239617
 Transform:
   m_ObjectHideFlags: 0
@@ -15521,6 +15612,7 @@ SceneRoots:
   - {fileID: 2053869893}
   - {fileID: 467200364}
   - {fileID: 682843899}
+  - {fileID: 2093239617}
   - {fileID: 985428699}
   - {fileID: 340762428}
   - {fileID: 2028932884}
@@ -15532,7 +15624,6 @@ SceneRoots:
   - {fileID: 230609148}
   - {fileID: 88523639}
   - {fileID: 1195849013}
-  - {fileID: 2093239617}
   - {fileID: 1888913687}
   - {fileID: 679571642}
   - {fileID: 1910312557}
