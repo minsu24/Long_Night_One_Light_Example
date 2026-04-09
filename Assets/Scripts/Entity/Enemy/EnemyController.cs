@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 
-public class EnemyController : Entity
+public abstract class EnemyController : Entity
 {
     [SerializeField] private float _maxHP;
     [SerializeField] private float _attackPower;
@@ -12,10 +12,10 @@ public class EnemyController : Entity
     [SerializeField] private float _reward_EXP;
     private Vector3 moveDirection; //플레이어 따라가기 위한 벡터 값.
     SpriteRenderer spriteRenderer;
-    private GameObject player;
-    private PlayerController playerController;
+    protected GameObject player;
+    protected PlayerController playerController;
     [SerializeField] private LayerMask _playerLayer;
-    Rigidbody2D rb;
+    protected Rigidbody2D rb;
     void Awake()
     {
         base.Setup();
@@ -32,8 +32,12 @@ public class EnemyController : Entity
 
     void Update()
     {
-        
+        if (CanUseAbility())
+        {
+            MonsterAbility();
+        }
     }
+
     void FixedUpdate()
     {
         Collider2D detectPlayer = Physics2D.OverlapCircle(transform.position, _detectRange, _playerLayer);
@@ -42,12 +46,21 @@ public class EnemyController : Entity
             {
                 moveDirection = (player.transform.position - transform.position).normalized;
                 rb.linearVelocity = moveDirection * _moveSpeed;
+                if(rb.linearVelocityX >= 0)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
             }
         }
         else
         {
             rb.linearVelocity = new Vector2(0, 0);
         }
+
     }
 
     public override float maxHP => _maxHP;
@@ -95,4 +108,12 @@ public class EnemyController : Entity
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, _detectRange);
     }  
+
+    protected virtual bool CanUseAbility()
+    {
+        Collider2D detectPlayer = Physics2D.OverlapCircle(transform.position, _detectRange, _playerLayer);
+        return detectPlayer != null;
+    }
+
+    protected abstract void MonsterAbility();
 }

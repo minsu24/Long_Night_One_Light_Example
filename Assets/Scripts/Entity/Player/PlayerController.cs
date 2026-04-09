@@ -15,6 +15,8 @@ public class PlayerController : Entity
     public float FinalSpeed => Speed * speedMultiplier; // 최종 스피드 
     public float FinalDamage => Attack_Power * atkMultiplier; // 최종 데미지
     public bool isDashing = false;
+    
+    public float h;
 
     public DialogueManager dialogueManager; // 대화 중 입력 제어용 DialogueManager
 
@@ -27,7 +29,7 @@ public class PlayerController : Entity
     Rigidbody2D rb;
     Collider2D collider2D;
     SpriteRenderer spriteRenderer;
-    Animator animator;
+    public Animator animator;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -111,7 +113,7 @@ public class PlayerController : Entity
 
         if (isDashing) { return; }
         //방향키 누르면 움직임
-        float h = Input.GetAxisRaw("Horizontal");
+        h = Input.GetAxisRaw("Horizontal");
         if (h > 0) // 움직이는 방향에 따라 localScale 함수를 이용해 방향 전환
         {
             transform.localScale = new Vector3(1, 1, 1);
