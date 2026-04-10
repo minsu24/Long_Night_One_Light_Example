@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     public TextMeshProUGUI choice1Text;    // 선택지 1 텍스트
     public TextMeshProUGUI choice2Text;    // 선택지 2 텍스트
 
-    public string[] lines;                 // 현재 대화 문장들
+    public DialogueLine[] lines;           // 현재 대화 문장들
     int currentLine = 0;                   // 현재 몇 번째 줄인지
     public bool isDialogueActive = false;  // 대화 중인지 확인
 
@@ -29,6 +29,8 @@ public class DialogueManager : MonoBehaviour
     public AudioClip typingSound;          // 타자 효과음 파일
 
     NPCDialogue currentNPC;                // 현재 대화 중인 NPC 저장
+    NPCDialogue activeNPC;                 // 선택지용 NPC 저장
+
     bool justStartedDialogue = false;      // 대화 시작 직후 E 키 유지 입력 무시용
 
     void Update()
@@ -45,12 +47,28 @@ public class DialogueManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha1))
             {
                 Debug.Log("선택지 1 선택");
+
+                if (activeNPC != null)
+                {
+                    lines = activeNPC.choice1Lines;
+                    currentLine = 0;
+                    StartTyping(lines[currentLine]);
+                }
+
                 HideChoices();
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 Debug.Log("선택지 2 선택");
+
+                if (activeNPC != null)
+                {
+                    lines = activeNPC.choice2Lines;
+                    currentLine = 0;
+                    StartTyping(lines[currentLine]);
+                }
+
                 HideChoices();
             }
 
@@ -87,10 +105,10 @@ public class DialogueManager : MonoBehaviour
                 {
                     StartTyping(lines[currentLine]);
 
-                    // 4번째 줄 이후 선택지 표시
-                    if (currentLine == 3)
+                    // 선택지 표시 조건
+                    if (activeNPC != null && activeNPC.hasChoice && currentLine == activeNPC.choiceTriggerLine)
                     {
-                        ShowChoices("Yes", "No");
+                        ShowChoices(activeNPC.choice1Label, activeNPC.choice2Label);
                     }
                 }
                 else
@@ -102,7 +120,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     // 대화 시작
-    public void StartDialogue(string npcName, string[] newLines)
+    public void StartDialogue(DialogueLine[] newLines)
     {
         // 이전 타이핑 코루틴이 남아 있으면 정리
         if (typingCoroutine != null)
@@ -120,14 +138,9 @@ public class DialogueManager : MonoBehaviour
 
         dialoguePanel.SetActive(true);
 
-        // NPC 이름 표시
-        if (nameText != null)
-        {
-            nameText.text = npcName;
-        }
-
         // 현재 대화 중인 NPC 찾기
         currentNPC = FindCurrentNPC();
+        activeNPC = currentNPC;
 
         // 첫 줄부터 바로 타이핑 시작
         if (lines != null && lines.Length > 0)
@@ -218,6 +231,11 @@ public class DialogueManager : MonoBehaviour
         lines = null;
         dialogueText.text = "";
 
+        if (nameText != null)
+        {
+            nameText.text = "";
+        }
+
         HideChoices();
 
         inputBlockTimer = inputBlockTime;
@@ -236,7 +254,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     // 한 줄 타이핑 시작
-    void StartTyping(string line)
+    void StartTyping(DialogueLine line)
     {
         if (typingCoroutine != null)
         {
@@ -247,7 +265,13 @@ public class DialogueManager : MonoBehaviour
         dialogueText.text = "";
         isTyping = false;
 
-        typingCoroutine = StartCoroutine(TypeLine(line));
+        // 현재 줄의 화자 이름 표시
+        if (nameText != null)
+        {
+            nameText.text = line.speaker;
+        }
+
+        typingCoroutine = StartCoroutine(TypeLine(line.text));
     }
 
     // 한 글자씩 출력
@@ -282,7 +306,12 @@ public class DialogueManager : MonoBehaviour
             typingCoroutine = null;
         }
 
-        dialogueText.text = lines[currentLine];
+        if (nameText != null)
+        {
+            nameText.text = lines[currentLine].speaker;
+        }
+
+        dialogueText.text = lines[currentLine].text;
         isTyping = false;
     }
 }

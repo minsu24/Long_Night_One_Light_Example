@@ -1,5 +1,15 @@
 using UnityEngine;
 
+// 대사 한 줄 구조 (화자 + 내용)
+[System.Serializable]
+public class DialogueLine
+{
+    public string speaker; // 말하는 사람 (NPC / Player)
+
+    [TextArea(2, 5)]
+    public string text; // 대사 내용
+}
+
 public class NPCDialogue : MonoBehaviour
 {
     // 대화를 실행하는 매니저
@@ -12,8 +22,25 @@ public class NPCDialogue : MonoBehaviour
     public string npcName;
 
     // NPC 대사 목록
-    [TextArea(2, 5)]
-    public string[] dialogueLines;
+    public DialogueLine[] dialogueLines;
+
+    // 선택지 사용 여부
+    public bool hasChoice = false;
+
+    // 몇 번째 대사 뒤에 선택지를 띄울지
+    public int choiceTriggerLine = 4;
+
+    // 선택지 1 문구
+    public string choice1Label;
+
+    // 선택지 2 문구
+    public string choice2Label;
+
+    // 선택지 1을 골랐을 때 나오는 대사 목록
+    public DialogueLine[] choice1Lines;
+
+    // 선택지 2를 골랐을 때 나오는 대사 목록
+    public DialogueLine[] choice2Lines;
 
     // 플레이어가 범위 안에 있는지 확인
     private bool playerInRange = false;
@@ -34,7 +61,7 @@ public class NPCDialogue : MonoBehaviour
             if (dialogueManager != null && !dialogueManager.isDialogueActive && !dialogueManager.IsInputBlocked())
             {
                 // 대화 시작
-                dialogueManager.StartDialogue(npcName, dialogueLines);
+                dialogueManager.StartDialogue(dialogueLines);
 
                 // 대화 시작 시 안내 UI 비활성화
                 if (talkPrompt != null)
