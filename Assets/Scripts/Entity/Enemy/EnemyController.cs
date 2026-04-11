@@ -10,6 +10,10 @@ public abstract class EnemyController : Entity
     [SerializeField] private float _detectRange;
     [SerializeField] private float _onDeath_Mental;
     [SerializeField] private float _reward_EXP;
+
+    // EnemySpawner가 환각 몬스터 스폰 시 true로 설정
+    // 환각 몬스터는 보상을 드롭하지 않음 (정신력 패널티는 그대로 적용)
+    [HideInInspector] public bool IsHallucination = false;
     private Vector3 moveDirection; //플레이어 따라가기 위한 벡터 값.
     SpriteRenderer spriteRenderer;
     protected GameObject player;
@@ -78,6 +82,10 @@ public abstract class EnemyController : Entity
         if(HP<=0)
         {
             ReduceMental(); // 죽으면 멘탈 감소
+            if (!IsHallucination)
+            {
+                // TODO: 보상 드롭 처리 (_reward_EXP 등)
+            }
             Destroy(gameObject);
         }
         Debug.Log("적 HP : " + HP);
