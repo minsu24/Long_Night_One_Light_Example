@@ -9,6 +9,8 @@ public class PlayerController : Entity
 {
     [SerializeField]
     private float jumpPower = 2.0f;
+    [SerializeField]
+    private float knockbackPower = 15.0f;
     private float _stamina;
     public float atkMultiplier = 1f; // 데미지 배율
     public float speedMultiplier = 1f; // 스피드 배율
@@ -19,6 +21,8 @@ public class PlayerController : Entity
     private float invincibleDuration = 1.0f; // 무적 시간 (초)
 
     public float h;
+
+    bool isKnockback;
 
     public DialogueManager dialogueManager; // 대화 중 입력 제어용 DialogueManager
 
@@ -55,7 +59,7 @@ public class PlayerController : Entity
     void Update()
     {
         // 대화 중이거나 대화 직후 입력 잠금 중이면 점프/이동 입력 막기
-        if (dialogueManager != null && dialogueManager.IsInputBlocked())
+        if ((dialogueManager != null && dialogueManager.IsInputBlocked()) || isKnockback)
         {
             animator.SetBool("isMoving", false);
             return;
@@ -100,7 +104,7 @@ public class PlayerController : Entity
     void FixedUpdate()
     {
         // 대화 중이거나 대화 직후 입력 잠금 중이면 좌우 이동 막기
-        if (dialogueManager != null && dialogueManager.IsInputBlocked())
+        if ((dialogueManager != null && dialogueManager.IsInputBlocked()))
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             return;
@@ -113,7 +117,8 @@ public class PlayerController : Entity
             return;
         }
 
-        if (isDashing) { return; }
+        if (isDashing || isKnockback) { return; }
+
         //방향키 누르면 움직임
         h = Input.GetAxisRaw("Horizontal");
         if (h > 0) // 움직이는 방향에 따라 localScale 함수를 이용해 방향 전환
@@ -156,8 +161,11 @@ public class PlayerController : Entity
                 if (!isInvincible)
                 {
                     TakeDamage(enemyController.Attack_Power);
+                    float direction = transform.position.x > collision.transform.position.x ? 1f : -1f;
+                    ApplyKnockback(direction);
                     Debug.Log(enemyController.Attack_Power);
-                    StartCoroutine(InvincibleCoroutine());
+                    //StartCoroutine(InvincibleCoroutine());
+                    
                 }
             }
             else
@@ -168,11 +176,33 @@ public class PlayerController : Entity
         }
     }
 
+    void ApplyKnockback(float direction)
+    {
+        StartCoroutine(KnockBackTRoutine()); // 이동 제어권 강탈
+        rb.linearVelocity = Vector2.zero;
+        Vector2 knockbackForce = new Vector2(direction, 0.4f).normalized * knockbackPower;
+        rb.AddForce(knockbackForce, ForceMode2D.Impulse);
+        StartCoroutine(InvincibleCoroutine());
+    }
+
     private IEnumerator InvincibleCoroutine()
     {
         isInvincible = true;
+        Color c = spriteRenderer.color;
+        c.a = 0.5f;
+        spriteRenderer.color = c;
         yield return new WaitForSeconds(invincibleDuration);
+
+        c.a = 1.0f;
+        spriteRenderer.color = c;
         isInvincible = false;
+    }
+
+    private IEnumerator KnockBackTRoutine()
+    {
+        isKnockback = true;
+        yield return new WaitForSeconds(0.5f);
+        isKnockback = false;
     }
 
     public override float maxHP => 100f;
