@@ -1,9 +1,16 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using NUnit.Framework;
 
 public class DialogueManager : MonoBehaviour
 {
+    public static DialogueManager instance;
+
+    void Awake()
+    {
+        instance = this;
+    }
     public GameObject dialoguePanel;       // 대화창 전체
     public TextMeshProUGUI dialogueText;   // 대사 텍스트
     public TextMeshProUGUI nameText;       // NPC 이름 텍스트
@@ -152,7 +159,7 @@ public class DialogueManager : MonoBehaviour
     // 현재 플레이어와 접촉 중인 NPC 찾기
     NPCDialogue FindCurrentNPC()
     {
-        NPCDialogue[] npcs = FindObjectsOfType<NPCDialogue>();
+        NPCDialogue[] npcs = FindObjectsByType<NPCDialogue>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         if (player == null)
@@ -313,5 +320,12 @@ public class DialogueManager : MonoBehaviour
 
         dialogueText.text = lines[currentLine].text;
         isTyping = false;
+    }
+
+    private bool isMadnessMode = false;
+
+    public void SetMadnessMode(bool isMadness)
+    {
+        isMadnessMode = isMadness;
     }
 }
