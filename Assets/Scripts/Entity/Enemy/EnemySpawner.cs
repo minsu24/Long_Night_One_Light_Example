@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("스폰 설정")]
-    [SerializeField] private GameObject[] enemyPrefabs;      // 스폰할 에너미 프리팹 목록
-    [SerializeField] private int maxEnemyCount = 10;         // 최대 동시 스폰 수
-    [SerializeField] private float spawnInterval = 3f;       // 스폰 간격 (초)
-    [SerializeField] private float spawnRadius = 10f;        // 플레이어 기준 스폰 반경
-    [SerializeField] private float minSpawnDistance = 4f;    // 플레이어와 최소 거리
+    [Header("일반 스폰 설정")]
+    [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private int maxEnemyCount = 10;
+    [SerializeField] private float spawnInterval = 3f;
+    [SerializeField] private float spawnRadius = 10f;
+    [SerializeField] private float minSpawnDistance = 4f;
+
+    [Header("환각 몬스터 설정")]
+    [SerializeField] private GameObject[] hallucinationPrefabs;  // 환각 전용 프리팹 (없으면 일반 프리팹 사용)
+
+    // 정신력 단계별 환각 스폰 확률: [Normal, Depression, Anxiety, Collapse]
+    // 붕괴 구간으로 갈수록 환각 빈도가 점진적으로 증가
+    [SerializeField] private float[] hallucinationChancePerState = { 0f, 0.2f, 0.5f, 0.8f };
 
     private Transform player;
     private List<GameObject> activeEnemies = new List<GameObject>();
@@ -37,30 +44,63 @@ public class EnemySpawner : MonoBehaviour
         Vector2 spawnPos = GetRandomSpawnPosition();
         if (spawnPos == Vector2.zero) return;
 
-        GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+        bool spawnAsHallucination = ShouldSpawnHallucination();
+
+        GameObject prefab = PickPrefab(spawnAsHallucination);
+        if (prefab == null) return;
+
         GameObject enemy = Instantiate(prefab, spawnPos, Quaternion.identity);
+
+        // 환각 플래그 설정 — EnemyController가 보상 처리 시 참조
+        if (spawnAsHallucination)
+        {
+            EnemyController ctrl = enemy.GetComponent<EnemyController>();
+            if (ctrl != null) ctrl.IsHallucination = true;
+        }
+
         activeEnemies.Add(enemy);
+    }
+
+    // 현재 정신력 상태 기반으로 환각 스폰 여부 판단
+    private bool ShouldSpawnHallucination()
+    {
+        if (GameManager.instance == null) return false;
+
+        int stateIndex = (int)GameManager.instance.CurrentMentalState;
+        if (stateIndex < 0 || stateIndex >= hallucinationChancePerState.Length) return false;
+
+        float chance = hallucinationChancePerState[stateIndex];
+        return Random.value < chance;
+    }
+
+    // 환각 여부에 따라 프리팹 선택
+    private GameObject PickPrefab(bool hallucination)
+    {
+        if (hallucination && hallucinationPrefabs != null && hallucinationPrefabs.Length > 0)
+            return hallucinationPrefabs[Random.Range(0, hallucinationPrefabs.Length)];
+
+        if (enemyPrefabs != null && enemyPrefabs.Length > 0)
+            return enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+
+        return null;
     }
 
     private Vector2 GetRandomSpawnPosition()
     {
-        // 최대 10번 시도해서 유효한 위치 탐색
         for (int i = 0; i < 10; i++)
         {
             Vector2 randomOffset = Random.insideUnitCircle * spawnRadius;
             Vector2 candidate = (Vector2)player.position + randomOffset;
 
-            // 플레이어와 너무 가까우면 스킵
             if (Vector2.Distance(candidate, player.position) < minSpawnDistance)
                 continue;
 
             return candidate;
         }
 
-        return Vector2.zero; // 유효한 위치 못 찾으면 스폰 안 함
+        return Vector2.zero;
     }
 
-    // 죽은 에너미를 리스트에서 정리
     private void CleanUpDeadEnemies()
     {
         activeEnemies.RemoveAll(e => e == null);
