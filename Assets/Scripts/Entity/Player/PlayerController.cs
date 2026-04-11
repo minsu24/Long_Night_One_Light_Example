@@ -15,7 +15,9 @@ public class PlayerController : Entity
     public float FinalSpeed => Speed * speedMultiplier; // 최종 스피드 
     public float FinalDamage => Attack_Power * atkMultiplier; // 최종 데미지
     public bool isDashing = false;
-    
+    private bool isInvincible = false;
+    private float invincibleDuration = 1.0f; // 무적 시간 (초)
+
     public float h;
 
     public DialogueManager dialogueManager; // 대화 중 입력 제어용 DialogueManager
@@ -60,7 +62,7 @@ public class PlayerController : Entity
         }
 
         // 다른 시스템에서 입력 잠금이 걸린 경우도 입력 막기
-        if (GameManager.instance.isInputLocked) return;
+        if (GameManager.instance != null && GameManager.instance.isInputLocked) return;
 
         //점프
         if (Input.GetButtonDown("Jump") && !animator.GetBool("isJumping") && !animator.GetBool("isFalling"))
@@ -105,7 +107,7 @@ public class PlayerController : Entity
         }
 
         // 다른 시스템에서 입력 잠금이 걸린 경우도 좌우 이동 막기
-        if (GameManager.instance.isInputLocked)
+        if (GameManager.instance != null && GameManager.instance.isInputLocked)
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             return;
@@ -151,8 +153,12 @@ public class PlayerController : Entity
             if(enemyController != null)
             {
                 Debug.Log("적이랑 충돌");
-                TakeDamage(enemyController.Attack_Power);
-                Debug.Log(enemyController.Attack_Power);
+                if (!isInvincible)
+                {
+                    TakeDamage(enemyController.Attack_Power);
+                    Debug.Log(enemyController.Attack_Power);
+                    StartCoroutine(InvincibleCoroutine());
+                }
             }
             else
             {
@@ -160,6 +166,13 @@ public class PlayerController : Entity
             }
 
         }
+    }
+
+    private IEnumerator InvincibleCoroutine()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibleDuration);
+        isInvincible = false;
     }
 
     public override float maxHP => 100f;
