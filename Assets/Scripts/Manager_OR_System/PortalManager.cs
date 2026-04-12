@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class PortalManager : MonoBehaviour
 {
     [SerializeField]
-    private string SceneName;
+    private string sceneName;
+    [SerializeField]
+    private string targetPointName;
     private bool isPlayerInPortal = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,7 +27,7 @@ public class PortalManager : MonoBehaviour
 
     private void MoveToScene()
     {
-        SceneManager.LoadScene(SceneName);    
+        SceneManager.LoadScene(sceneName);    
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -33,6 +35,7 @@ public class PortalManager : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Debug.Log("맵 이동");
+            MapTransferData.TargetSpawnPointname = targetPointName;
             isPlayerInPortal = true;
         }
     }

@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Principal;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -185,6 +187,11 @@ public class PlayerController : Entity
         StartCoroutine(InvincibleCoroutine());
     }
 
+    public void startMentalHeal(float amount, float duration)
+    {
+        StartCoroutine(MentalHealRoutine(amount, duration));
+    }
+
     private IEnumerator InvincibleCoroutine()
     {
         isInvincible = true;
@@ -203,6 +210,23 @@ public class PlayerController : Entity
         isKnockback = true;
         yield return new WaitForSeconds(0.5f);
         isKnockback = false;
+    }
+
+    private IEnumerator MentalHealRoutine(float amount, float duration)
+    {
+        float timer = 0f;
+        float startMental = Mental;
+        float targetMental = Mathf.Min(startMental + amount, maxMental); //최대치 고정
+
+        while(timer < duration)
+        {
+            timer += Time.deltaTime;
+            //Lerp를 이용해서 정신력이 서서히 오르도록 만듦
+            Mental = Mathf.Lerp(startMental, targetMental, timer / duration);
+            //다음 프레임까지 대기
+            yield return null;
+        }
+        Mental = targetMental;
     }
 
     public override float maxHP => 100f;

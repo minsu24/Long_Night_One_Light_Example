@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEngine.UI.Image;
 
 public class Slot : MonoBehaviour, IPointerUpHandler
 {
