@@ -21,6 +21,10 @@ public class NPCDialogue : MonoBehaviour
     // NPC 이름 (대화창에 표시됨)
     public string npcName;
 
+    // 기본 대사 목록 (현재 사용하는 대화)
+    [Header("기본 대화")]
+    public DialogueLine[] dialogueLines;
+
     // ─── 정신력 기반 대화 시스템 ─────────────────────────────────────────────
     [Header("정신력 기반 대화 (멘탈 시스템)")]
 
@@ -73,8 +77,7 @@ public class NPCDialogue : MonoBehaviour
         {
             if (dialogueManager != null && !dialogueManager.isDialogueActive && !dialogueManager.IsInputBlocked())
             {
-                DialogueLine[] selectedLines = SelectLinesByMentalState();
-                dialogueManager.StartDialogue(selectedLines);
+                dialogueManager.StartDialogue(dialogueLines);
 
                 if (talkPrompt != null)
                     talkPrompt.SetActive(false);

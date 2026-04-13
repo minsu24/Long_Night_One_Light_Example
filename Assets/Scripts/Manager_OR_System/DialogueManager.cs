@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
-using NUnit.Framework;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -11,6 +10,7 @@ public class DialogueManager : MonoBehaviour
     {
         instance = this;
     }
+
     public GameObject dialoguePanel;       // 대화창 전체
     public TextMeshProUGUI dialogueText;   // 대사 텍스트
     public TextMeshProUGUI nameText;       // NPC 이름 텍스트
@@ -40,6 +40,8 @@ public class DialogueManager : MonoBehaviour
 
     bool justStartedDialogue = false;      // 대화 시작 직후 E 키 유지 입력 무시용
 
+    private bool isMadnessMode = false;
+
     void Update()
     {
         // 대화 종료 직후 입력 잠금 시간 감소
@@ -55,28 +57,38 @@ public class DialogueManager : MonoBehaviour
             {
                 Debug.Log("선택지 1 선택");
 
-                if (activeNPC != null)
+                if (activeNPC != null && activeNPC.choice1Lines != null && activeNPC.choice1Lines.Length > 0)
                 {
+                    HideChoices();
+
                     lines = activeNPC.choice1Lines;
                     currentLine = 0;
                     StartTyping(lines[currentLine]);
                 }
-
-                HideChoices();
+                else
+                {
+                    HideChoices();
+                    EndDialogue();
+                }
             }
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
                 Debug.Log("선택지 2 선택");
 
-                if (activeNPC != null)
+                if (activeNPC != null && activeNPC.choice2Lines != null && activeNPC.choice2Lines.Length > 0)
                 {
+                    HideChoices();
+
                     lines = activeNPC.choice2Lines;
                     currentLine = 0;
                     StartTyping(lines[currentLine]);
                 }
-
-                HideChoices();
+                else
+                {
+                    HideChoices();
+                    EndDialogue();
+                }
             }
 
             return;
@@ -105,18 +117,19 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
+                // 현재 줄에서 선택지를 띄워야 하면 먼저 선택지 표시
+                if (activeNPC != null && activeNPC.hasChoice && currentLine == activeNPC.choiceTriggerLine)
+                {
+                    ShowChoices(activeNPC.choice1Label, activeNPC.choice2Label);
+                    return;
+                }
+
                 // 다음 줄로 이동
                 currentLine++;
 
-                if (currentLine < lines.Length)
+                if (lines != null && currentLine < lines.Length)
                 {
                     StartTyping(lines[currentLine]);
-
-                    // 선택지 표시 조건
-                    if (activeNPC != null && activeNPC.hasChoice && currentLine == activeNPC.choiceTriggerLine)
-                    {
-                        ShowChoices(activeNPC.choice1Label, activeNPC.choice2Label);
-                    }
                 }
                 else
                 {
@@ -141,9 +154,15 @@ public class DialogueManager : MonoBehaviour
         isDialogueActive = true;
         justStartedDialogue = true;
         isTyping = false;
+        isChoiceActive = false;
         dialogueText.text = "";
 
         dialoguePanel.SetActive(true);
+
+        if (choicePanel != null)
+        {
+            choicePanel.SetActive(false);
+        }
 
         // 현재 대화 중인 NPC 찾기
         currentNPC = FindCurrentNPC();
@@ -230,6 +249,7 @@ public class DialogueManager : MonoBehaviour
 
         isDialogueActive = false;
         isTyping = false;
+        isChoiceActive = false;
         justStartedDialogue = false;
 
         dialoguePanel.SetActive(false);
@@ -313,16 +333,18 @@ public class DialogueManager : MonoBehaviour
             typingCoroutine = null;
         }
 
-        if (nameText != null)
+        if (nameText != null && lines != null && currentLine < lines.Length)
         {
             nameText.text = lines[currentLine].speaker;
         }
 
-        dialogueText.text = lines[currentLine].text;
+        if (lines != null && currentLine < lines.Length)
+        {
+            dialogueText.text = lines[currentLine].text;
+        }
+
         isTyping = false;
     }
-
-    private bool isMadnessMode = false;
 
     public void SetMadnessMode(bool isMadness)
     {
