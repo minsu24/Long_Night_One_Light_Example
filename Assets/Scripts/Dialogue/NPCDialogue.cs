@@ -28,19 +28,23 @@ public class NPCDialogue : MonoBehaviour
     // ─── 정신력 기반 대화 시스템 ─────────────────────────────────────────────
     [Header("정신력 기반 대화 (멘탈 시스템)")]
 
-    // 동일한 상황을 가리키는 공유 식별자 (Normal_Table / Delusion_Table 매핑 키)
+    // 동일한 상황을 가리키는 공유 식별자
     public int situationId;
 
     // Normal_Table: 정상(70~100) 구간 대사
     [Tooltip("정신력 정상(70~100) 구간에 출력되는 객관적 대사")]
     public DialogueLine[] normalLines;
 
-    // Delusion_Table: 우울(50~69) / 불안(30~49) 구간 대사 — 왜곡된 서사
-    [Tooltip("정신력 우울/불안(30~69) 구간에 출력되는 왜곡된 대사")]
-    public DialogueLine[] delusionLines;
+    // Anxiety_Table: 불안(30~49) 구간 대사
+    [Tooltip("정신력 불안(30~49) 구간에 출력되는 대사")]
+    public DialogueLine[] anxietyLines;
 
-    // 붕괴(0~29) 구간 전용 대사 — 플레이어를 적대시하는 피해망상적 대사
-    [Tooltip("정신력 붕괴(0~29) 구간에 출력되는 피해망상적 적대 대사 (delusion_id)")]
+    // Depression_Table: 우울(50~69) 구간 대사
+    [Tooltip("정신력 우울(50~69) 구간에 출력되는 대사")]
+    public DialogueLine[] depressionLines;
+
+    // Collapse_Table: 붕괴(0~29) 구간 대사
+    [Tooltip("정신력 붕괴(0~29) 구간에 출력되는 대사")]
     public DialogueLine[] collapseLines;
     // ──────────────────────────────────────────────────────────────────────────
 
@@ -77,7 +81,12 @@ public class NPCDialogue : MonoBehaviour
         {
             if (dialogueManager != null && !dialogueManager.isDialogueActive && !dialogueManager.IsInputBlocked())
             {
-                dialogueManager.StartDialogue(dialogueLines);
+                DialogueLine[] selectedLines = SelectLinesByMentalState();
+
+                if (selectedLines == null || selectedLines.Length == 0)
+                    selectedLines = dialogueLines;
+
+                dialogueManager.StartDialogue(selectedLines);
 
                 if (talkPrompt != null)
                     talkPrompt.SetActive(false);
@@ -86,29 +95,33 @@ public class NPCDialogue : MonoBehaviour
     }
 
     // 현재 정신력 상태에 따라 출력할 대사 테이블 선택
-    // Normal(70~100) → normalLines  (Normal_Table)
-    // Depression/Anxiety(30~69) → delusionLines  (Delusion_Table)
-    // Collapse(0~29) → collapseLines  (delusion_id 참조, 피해망상 대사)
-    // 각 단계의 전용 배열이 비어 있으면 상위 단계로 폴백
     private DialogueLine[] SelectLinesByMentalState()
     {
         if (GameManager.instance == null)
-            return normalLines;
+            return dialogueLines;
 
         switch (GameManager.instance.CurrentMentalState)
         {
             case MentalState.Collapse:
                 if (collapseLines != null && collapseLines.Length > 0) return collapseLines;
-                if (delusionLines != null && delusionLines.Length > 0) return delusionLines;
-                return normalLines;
+                if (anxietyLines != null && anxietyLines.Length > 0) return anxietyLines;
+                if (depressionLines != null && depressionLines.Length > 0) return depressionLines;
+                if (normalLines != null && normalLines.Length > 0) return normalLines;
+                return dialogueLines;
 
             case MentalState.Anxiety:
+                if (anxietyLines != null && anxietyLines.Length > 0) return anxietyLines;
+                if (normalLines != null && normalLines.Length > 0) return normalLines;
+                return dialogueLines;
+
             case MentalState.Depression:
-                if (delusionLines != null && delusionLines.Length > 0) return delusionLines;
-                return normalLines;
+                if (depressionLines != null && depressionLines.Length > 0) return depressionLines;
+                if (normalLines != null && normalLines.Length > 0) return normalLines;
+                return dialogueLines;
 
             default: // Normal
-                return normalLines;
+                if (normalLines != null && normalLines.Length > 0) return normalLines;
+                return dialogueLines;
         }
     }
 
