@@ -42,11 +42,14 @@ public class MentalSystem : MonoBehaviour
 
     private void ApplyMentalEffect(MentalState state)
     {
+        // 상태 전환 시 이전 배율이 잔류하지 않도록 매번 초기화
+        player.speedMultiplier = 1f;
+        player.atkMultiplier = 1f;
+
         switch (state)
         {
             case MentalState.Normal:
-                player.speedMultiplier = 1f;
-                player.atkMultiplier = 1f;
+                // 초기화만으로 충분
                 break;
             case MentalState.Depression:
                 // 우울: 공격력 소폭 증가 (분노 반응)
