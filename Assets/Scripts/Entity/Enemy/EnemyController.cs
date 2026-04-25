@@ -107,7 +107,8 @@ public abstract class EnemyController : Entity
 
     private void ReduceMental()
     {
-        playerController.Mental -= _onDeath_Mental;
+        // Mathf.Abs로 인스펙터 값의 부호와 관계없이 항상 정신력 감소
+        playerController.Mental -= Mathf.Abs(_onDeath_Mental);
     }
 
         private void OnDrawGizmosSelected()
