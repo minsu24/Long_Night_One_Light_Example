@@ -22,6 +22,9 @@ public class PlayerController : Entity
     private bool isInvincible = false;
     private float invincibleDuration = 1.0f; // 무적 시간 (초)
 
+    [SerializeField] private int maxJumpCount = 2; // 최대 점프 횟수 (2 = 2단 점프)
+    private int jumpCount = 0;                     // 현재 점프 횟수
+
     public float h;
 
     bool isKnockback;
@@ -70,11 +73,14 @@ public class PlayerController : Entity
         // 다른 시스템에서 입력 잠금이 걸린 경우도 입력 막기
         if (GameManager.instance != null && GameManager.instance.isInputLocked) return;
 
-        //점프
-        if (Input.GetButtonDown("Jump") && !animator.GetBool("isJumping") && !animator.GetBool("isFalling"))
-        {   // 점프 횟수 제한 제어문(지금은 1회만 가능)
+        //점프 (2단 점프 지원)
+        if (Input.GetButtonDown("Jump") && jumpCount < maxJumpCount)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f); // 기존 수직 속도 초기화 후 점프
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
-            animator.SetBool("isJumping", true); // 애니메이션 재생을 위한 Bool 변수 값 지정
+            jumpCount++;
+            animator.SetBool("isJumping", true);
+            animator.SetBool("isFalling", false);
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -146,8 +152,8 @@ public class PlayerController : Entity
                 if (rayHit.distance < 1.2f)
                 {
                     animator.SetBool("isFalling", false);
+                    jumpCount = 0; // 착지 시 점프 횟수 초기화
                 }
-
             }
         }
     }
