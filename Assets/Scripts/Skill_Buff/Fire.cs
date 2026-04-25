@@ -5,7 +5,9 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 1f; // 발사체 속도
+    private float speed = 1f; // 발사체 속도 (발사 시)
+    [SerializeField]
+    private float returnSpeed = 20f; // 복귀 속도 (플레이어보다 항상 빠르게 설정)
     private Vector3 startPos, moveDirection;
 
     public bool isCharge, backToPlayer;
@@ -67,7 +69,9 @@ public class Fire : MonoBehaviour
             else
             {
                 moveDirection = (player.transform.position - transform.position).normalized;
-                rb.linearVelocity = moveDirection * speed;
+                // 플레이어 현재 이동속도보다 항상 빠르게 보장
+                float actualReturnSpeed = Mathf.Max(returnSpeed, playerController.FinalSpeed * 1.5f);
+                rb.linearVelocity = moveDirection * actualReturnSpeed;
                 if(Vector3.Distance(player.transform.position, transform.position) <= 0.5f)
                 {
                     Destroy(gameObject);
