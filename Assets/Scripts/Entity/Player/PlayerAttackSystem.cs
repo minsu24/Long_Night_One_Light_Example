@@ -50,7 +50,7 @@ public class PlayerAttackSystem : MonoBehaviour
             {
                 if(curtime <= 0 && !chargeAttaking) // 차지 공격 중이 아니고 쿨타임이 돌았다면 
                 {
-                    if(context.duration < 1.0f) // 공격 키를 1초 미만으로 눌렀을 때
+                    if(context.duration < 0.5f) // 공격 키를 0.5초 미만으로 눌렀을 때
                     {   
                         baseAttacking = true;
                         Debug.Log("일반 공격");
@@ -72,7 +72,7 @@ public class PlayerAttackSystem : MonoBehaviour
                 }
 
             }
-            if (context.performed) //  공격 키를 1초 이상으로 눌렀을 때
+            if (context.performed) //  공격 키를 0.5초 이상으로 눌렀을 때
             {
                 if(chargeCurtime <= 0 && !baseAttacking) // 기본 공격중이 아니고 차지 공격 쿨타임이 돌았다면  
                 {
