@@ -55,17 +55,15 @@ public class PlayerAttackSystem : MonoBehaviour
                         baseAttacking = true;
                         Debug.Log("일반 공격");
                         GameObject fire = Instantiate(BaseAttackPrefab, transform.position, Quaternion.identity); // 발사체 생성
-                        Fire fireScript = fire.GetComponent<Fire>(); 
+                        Fire fireScript = fire.GetComponent<Fire>();
                         if(fireScript != null)
                         {
                             fireScript.damage = playerController.FinalDamage; // 발사체 데미지 설정
                             fireScript.isCharge = false;
-                            float dir = transform.root.localScale.x; // 발사체 방향 전달 
+                            Vector2 dir = GetFireDirection();
                             fireScript.SetDirection(dir);
-                            if(dir == -1)
-                            {
+                            if(transform.root.localScale.x == -1 && dir.y == 0)
                                 fire.GetComponent<SpriteRenderer>().flipX = true;
-                            }
                         }
                         curtime = cooltime;
                     }                
@@ -80,18 +78,16 @@ public class PlayerAttackSystem : MonoBehaviour
                     fireSpirit.SetActive(false);
                     Debug.Log("차지 공격");
                     GameObject fire = Instantiate(BaseAttackPrefab, transform.position, Quaternion.identity); // 발사체 생성
-                    Fire fireScript = fire.GetComponent<Fire>(); 
+                    Fire fireScript = fire.GetComponent<Fire>();
                     if(fireScript != null)
                     {
-                        fireScript.Setup(fireSpirit); // 차지 공격이 Setup()을 먼저 호출해서 순서를 마추기 위해 수정 3/28
+                        fireScript.Setup(fireSpirit);
                         fireScript.damage = playerController.FinalDamage;
                         fireScript.isCharge = true;
-                        float dir = transform.root.localScale.x; // 발사체 방향 전달 
+                        Vector2 dir = GetFireDirection();
                         fireScript.SetDirection(dir);
-                        if(dir == -1)
-                        {
+                        if(transform.root.localScale.x == -1 && dir.y == 0)
                             fire.GetComponent<SpriteRenderer>().flipX = true;
-                        }
                     }
                     curtime = cooltime;
                 }
@@ -141,5 +137,12 @@ public class PlayerAttackSystem : MonoBehaviour
         }
     }
     
-   
+    // 위 방향키를 누르고 있으면 위쪽으로, 아니면 캐릭터가 바라보는 방향으로 발사
+    private Vector2 GetFireDirection()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+            return Vector2.up;
+
+        return new Vector2(transform.root.localScale.x, 0f);
+    }
 }

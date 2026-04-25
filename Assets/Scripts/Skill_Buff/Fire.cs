@@ -82,9 +82,9 @@ public class Fire : MonoBehaviour
         }
     }
     
-    public void SetDirection(float dir) // PlayerAttackSystem에서 방향 받아오는 함수
+    public void SetDirection(Vector2 dir) // PlayerAttackSystem에서 방향 받아오는 함수
     {
-        moveDirection = new Vector2(dir, 0).normalized; 
+        moveDirection = dir.normalized;
     }
 
 
