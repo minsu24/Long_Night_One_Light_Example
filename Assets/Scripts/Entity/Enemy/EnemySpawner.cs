@@ -16,7 +16,8 @@ public class EnemySpawner : MonoBehaviour
 
     // 정신력 단계별 환각 스폰 확률: [Normal, Depression, Anxiety, Collapse]
     // 붕괴 구간으로 갈수록 환각 빈도가 점진적으로 증가
-    [SerializeField] private float[] hallucinationChancePerState = { 0f, 0.2f, 0.5f, 0.8f };
+    // Normal=0%, Depression=0%, Anxiety=50%, Collapse=80% — 불안 단계부터 환각 스폰
+    [SerializeField] private float[] hallucinationChancePerState = { 0f, 0f, 0.5f, 0.8f };
 
     private Transform player;
     private List<GameObject> activeEnemies = new List<GameObject>();

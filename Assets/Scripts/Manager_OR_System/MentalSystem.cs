@@ -30,10 +30,10 @@ public class MentalSystem : MonoBehaviour
 
         // 비율에 따라 4단계 중 하나로 분류
         MentalState newState;
-        if (ratio > 0.7f)       newState = MentalState.Normal;     // 70% 초과
-        else if (ratio > 0.5f)  newState = MentalState.Depression; // 50~70%
-        else if (ratio > 0.3f)  newState = MentalState.Anxiety;    // 30~50%
-        else                    newState = MentalState.Collapse;    // 30% 이하
+        if (ratio >= 0.7f)       newState = MentalState.Normal;     // 70 이상
+        else if (ratio >= 0.5f)  newState = MentalState.Depression; // 50~69
+        else if (ratio >= 0.3f)  newState = MentalState.Anxiety;    // 30~49
+        else                     newState = MentalState.Collapse;    // 0~29
 
         // 결정된 상태에 맞는 스탯 배율을 플레이어에게 적용
         ApplyMentalEffect(newState);
