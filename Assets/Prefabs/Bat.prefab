@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3529528680312839986}
   - component: {fileID: 9164506948933806426}
   - component: {fileID: 6584771275873565383}
-  - component: {fileID: -2246062492347328648}
+  - component: {fileID: 2047710909906114168}
   m_Layer: 0
   m_Name: Bat
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-2246062492347328648
+--- !u!114 &2047710909906114168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +124,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 356534824992824745}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 876a14cce09c0ec479446a5093c2186a, type: 3}
+  m_Script: {fileID: 11500000, guid: b057d0f596955114b813da8aaa2317e7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  m_EditorClassIdentifier: Assembly-CSharp::MON_ANG_001
   target: {fileID: 0}
+  _maxHP: 0
+  _attackPower: 0
+  _moveSpeed: 0
+  _detectRange: 0
+  _onDeath_Mental: 0
+  _reward_EXP: 0
+  IsHallucination: 0
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 0

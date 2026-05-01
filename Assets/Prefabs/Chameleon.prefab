@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7438883079249494851}
   - component: {fileID: 3591069579123778779}
   - component: {fileID: 404565064148813987}
-  - component: {fileID: -1591373529606974422}
+  - component: {fileID: 1320735804074322814}
   m_Layer: 0
   m_Name: Chameleon
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-1591373529606974422
+--- !u!114 &1320735804074322814
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +124,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8567508777064209998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 876a14cce09c0ec479446a5093c2186a, type: 3}
+  m_Script: {fileID: 11500000, guid: b057d0f596955114b813da8aaa2317e7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  m_EditorClassIdentifier: Assembly-CSharp::MON_ANG_001
   target: {fileID: 0}
+  _maxHP: 0
+  _attackPower: 0
+  _moveSpeed: 0
+  _detectRange: 0
+  _onDeath_Mental: 0
+  _reward_EXP: 0
+  IsHallucination: 0
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
