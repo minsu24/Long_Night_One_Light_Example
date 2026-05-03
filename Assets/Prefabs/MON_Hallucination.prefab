@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 4
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 2736401269149216980, guid: d9ec44beababd92428b4361b519004cd, type: 3}
+  m_Sprite: {fileID: 7117123497254575624, guid: 324e6e45f871d5f4e96aa116be433c60, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,13 +105,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MON_HAL_001
   target: {fileID: 0}
-  _maxHP: 100
+  _maxHP: 50
   _attackPower: 5
-  _moveSpeed: 3
-  _detectRange: 40
+  _moveSpeed: 0
+  _detectRange: 20
   _onDeath_Mental: 0
   _reward_EXP: 0
   IsHallucination: 0
   _playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  mentalReduce: 1
