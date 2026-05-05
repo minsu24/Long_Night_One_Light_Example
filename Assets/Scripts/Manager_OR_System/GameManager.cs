@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public bool isInputLocked = false;
 
     [Header("정신력 상태 (읽기 전용 - MentalSystem이 설정)")]
-    [SerializeField] private MentalState _currentMentalState = MentalState.Normal;
+    [SerializeField] public MentalState _currentMentalState = MentalState.Normal;
 
     // 현재 정신력 상태 (다른 시스템이 읽어가는 중앙 데이터)
     public MentalState CurrentMentalState => _currentMentalState;

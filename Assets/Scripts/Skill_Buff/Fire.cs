@@ -44,6 +44,7 @@ public class Fire : MonoBehaviour
     {
         firespirit = Spirit;   
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -87,22 +88,46 @@ public class Fire : MonoBehaviour
         moveDirection = dir.normalized;
     }
 
+    public void ChargeAttack(bool isCharge, Collider2D collision)
+    {
+        if(!isCharge) 
+        {
+            collision.GetComponent<Entity>().TakeDamage(damage); // 적에게 데미지
+            Destroy(gameObject);
+            playerAttackSystem.baseAttacking = false;
+        }
+        else 
+        {
+            collision.GetComponent<Entity>().TakeDamage(damage);
+            playerController.MP += 5;
+            Debug.Log(playerController.MP);
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Enemy"))
         {
-            if(!isCharge) 
+            ChargeAttack(isCharge, collision);
+        }
+        else if (collision.CompareTag("Boss00"))
+        {
+            if(!PlayerAttackSystem.instance.sSkill.IsReady)
             {
-                collision.GetComponent<Entity>().TakeDamage(damage); // 적에게 데미지
-                Destroy(gameObject);
-                playerAttackSystem.baseAttacking = false;
+                ChargeAttack(isCharge, collision);
             }
-            else 
+            else
             {
-                collision.GetComponent<Entity>().TakeDamage(damage);
-                playerController.MP += 5;
-                Debug.Log(playerController.MP);
+                if(!isCharge) 
+                {
+                    Destroy(gameObject);
+                    playerAttackSystem.baseAttacking = false;
+                }
+                else 
+                {
+                    playerController.MP += 5;
+                    Debug.Log(playerController.MP);
+                }
             }
         }
         if(collision.transform.tag == "Player" && backToPlayer && isCharge)

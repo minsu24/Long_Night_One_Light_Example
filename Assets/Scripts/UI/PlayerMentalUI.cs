@@ -10,6 +10,7 @@ public class PlayerMentalUI : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        textMentalState.text = GameManager.instance._currentMentalState.ToString();
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         GameManager.instance.OnMentalStateChanged += ChangeText;
     }

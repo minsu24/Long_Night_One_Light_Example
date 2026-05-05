@@ -89,6 +89,7 @@ public abstract class EnemyController : Entity
             Destroy(gameObject);
         }
         Debug.Log("적 HP : " + HP);
+
         StartCoroutine("HitAnimation");
     }
 

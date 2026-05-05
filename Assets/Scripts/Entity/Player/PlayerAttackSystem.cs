@@ -9,7 +9,7 @@ public class PlayerAttackSystem : MonoBehaviour
     public static PlayerAttackSystem instance;
     [SerializeField]
     private GameObject BaseAttackPrefab; // 발사체 프리팹
-    [SerializeField] private SkillBase sSkill;
+    [SerializeField] public SkillBase sSkill;
     [SerializeField] private SkillBase dashSkill;
 
     private GameObject player;
