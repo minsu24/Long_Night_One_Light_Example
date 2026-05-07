@@ -3,7 +3,7 @@ using UnityEngine;
 public class BossProjectile : MonoBehaviour
 {
     public float speed;
-    public float moveDistance = 12.5f;
+    public float moveDistance = 30f;
     public float damage = 10f;
     private Vector2 moveDirection;
     private Vector3 startPos;

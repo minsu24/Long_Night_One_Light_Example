@@ -105,8 +105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8b821d10e17d94e88b9934857f92b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossProjectile
-  speed: 3
-  moveDistance: 12.5
+  speed: 5
+  moveDistance: 30
+  damage: 10
 --- !u!58 &8192621660563590893
 CircleCollider2D:
   m_ObjectHideFlags: 0

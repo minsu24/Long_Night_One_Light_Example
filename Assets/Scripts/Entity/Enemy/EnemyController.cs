@@ -18,7 +18,7 @@ public abstract class EnemyController : Entity
     SpriteRenderer spriteRenderer;
     protected GameObject player;
     protected PlayerController playerController;
-    [SerializeField] private LayerMask _playerLayer;
+    [SerializeField] protected LayerMask _playerLayer;
     protected Rigidbody2D rb;
     void Awake()
     {

@@ -5023,7 +5023,7 @@ SpriteRenderer:
   m_MaskInteraction: 0
   m_Sprite: {fileID: 9195612845935540072, guid: dbdde504c0a6f8348913a42efb3febdc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8.88, y: 5.5}
@@ -5124,7 +5124,7 @@ MonoBehaviour:
   target: {fileID: 0}
   _maxHP: 1500
   _attackPower: 25
-  _moveSpeed: 0
+  _moveSpeed: 0.1
   _detectRange: 30
   _onDeath_Mental: 10
   _reward_EXP: 0
@@ -5133,8 +5133,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   projectilePrefab: {fileID: 1497276127906758466, guid: daf6fdd375322d445839cb7c9de25710, type: 3}
-  fireRange: 7
+  fireRange: 9
   attackRate: 4
+  startAttackX: 2
+  endAttackX: 7
+  attackStartDis: 1.5
+  attackDuration: 2
+  attackHeight: 5
+  attackDamage: 10
 --- !u!1 &960463075
 GameObject:
   m_ObjectHideFlags: 0
@@ -16631,7 +16637,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 6
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 6646743841702891702, guid: b4ea4bda722c2ec46a49615a815d38ed, type: 3}
+  m_Sprite: {fileID: -6450053547099467408, guid: a6190dc57d70afe46af6e21610c71783, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
