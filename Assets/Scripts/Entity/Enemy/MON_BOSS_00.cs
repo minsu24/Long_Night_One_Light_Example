@@ -11,6 +11,7 @@ public class MON_BOSS_00 : EnemyController
     public GameObject projectilePrefab;
     public float fireRange = 7f;
     public float attackRate = 4f;
+    public float spawnRate = 2f;
 
 
     [Header("근접 공격 설정")]
@@ -22,7 +23,16 @@ public class MON_BOSS_00 : EnemyController
     public float attackHeight = 5f;
     public float attackDamage = 10f;
 
+    [Header("몬스터 스폰 패턴 설정")]
+    public GameObject ANGMonsterPrefab;
+    public GameObject ADHMonsterPrefab;
+    public List<GameObject> nowSpawnMonster;
+
+    private Vector3 SpawnPosition;
+
+
     private float lastFireTime;
+    private float lastSpawnTime;
 
     Collider2D detectPlayer;
 
@@ -38,6 +48,39 @@ public class MON_BOSS_00 : EnemyController
         Vector2 direction = (player.transform.position - transform.position).normalized;
         projectile.GetComponent<BossProjectile>().Setup(direction);
     }
+
+    void SpawnMonster()
+    {
+        // 리스트에서 이미 파괴된(null이 된) 몬스터들을 제거
+        // 유니티에서 Destroy된 객체는 리스트에 null로 남기 때문에 이 작업이 필요
+        nowSpawnMonster.RemoveAll(m => m == null);
+
+        // 리스트에 남은 몬스터가 있다면 아직 살아있는 것이므로 리턴
+        if (nowSpawnMonster.Count > 0)
+        {
+            return;
+        }
+
+        // 모든 몬스터가 죽었으므로 새로 스폰
+        for(int i = 0; i < 2; i++)
+        {
+            GameObject prefab;
+            if(i == 0)
+            {
+                SpawnPosition = new Vector3(transform.position.x + 3, transform.position.y, 1);
+                prefab = ANGMonsterPrefab;
+            }
+            else
+            {
+                SpawnPosition = new Vector3(transform.position.x - 3, transform.position.y, 1);
+                prefab = ADHMonsterPrefab;
+            }
+            GameObject monster =  Instantiate(prefab, SpawnPosition, Quaternion.identity);
+            nowSpawnMonster.Add(monster);
+        }
+    }
+
+
     private void OnDrawGizmosSelected()
     {
         // Gizmos 색상을 노란색으로 설정
@@ -61,9 +104,10 @@ public class MON_BOSS_00 : EnemyController
             }
 
         }
-        if(HP / maxHP > 0.5f)
+        if(HP / maxHP < 0.5f && Time.time >= lastSpawnTime + spawnRate)
         {
-            //몬스터 소환
+            SpawnMonster();
+            lastSpawnTime = Time.time;
         }
 
     }
