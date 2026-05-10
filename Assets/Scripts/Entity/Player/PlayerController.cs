@@ -94,7 +94,7 @@ public class PlayerController : Entity
         }
 
         //애니메이션
-        if (rb.linearVelocity.normalized.x == 0) // Idle과 Run 애니메이션 제어문
+        if (rb.linearVelocity.x == 0) // Idle과 Run 애니메이션 제어문
         {
             animator.SetBool("isMoving", false);
         }

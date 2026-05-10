@@ -20,12 +20,14 @@ public abstract class EnemyController : Entity
     protected PlayerController playerController;
     [SerializeField] protected LayerMask _playerLayer;
     protected Rigidbody2D rb;
+    protected Animator animator;
     void Awake()
     {
         base.Setup();
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
+        animator = GetComponent<Animator>();
         Attack_Power = _attackPower;
         Speed = _moveSpeed;
     }
@@ -39,6 +41,14 @@ public abstract class EnemyController : Entity
         if (CanUseAbility())
         {
             MonsterAbility();
+        }
+        if (rb.linearVelocity.normalized.x == 0) // Idle과 Run 애니메이션 제어문
+        {
+            animator.SetBool("isMoving", false);
+        }
+        else
+        {
+            animator.SetBool("isMoving", true);
         }
     }
 
