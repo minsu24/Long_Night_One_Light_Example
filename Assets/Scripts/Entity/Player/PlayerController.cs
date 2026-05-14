@@ -16,16 +16,19 @@ public class PlayerController : Entity
     private float _stamina;
     public float atkMultiplier = 1f; // 데미지 배율
     public float speedMultiplier = 1f; // 스피드 배율
+    public float climbingSpeed = 5f; // 줄 오르는 속도
     public float FinalSpeed => Speed * speedMultiplier; // 최종 스피드 
     public float FinalDamage => Attack_Power * atkMultiplier; // 최종 데미지
-    public bool isDashing = false;
+
+    public bool isDashing, isClimbing, isGrounded, isMoved = false;
     private bool isInvincible = false;
     private float invincibleDuration = 1.0f; // 무적 시간 (초)
+    private float ropeX;
 
     [SerializeField] private int maxJumpCount = 2; // 최대 점프 횟수 (2 = 2단 점프)
     private int jumpCount = 0;                     // 현재 점프 횟수
 
-    public float h;
+    public float h, v;
 
     bool isKnockback;
 
@@ -63,6 +66,29 @@ public class PlayerController : Entity
     // Update is called once per frame
     void Update()
     {
+        //줄을 오르는 중이라면 별개의 이동 로직 작동
+        if (isClimbing)
+        {
+            
+            if (Input.GetButtonDown("Jump") && jumpCount < maxJumpCount)
+            {
+                isClimbing = false;
+                rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f); // 기존 수직 속도 초기화 후 점프
+                rb.AddForce(Vector2.one * jumpPower, ForceMode2D.Impulse);
+                jumpCount++;
+                return;
+            }
+            
+            rb.gravityScale = 0; //중력을 0으로
+            transform.position = new Vector3(ropeX, transform.position.y, 0);
+            
+            
+        }
+        else
+        {
+            rb.gravityScale = 4f;
+        }
+
         // 대화 중이거나 대화 직후 입력 잠금 중이면 점프/이동 입력 막기
         if ((dialogueManager != null && dialogueManager.IsInputBlocked()) || isKnockback)
         {
@@ -94,13 +120,31 @@ public class PlayerController : Entity
         }
 
         //애니메이션
-        if (rb.linearVelocity.x == 0) // Idle과 Run 애니메이션 제어문
+        if (isMoved) // Idle과 Run 애니메이션 제어문
         {
-            animator.SetBool("isMoving", false);
+            animator.SetBool("isMoving", true);
         }
         else
         {
-            animator.SetBool("isMoving", true);
+            animator.SetBool("isMoving", false);
+        }
+
+        if (!isGrounded && rb.linearVelocity.y > 0.1f)
+        {
+            animator.SetBool("isJumping", true);
+            animator.SetBool("isFalling", false);
+        }
+        // 2. 추락 중인지 확인 (속도가 음수이고 바닥이 아닐 때)
+        else if (!isGrounded && rb.linearVelocity.y < -0.1f)
+        {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isFalling", true);
+        }
+        // 3. 착지 상태
+        else if (isGrounded)
+        {
+            animator.SetBool("isJumping", false);
+            animator.SetBool("isFalling", false);
         }
 
         if (Stamina < maxStamina)
@@ -111,6 +155,12 @@ public class PlayerController : Entity
     }
     void FixedUpdate()
     {
+        if (isClimbing)
+        {
+            v = Input.GetAxisRaw("Vertical");
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, v * climbingSpeed); 
+        }
+
         // 대화 중이거나 대화 직후 입력 잠금 중이면 좌우 이동 막기
         if ((dialogueManager != null && dialogueManager.IsInputBlocked()))
         {
@@ -139,25 +189,38 @@ public class PlayerController : Entity
         }
         //float v = Input.GetAxisRaw("Vertical");
         rb.linearVelocity = new Vector2(h * FinalSpeed, rb.linearVelocity.y);
-        //랜딩 플랫폼
-        if (rb.linearVelocity.y < -0.5f)
-        { // 바닥에 닿았을 때 애니메이션 전환 로직
-            animator.SetBool("isJumping", false);
-            animator.SetBool("isFalling", true);
-            Debug.DrawRay(rb.position, Vector3.down, new Color(1, 0, 0));
-            RaycastHit2D rayHit = Physics2D.Raycast(rb.position, Vector3.down, 1.5f, LayerMask.GetMask("Platform"));
-            if (rayHit.collider != null)
-            {
-                Debug.Log(rayHit.collider.name);
-                if (rayHit.distance < 1.2f)
-                {
-                    animator.SetBool("isFalling", false);
-                    jumpCount = 0; // 착지 시 점프 횟수 초기화
-                }
-            }
+        if(rb.linearVelocity.x == 0)
+        {
+            isMoved = false;
         }
+        else
+        {
+            isMoved = true;
+        }
+        //랜딩 플랫폼
+
+        Debug.DrawRay(rb.position, Vector3.down, new Color(1, 0, 0));
+        RaycastHit2D rayHit = Physics2D.Raycast(rb.position, Vector3.down, 1.5f, LayerMask.GetMask("Platform"));
+        if (rayHit.collider != null && rayHit.distance < 1.2f)
+        {                         
+            isGrounded = true;
+            jumpCount = 0; // 착지 시 점프 횟수 초기화
+        }
+        else
+        {
+            isGrounded = false;
+        }
+    
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Rope"))
+        {
+            Rope currentrope = collision.GetComponent<Rope>();
+            ropeX = currentrope.GetRopeCenterX();
+        }
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Enemy"))
@@ -197,6 +260,7 @@ public class PlayerController : Entity
     {
         StartCoroutine(MentalHealRoutine(amount, duration));
     }
+    
 
     private IEnumerator InvincibleCoroutine()
     {

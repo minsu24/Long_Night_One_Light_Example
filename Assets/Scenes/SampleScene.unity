@@ -1712,7 +1712,7 @@ Transform:
   m_GameObject: {fileID: 299147795}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.19, y: -28.67, z: -10}
+  m_LocalPosition: {x: -10.99, y: -31.09, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3086,7 +3086,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.1900005, y: -28.67, z: -10}
+  m_LocalPosition: {x: -4.3724003, y: -30.122715, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15289,6 +15289,71 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1660166265
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3479647002034783439, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: m_Name
+      value: Portal (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5838859699990209257, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: sceneName
+      value: Vilage
+      objectReference: {fileID: 0}
+    - target: {fileID: 5838859699990209257, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: targetPointName
+      value: VilagePortal
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519353526507979026, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519353526507979026, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -32.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519353526507979026, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519353526507979026, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519353526507979026, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519353526507979026, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519353526507979026, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519353526507979026, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519353526507979026, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519353526507979026, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
 --- !u!1001 &1708440260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16368,7 +16433,7 @@ Transform:
   m_GameObject: {fileID: 2053869889}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.19, y: -29.67, z: 0}
+  m_LocalPosition: {x: -10.99, y: -32.09, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16416,9 +16481,12 @@ MonoBehaviour:
   knockbackPower: 15
   atkMultiplier: 1
   speedMultiplier: 1
+  climbingSpeed: 5
   isDashing: 0
+  isClimbing: 0
   maxJumpCount: 2
   h: 0
+  v: 0
   dialogueManager: {fileID: 1094348433}
   animator: {fileID: 0}
 --- !u!114 &2053869896
@@ -17016,6 +17084,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal
       objectReference: {fileID: 0}
+    - target: {fileID: 5838859699990209257, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: sceneName
+      value: Tree_Of_Light1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5838859699990209257, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: targetPointName
+      value: Tree1_Portal
+      objectReference: {fileID: 0}
     - target: {fileID: 7519353526507979026, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.23
@@ -17075,6 +17151,7 @@ SceneRoots:
   - {fileID: 2093239617}
   - {fileID: 985428699}
   - {fileID: 6305710958731195452}
+  - {fileID: 1660166265}
   - {fileID: 2028932884}
   - {fileID: 299147799}
   - {fileID: 646696884}

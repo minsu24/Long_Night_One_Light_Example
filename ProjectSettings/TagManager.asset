@@ -11,6 +11,7 @@ TagManager:
   - MentalSystem
   - FieldItem
   - Boss00
+  - Rope
   layers:
   - Default
   - TransparentFX
