@@ -42,6 +42,8 @@ public class DialogueManager : MonoBehaviour
 
     private bool isMadnessMode = false;
 
+    Coroutine warningCoroutine;            // 실행 중인 경고문구 코루틴 저장
+
     void Update()
     {
         // 대화 종료 직후 입력 잠금 시간 감소
@@ -142,6 +144,13 @@ public class DialogueManager : MonoBehaviour
     // 대화 시작
     public void StartDialogue(DialogueLine[] newLines)
     {
+        // 이전 경고문구 코루틴이 남아 있으면 정리
+        if (warningCoroutine != null)
+        {
+            StopCoroutine(warningCoroutine);
+            warningCoroutine = null;
+        }
+
         // 이전 타이핑 코루틴이 남아 있으면 정리
         if (typingCoroutine != null)
         {
@@ -173,6 +182,81 @@ public class DialogueManager : MonoBehaviour
         {
             StartTyping(lines[currentLine]);
         }
+    }
+
+    // 게임 진행을 막지 않는 경고문구 표시
+    // 정신력 하락 경고처럼 플레이어가 움직이면서 봐야 하는 문구에 사용
+    public void ShowWarningMessage(DialogueLine[] warningLines, float duration = 3f)
+    {
+        if (warningLines == null || warningLines.Length == 0)
+            return;
+
+        // 일반 NPC 대화 중이면 경고문구가 대화를 덮어쓰지 않도록 중단
+        if (isDialogueActive)
+            return;
+
+        // 이전 경고문구 코루틴이 남아 있으면 정리
+        if (warningCoroutine != null)
+        {
+            StopCoroutine(warningCoroutine);
+            warningCoroutine = null;
+        }
+
+        // 이전 타이핑 코루틴이 남아 있으면 정리
+        if (typingCoroutine != null)
+        {
+            StopCoroutine(typingCoroutine);
+            typingCoroutine = null;
+        }
+
+        // 입력 차단용 변수는 건드리지 않음
+        // 즉, 경고문구가 떠도 이동/점프 가능
+        isTyping = false;
+        isChoiceActive = false;
+        justStartedDialogue = false;
+
+        if (choicePanel != null)
+        {
+            choicePanel.SetActive(false);
+        }
+
+        dialoguePanel.SetActive(true);
+
+        if (nameText != null)
+        {
+            nameText.text = warningLines[0].speaker;
+        }
+
+        if (dialogueText != null)
+        {
+            dialogueText.text = warningLines[0].text;
+        }
+
+        warningCoroutine = StartCoroutine(HideWarningAfterTime(duration));
+    }
+
+    // 일정 시간 후 경고문구 숨김
+    IEnumerator HideWarningAfterTime(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        // 일반 NPC 대화가 시작되지 않았을 때만 경고문구 숨김
+        if (!isDialogueActive)
+        {
+            dialoguePanel.SetActive(false);
+
+            if (dialogueText != null)
+            {
+                dialogueText.text = "";
+            }
+
+            if (nameText != null)
+            {
+                nameText.text = "";
+            }
+        }
+
+        warningCoroutine = null;
     }
 
     // 현재 플레이어와 접촉 중인 NPC 찾기
