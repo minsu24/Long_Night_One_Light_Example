@@ -20,7 +20,7 @@ public class PlayerController : Entity
     public float FinalSpeed => Speed * speedMultiplier; // 최종 스피드 
     public float FinalDamage => Attack_Power * atkMultiplier; // 최종 데미지
 
-    public bool isDashing, isClimbing, isGrounded, isMoved = false;
+    public bool isDashing, isClimbing, isGrounded, isMoved, isCharging = false;
     private bool isInvincible = false;
     private float invincibleDuration = 1.0f; // 무적 시간 (초)
     private float ropeX;
@@ -70,7 +70,7 @@ public class PlayerController : Entity
         if (isClimbing)
         {
             
-            if (Input.GetButtonDown("Jump") && jumpCount < maxJumpCount)
+            if (Input.GetButtonDown("Jump") && jumpCount <= maxJumpCount)
             {
                 isClimbing = false;
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f); // 기존 수직 속도 초기화 후 점프
@@ -90,7 +90,7 @@ public class PlayerController : Entity
         }
 
         // 대화 중이거나 대화 직후 입력 잠금 중이면 점프/이동 입력 막기
-        if ((dialogueManager != null && dialogueManager.IsInputBlocked()) || isKnockback)
+        if ((dialogueManager != null && dialogueManager.IsInputBlocked()) || isKnockback || isCharging)
         {
             animator.SetBool("isMoving", false);
             return;
@@ -100,7 +100,7 @@ public class PlayerController : Entity
         if (GameManager.instance != null && GameManager.instance.isInputLocked) return;
 
         //점프 (2단 점프 지원)
-        if (Input.GetButtonDown("Jump") && jumpCount < maxJumpCount)
+        if (Input.GetButtonDown("Jump") && jumpCount <= maxJumpCount)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f); // 기존 수직 속도 초기화 후 점프
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
@@ -162,7 +162,7 @@ public class PlayerController : Entity
         }
 
         // 대화 중이거나 대화 직후 입력 잠금 중이면 좌우 이동 막기
-        if ((dialogueManager != null && dialogueManager.IsInputBlocked()))
+        if ((dialogueManager != null && dialogueManager.IsInputBlocked()) || isCharging)
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             return;

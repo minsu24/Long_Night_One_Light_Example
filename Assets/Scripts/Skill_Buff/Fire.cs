@@ -21,6 +21,7 @@ public class Fire : MonoBehaviour
     private GameObject AtkSystem;
     private GameObject enemy;
     private GameObject firespirit;
+    private Animator animator;
 
     CircleCollider2D circleCollider2D;
     Rigidbody2D rb;
@@ -35,6 +36,7 @@ public class Fire : MonoBehaviour
         {
             playerController = player.GetComponent<PlayerController>();
         }
+        animator = GetComponent<Animator>();
         AtkSystem = GameObject.FindGameObjectWithTag("AtkSystem");
         playerAttackSystem = AtkSystem.GetComponent<PlayerAttackSystem>();
         enemy = GameObject.FindGameObjectWithTag("Enemy");
@@ -48,8 +50,10 @@ public class Fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetBool("isCharge", false);
         if(!isCharge)
         {
+            
             transform.Translate(moveDirection * speed * Time.deltaTime, Space.World); // 발사체 이동 로직
             if(Vector3.Distance(startPos, transform.position) >= 12.5f) // 일정 거리 이동하면 삭제
             {
@@ -58,9 +62,14 @@ public class Fire : MonoBehaviour
             }
         }
         else
+        animator.SetBool("isCharge", true);
         {
             if(!backToPlayer) // 일정 거리 이동
             {
+                if(moveDirection == Vector3.up)
+                {
+                    transform.rotation = Quaternion.Euler(0f, 0f, 90f);
+                }
                 transform.Translate(moveDirection * speed * Time.deltaTime, Space.World); // 발사체 이동 로직
                 if(Vector3.Distance(startPos, transform.position) >= 12.5f)
                 {
@@ -69,6 +78,10 @@ public class Fire : MonoBehaviour
             }
             else
             {
+                if(moveDirection == Vector3.down)
+                {
+                    transform.rotation = Quaternion.Euler(0f, 0f, -90f);
+                }
                 transform.localScale = new Vector3(-1, 1, 1);
                 moveDirection = (player.transform.position - transform.position).normalized;
                 // 플레이어 현재 이동속도보다 항상 빠르게 보장
@@ -142,8 +155,12 @@ public class Fire : MonoBehaviour
         }
         if (collision.CompareTag("Breakable"))
         {
-            Destroy(gameObject);
-            playerAttackSystem.baseAttacking = false;
+            if (!isCharge)
+            {
+                Destroy(gameObject);
+                playerAttackSystem.baseAttacking = false;    
+            }
+            
         }
     }
 }
