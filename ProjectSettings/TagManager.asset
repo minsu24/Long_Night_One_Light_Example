@@ -12,6 +12,7 @@ TagManager:
   - FieldItem
   - Boss00
   - Rope
+  - Breakable
   layers:
   - Default
   - TransparentFX

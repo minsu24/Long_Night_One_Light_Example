@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3836399570204454176}
   - component: {fileID: 835170669798174015}
   - component: {fileID: 1310525016753386214}
+  - component: {fileID: 1486681425360358641}
   m_Layer: 8
   m_Name: BaseAttack
   m_TagString: Fire
@@ -84,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 4138223980208024357, guid: 5100b75572e484e458e4340e2afe9454, type: 3}
+  m_Sprite: {fileID: 900956524002760131, guid: 796bb7268aa51b4429f35fade42de069, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -107,8 +108,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fire
   speed: 10
+  returnSpeed: 20
   isCharge: 0
   backToPlayer: 0
+  damage: 0
   playerController: {fileID: 0}
   playerAttackSystem: {fileID: 0}
   player: {fileID: 0}
@@ -175,3 +178,25 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.29835108
+--- !u!95 &1486681425360358641
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3780673957017645484}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b411887d9af2acd46a40f9d958d583de, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

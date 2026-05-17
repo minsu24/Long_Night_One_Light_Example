@@ -69,6 +69,7 @@ public class Fire : MonoBehaviour
             }
             else
             {
+                transform.localScale = new Vector3(-1, 1, 1);
                 moveDirection = (player.transform.position - transform.position).normalized;
                 // 플레이어 현재 이동속도보다 항상 빠르게 보장
                 float actualReturnSpeed = Mathf.Max(returnSpeed, playerController.FinalSpeed * 1.5f);
@@ -110,6 +111,7 @@ public class Fire : MonoBehaviour
         {
             ChargeAttack(isCharge, collision);
         }
+        
         else if (collision.CompareTag("Boss00"))
         {
             if(!PlayerAttackSystem.instance.sSkill.IsReady)
@@ -130,12 +132,18 @@ public class Fire : MonoBehaviour
                 }
             }
         }
+        
         if(collision.transform.tag == "Player" && backToPlayer && isCharge)
         {
             firespirit.SetActive(true);
             playerAttackSystem.chargeAttaking = false;
             Destroy(gameObject);
             Debug.Log("플레이어와 충돌");
+        }
+        if (collision.CompareTag("Breakable"))
+        {
+            Destroy(gameObject);
+            playerAttackSystem.baseAttacking = false;
         }
     }
 }

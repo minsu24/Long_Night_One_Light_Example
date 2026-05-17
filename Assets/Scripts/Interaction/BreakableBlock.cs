@@ -4,7 +4,7 @@ public class BreakableBlock : MonoBehaviour // 실라의 공격에 적중히 태
 {
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("PlayerAttack"))
+        if(collision.CompareTag("Fire"))
         {
             Destroy(gameObject); // 블럭만 사라짐
         }
