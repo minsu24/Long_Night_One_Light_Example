@@ -50,26 +50,12 @@ public class PlayerAttackSystem : MonoBehaviour
             if (context.performed) //  공격 키를 0.5초 이상으로 눌렀을 때
             {
 
-                if(chargeCurtime <= 0 && !baseAttacking) // 기본 공격중이 아니고 차지 공격 쿨타임이 돌았다면  
+                if(chargeCurtime <= 0 && !baseAttacking && !chargeAttaking) // 기본 공격중이 아니고 차지 공격 쿨타임이 돌았다면  
                 {
                     chargeAttaking = true;
                     playerController.isCharging = true;
                     playerController.animator.SetBool("isCharging", true);
                     Debug.Log("차지 공격");
-                    
-                    // GameObject fire = Instantiate(BaseAttackPrefab, transform.position, Quaternion.identity); // 발사체 생성
-                    // Fire fireScript = fire.GetComponent<Fire>();
-                    // if(fireScript != null)
-                    // {
-                    //     fireScript.Setup(fireSpirit);
-                    //     fireScript.damage = playerController.FinalDamage;
-                    //     fireScript.isCharge = true;
-                    //     Vector2 dir = GetFireDirection();
-                    //     fireScript.SetDirection(dir);
-                    //     if(transform.root.localScale.x == -1 && dir.y == 0)
-                    //         fire.GetComponent<SpriteRenderer>().flipX = true;
-                    // }
-                    // curtime = cooltime;
                 }
 
             }
@@ -79,41 +65,12 @@ public class PlayerAttackSystem : MonoBehaviour
                 {
                     if(context.duration < 0.5f) // 공격 키를 0.5초 미만으로 눌렀을 때
                     {   
-                        baseAttacking = true;
-                        Debug.Log("일반 공격");
-                        GameObject fire = Instantiate(BaseAttackPrefab, transform.position, Quaternion.identity); // 발사체 생성
-                        Fire fireScript = fire.GetComponent<Fire>();
-                        if(fireScript != null)
-                        {
-                            fireScript.damage = playerController.FinalDamage; // 발사체 데미지 설정
-                            fireScript.isCharge = false;
-                            Vector2 dir = GetFireDirection();
-                            fireScript.SetDirection(dir);
-                            if(transform.root.localScale.x == -1 && dir.y == 0)
-                                fire.GetComponent<SpriteRenderer>().flipX = true;
-                        }
-                        curtime = cooltime;
+                        StartCoroutine(BaseAttackRoutine());
                     }                
                 }
-                else if (chargeAttaking)
+                else if (curtime <= 0 && chargeAttaking)
                 {
-                    fireSpirit.SetActive(false);
-                    playerController.animator.SetBool("isCharging", false);
-                    playerController.isCharging = false;
-                    playerController.animator.SetTrigger("AttackMotion");
-                    GameObject fire = Instantiate(BaseAttackPrefab, transform.position, Quaternion.identity); // 발사체 생성
-                    Fire fireScript = fire.GetComponent<Fire>();
-                    if(fireScript != null)
-                    {
-                        fireScript.Setup(fireSpirit);
-                        fireScript.damage = playerController.FinalDamage;
-                        fireScript.isCharge = true;
-                        Vector2 dir = GetFireDirection();
-                        fireScript.SetDirection(dir);
-                        if(transform.root.localScale.x == -1 && dir.y == 0)
-                            fire.GetComponent<SpriteRenderer>().flipX = true;
-                    }
-                    curtime = cooltime;
+                    StartCoroutine(ChargeAttackRoutine());
                 }
 
             }
@@ -169,6 +126,52 @@ public class PlayerAttackSystem : MonoBehaviour
         }
 
         return new Vector2(transform.root.localScale.x, 0f);
+    }
+
+    private IEnumerator BaseAttackRoutine()
+    {
+        playerController.animator.SetBool("AttackMotion", true);
+        baseAttacking = true;
+        yield return new WaitForFixedUpdate();
+        playerController.animator.SetBool("AttackMotion", false);
+        yield return new WaitForSeconds(0.1f);
+        Debug.Log("일반 공격");
+        GameObject fire = Instantiate(BaseAttackPrefab, transform.position, Quaternion.identity); // 발사체 생성
+        Fire fireScript = fire.GetComponent<Fire>();
+        if(fireScript != null)
+        {
+            fireScript.damage = playerController.FinalDamage; // 발사체 데미지 설정
+            fireScript.isCharge = false;
+            Vector2 dir = GetFireDirection();
+            fireScript.SetDirection(dir);
+            if(transform.root.localScale.x == -1 && dir.y == 0)
+                fire.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        curtime = cooltime;
+    }
+
+    private IEnumerator ChargeAttackRoutine()
+    {
+        fireSpirit.SetActive(false);
+        playerController.animator.SetTrigger("AttackMotion");
+        playerController.animator.SetBool("isCharging", false);
+        playerController.isCharging = false;
+        yield return new WaitForFixedUpdate();
+        playerController.animator.SetBool("AttackMotion", false);
+        yield return new WaitForSeconds(0.1f);
+        GameObject fire = Instantiate(BaseAttackPrefab, transform.position, Quaternion.identity); // 발사체 생성
+        Fire fireScript = fire.GetComponent<Fire>();
+        if(fireScript != null)
+        {
+            fireScript.Setup(fireSpirit);
+            fireScript.damage = playerController.FinalDamage;
+            fireScript.isCharge = true;
+            Vector2 dir = GetFireDirection();
+            fireScript.SetDirection(dir);
+            if(transform.root.localScale.x == -1 && dir.y == 0)
+                fire.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        curtime = cooltime;
     }
 
 }
