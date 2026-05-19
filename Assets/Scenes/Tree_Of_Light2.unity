@@ -1113,7 +1113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5838859699990209257, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
       propertyPath: sceneName
-      value: Tree_Of_Light2
+      value: Tree_Of_Light1
       objectReference: {fileID: 0}
     - target: {fileID: 5838859699990209257, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
       propertyPath: targetPointName
@@ -2458,6 +2458,14 @@ PrefabInstance:
     - target: {fileID: 3479647002034783439, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
       propertyPath: m_Name
       value: Out_Tree2_Portal
+      objectReference: {fileID: 0}
+    - target: {fileID: 5838859699990209257, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: sceneName
+      value: Tree_Of_Light3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5838859699990209257, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+      propertyPath: targetPointName
+      value: in_Tree3_Portal
       objectReference: {fileID: 0}
     - target: {fileID: 7519353526507979026, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
       propertyPath: m_LocalPosition.x
