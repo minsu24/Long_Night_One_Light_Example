@@ -26,6 +26,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tree_Of_Light2.unity
     guid: e6358dc12acdeae46a2b1f575c43b3ff
+  - enabled: 1
+    path: Assets/Scenes/Tree_Of_Light3.unity
+    guid: c73ce3fd3c27b1247901dbb0bd4fbb03
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: cbefa5ad991dc424d9223416691114e7, type: 3}
   m_UseUCBPForAssetBundles: 0

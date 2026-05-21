@@ -69,20 +69,17 @@ public class PlayerController : Entity
         //줄을 오르는 중이라면 별개의 이동 로직 작동
         if (isClimbing)
         {
-            
-            if (Input.GetButtonDown("Jump") && jumpCount <= maxJumpCount)
+            if (Input.GetButtonDown("Jump") && jumpCount < maxJumpCount)
             {
                 isClimbing = false;
+                isGrounded = false;
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f); // 기존 수직 속도 초기화 후 점프
                 rb.AddForce(Vector2.one * jumpPower, ForceMode2D.Impulse);
                 jumpCount++;
                 return;
             }
-            
             rb.gravityScale = 0; //중력을 0으로
-            transform.position = new Vector3(ropeX, transform.position.y, 0);
-            
-            
+            transform.position = new Vector3(ropeX, transform.position.y, 0);  
         }
         else
         {
@@ -100,11 +97,13 @@ public class PlayerController : Entity
         if (GameManager.instance != null && GameManager.instance.isInputLocked) return;
 
         //점프 (2단 점프 지원)
-        if (Input.GetButtonDown("Jump") && jumpCount <= maxJumpCount)
+        if (Input.GetButtonDown("Jump") && jumpCount < maxJumpCount)
         {
+            isGrounded = false;
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f); // 기존 수직 속도 초기화 후 점프
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
             jumpCount++;
+            Debug.Log(jumpCount);
             animator.SetBool("isJumping", true);
             animator.SetBool("isFalling", false);
         }
