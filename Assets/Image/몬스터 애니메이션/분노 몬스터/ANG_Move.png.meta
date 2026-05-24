@@ -1,0 +1,530 @@
+fileFormatVersion: 2
+guid: 09d4ded6402c58a4db5bd8657becd1f3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6804638186344106160
+    second: ANG_Move_0
+  - first:
+      213: 5370858101674355791
+    second: ANG_Move_1
+  - first:
+      213: -6071766482841619089
+    second: ANG_Move_2
+  - first:
+      213: 162144839288960289
+    second: ANG_Move_3
+  - first:
+      213: 4589510951122832885
+    second: ANG_Move_4
+  - first:
+      213: -4203040060071869169
+    second: ANG_Move_5
+  - first:
+      213: -3648354645461410330
+    second: ANG_Move_6
+  - first:
+      213: 8279239978435095541
+    second: ANG_Move_7
+  - first:
+      213: -5280851950242752866
+    second: ANG_Move_8
+  - first:
+      213: -7672845152951885723
+    second: ANG_Move_9
+  - first:
+      213: 4681660297492173798
+    second: ANG_Move_10
+  - first:
+      213: 1007441828919078016
+    second: ANG_Move_11
+  - first:
+      213: 8486339314770282682
+    second: ANG_Move_12
+  - first:
+      213: 6127520860442723930
+    second: ANG_Move_13
+  - first:
+      213: 8262395198963469592
+    second: ANG_Move_14
+  - first:
+      213: 5655506176946924880
+    second: ANG_Move_15
+  - first:
+      213: 9166710194037025374
+    second: ANG_Move_16
+  - first:
+      213: 5866948952427692763
+    second: ANG_Move_17
+  - first:
+      213: 4775889091568401627
+    second: ANG_Move_18
+  - first:
+      213: -2726525546760843246
+    second: ANG_Move_19
+  - first:
+      213: -145882385248123908
+    second: ANG_Move_20
+  - first:
+      213: 166047404053617925
+    second: ANG_Move_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ANG_Move_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b84912c06eee6e50800000000000000
+      internalID: 6804638186344106160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANG_Move_1
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4c2459ccfe198a40800000000000000
+      internalID: 5370858101674355791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANG_Move_2
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f653a1fad80ccbba0800000000000000
+      internalID: -6071766482841619089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANG_Move_3
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1253bfb4fdd004200800000000000000
+      internalID: 162144839288960289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANG_Move_5
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f050ea2855dcba5c0800000000000000
+      internalID: -4203040060071869169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANG_Move_6
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ed50ae97c07e5dc0800000000000000
+      internalID: -3648354645461410330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANG_Move_7
+      rect:
+        serializedVersion: 2
+        x: 2800
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fb26d425e4c5e270800000000000000
+      internalID: 8279239978435095541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANG_Move_8
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e961a526125a6b6b0800000000000000
+      internalID: -5280851950242752866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANG_Move_9
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 560a9b16cf3948590800000000000000
+      internalID: -7672845152951885723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANG_Move_10
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e3121f6c3998f040800000000000000
+      internalID: 4681660297492173798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANG_Move_12
+      rect:
+        serializedVersion: 2
+        x: 4800
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab8805ce4a885c570800000000000000
+      internalID: 8486339314770282682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANG_Move_13
+      rect:
+        serializedVersion: 2
+        x: 5200
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a560c70f1c3590550800000000000000
+      internalID: 6127520860442723930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANG_Move_14
+      rect:
+        serializedVersion: 2
+        x: 5600
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81d4c1c48ace9a270800000000000000
+      internalID: 8262395198963469592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANG_Move_4
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 416e82535135de54687185d1d55ed147
+      internalID: 4589510951122832885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ANG_Move_11
+      rect:
+        serializedVersion: 2
+        x: 4400
+        y: 61
+        width: 400
+        height: 281
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ec9af46bc4e4174d9f272c870cc9df4
+      internalID: 1007441828919078016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: b1d3e0b6fc451b546bd2b9c9b0595ce2
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":15.0,"y":1.0},"gridSpriteSize":{"x":400.0,"y":281.0},"gridSpriteOffset":{"x":0.0,"y":158.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      ANG_Move_0: 6804638186344106160
+      ANG_Move_1: 5370858101674355791
+      ANG_Move_10: 4681660297492173798
+      ANG_Move_11: 1007441828919078016
+      ANG_Move_12: 8486339314770282682
+      ANG_Move_13: 6127520860442723930
+      ANG_Move_14: 8262395198963469592
+      ANG_Move_2: -6071766482841619089
+      ANG_Move_3: 162144839288960289
+      ANG_Move_4: 4589510951122832885
+      ANG_Move_5: -4203040060071869169
+      ANG_Move_6: -3648354645461410330
+      ANG_Move_7: 8279239978435095541
+      ANG_Move_8: -5280851950242752866
+      ANG_Move_9: -7672845152951885723
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

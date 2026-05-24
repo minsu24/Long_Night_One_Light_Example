@@ -5,7 +5,7 @@ using UnityEngine.Assertions.Must;
 public abstract class EnemyController : Entity
 {
     [SerializeField] private float _maxHP;
-    [SerializeField] private float _attackPower;
+    [SerializeField] protected float _attackPower;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _detectRange;
     [SerializeField] private float _onDeath_Mental;
@@ -14,7 +14,7 @@ public abstract class EnemyController : Entity
     // EnemySpawner가 환각 몬스터 스폰 시 true로 설정
     // 환각 몬스터는 보상을 드롭하지 않음 (정신력 패널티는 그대로 적용)
     [HideInInspector] public bool IsHallucination = false;
-    private Vector3 moveDirection; //플레이어 따라가기 위한 벡터 값.
+    private Vector3 direction, moveDirection; //플레이어 따라가기 위한 벡터 값.
     SpriteRenderer spriteRenderer;
     protected GameObject player;
     protected PlayerController playerController;
@@ -58,7 +58,9 @@ public abstract class EnemyController : Entity
         if(detectPlayer != null){
             if (detectPlayer.CompareTag("Player"))
             {
-                moveDirection = (player.transform.position - transform.position).normalized;
+                direction = (player.transform.position - transform.position);
+                direction.y = 0;
+                moveDirection = direction.normalized;
                 rb.linearVelocity = moveDirection * _moveSpeed;
                 if(rb.linearVelocityX >= 0)
                 {

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6939230554687674493}
   - component: {fileID: 6936879526416567650}
   - component: {fileID: 2104219789849277163}
-  - component: {fileID: 5343619893336066945}
   - component: {fileID: 3833909434015118198}
+  - component: {fileID: 174582641216745797}
   m_Layer: 9
   m_Name: Skull(ANG)
   m_TagString: Enemy
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 3
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -9070499791870808695, guid: 045eb5e1f0cbc424e9a8eed9eaf27bf8, type: 3}
+  m_Sprite: {fileID: -140077899363378049, guid: ee526952f57542443a0d25309482521e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
@@ -144,8 +144,31 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &5343619893336066945
-CircleCollider2D:
+--- !u!114 &3833909434015118198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7626374523421282312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b057d0f596955114b813da8aaa2317e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MON_ANG_001
+  target: {fileID: 0}
+  _maxHP: 10
+  _attackPower: 15
+  _moveSpeed: 5
+  _detectRange: 10
+  _onDeath_Mental: -3
+  _reward_EXP: 100
+  IsHallucination: 0
+  _playerLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!70 &174582641216745797
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -178,28 +201,6 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 1.125
---- !u!114 &3833909434015118198
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7626374523421282312}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b057d0f596955114b813da8aaa2317e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MON_ANG_001
-  target: {fileID: 0}
-  _maxHP: 10
-  _attackPower: 15
-  _moveSpeed: 5
-  _detectRange: 10
-  _onDeath_Mental: -3
-  _reward_EXP: 100
-  IsHallucination: 0
-  _playerLayer:
-    serializedVersion: 2
-    m_Bits: 128
+  m_Offset: {x: 0.027461052, y: -0.7871963}
+  m_Size: {x: 1.370615, y: 2.4056075}
+  m_Direction: 0

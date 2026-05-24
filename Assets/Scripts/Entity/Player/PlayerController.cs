@@ -22,8 +22,9 @@ public class PlayerController : Entity
 
     public bool isDashing, isClimbing, isGrounded, isMoved, isCharging = false;
     private bool isInvincible = false;
-    private float invincibleDuration = 1.0f; // 무적 시간 (초)
+    private float invincibleDuration = 1.5f; // 무적 시간 (초)
     private float ropeX;
+    private int playerLayer, EnemyLayer;
 
     [SerializeField] private int maxJumpCount = 2; // 최대 점프 횟수 (2 = 2단 점프)
     private int jumpCount = 0;                     // 현재 점프 횟수
@@ -57,6 +58,8 @@ public class PlayerController : Entity
         playerCollider = GetComponent<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        EnemyLayer = LayerMask.NameToLayer("Enemy");
+        playerLayer = LayerMask.NameToLayer("Player");
         Mental = 70f;
         Speed = 10f;
         Attack_Power = 10f;
@@ -235,14 +238,12 @@ public class PlayerController : Entity
                     ApplyKnockback(direction);
                     Debug.Log(enemyController.Attack_Power);
                     //StartCoroutine(InvincibleCoroutine());
-                    
                 }
             }
             else
             {
                 Debug.Log("에너미컨트롤러 없음");
             }
-
         }
     }
 
@@ -264,11 +265,12 @@ public class PlayerController : Entity
     private IEnumerator InvincibleCoroutine()
     {
         isInvincible = true;
+        Physics2D.IgnoreLayerCollision(EnemyLayer, playerLayer, true);
         Color c = spriteRenderer.color;
         c.a = 0.5f;
         spriteRenderer.color = c;
         yield return new WaitForSeconds(invincibleDuration);
-
+        Physics2D.IgnoreLayerCollision(EnemyLayer, playerLayer, false);
         c.a = 1.0f;
         spriteRenderer.color = c;
         isInvincible = false;
@@ -304,6 +306,7 @@ public class PlayerController : Entity
     public float maxStamina => 50f;
     public override void TakeDamage(float damage)
     {
+        if(isInvincible) return;
         Debug.Log("데미지");
         if(HP > 0)
         {
