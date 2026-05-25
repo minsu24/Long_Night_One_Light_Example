@@ -137,11 +137,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5838859699990209257, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
       propertyPath: sceneName
-      value: Vilage
+      value: Hidden_Map1
       objectReference: {fileID: 0}
     - target: {fileID: 5838859699990209257, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
       propertyPath: targetPointName
-      value: In_DarkForest2_Portal
+      value: In_HiddenMap1_Portal
       objectReference: {fileID: 0}
     - target: {fileID: 7519353526507979026, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1009,7 +1009,7 @@ GameObject:
   - component: {fileID: 838796705}
   - component: {fileID: 838796707}
   - component: {fileID: 838796708}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: "\uBC30\uACBD9_2 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1583,7 +1583,7 @@ GameObject:
   - component: {fileID: 1530768809}
   - component: {fileID: 1530768811}
   - component: {fileID: 1530768812}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: "\uBC30\uACBD9_2"
   m_TagString: Untagged
   m_Icon: {fileID: 0}

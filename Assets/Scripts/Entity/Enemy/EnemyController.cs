@@ -7,7 +7,7 @@ public abstract class EnemyController : Entity
     [SerializeField] private float _maxHP;
     [SerializeField] protected float _attackPower;
     [SerializeField] private float _moveSpeed;
-    [SerializeField] private float _detectRange;
+    [SerializeField] protected float _detectRange;
     [SerializeField] private float _onDeath_Mental;
     [SerializeField] private float _reward_EXP;
 
@@ -15,14 +15,14 @@ public abstract class EnemyController : Entity
     // 환각 몬스터는 보상을 드롭하지 않음 (정신력 패널티는 그대로 적용)
     [HideInInspector] public bool IsHallucination = false;
     private Vector3 direction, moveDirection; //플레이어 따라가기 위한 벡터 값.
-    SpriteRenderer spriteRenderer;
+    protected SpriteRenderer spriteRenderer;
     protected GameObject player;
     protected PlayerController playerController;
     [SerializeField] protected LayerMask _playerLayer;
     protected Rigidbody2D rb;
     protected Animator animator;
 
-    protected bool isAttacking = false;
+    protected bool isAttacking, inFarAttackRange = false;
     void Awake()
     {
         base.Setup();
@@ -56,7 +56,7 @@ public abstract class EnemyController : Entity
 
     void FixedUpdate()
     {
-        if(isAttacking) return;
+        if(isAttacking || inFarAttackRange) return;
         Collider2D detectPlayer = Physics2D.OverlapCircle(transform.position, _detectRange, _playerLayer);
         if(detectPlayer != null){
             if (detectPlayer.CompareTag("Player"))

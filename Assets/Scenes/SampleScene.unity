@@ -5383,7 +5383,7 @@ GameObject:
   - component: {fileID: 950186552}
   - component: {fileID: 950186553}
   m_Layer: 11
-  m_Name: "\uBCF4\uC2A4 \uC784\uC2DC_0"
+  m_Name: Boss
   m_TagString: Boss00
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5505,8 +5505,8 @@ MonoBehaviour:
   target: {fileID: 0}
   _maxHP: 100
   _attackPower: 25
-  _moveSpeed: 0.1
-  _detectRange: 10
+  _moveSpeed: 1
+  _detectRange: 20
   _onDeath_Mental: 10
   _reward_EXP: 0
   IsHallucination: 0
@@ -5514,13 +5514,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   projectilePrefab: {fileID: 1497276127906758466, guid: daf6fdd375322d445839cb7c9de25710, type: 3}
-  fireRange: 9
+  closeRange: 8
+  farRange: 12
   attackRate: 4
   spawnRate: 2
   startAttackX: 2
   endAttackX: 7
   attackStartDis: 1.5
-  attackDuration: 2
+  attackDuration: 1
   attackHeight: 5
   attackDamage: 10
   ANGMonsterPrefab: {fileID: 7626374523421282312, guid: 65015706ba2949e469159a8bc097c7bf, type: 3}
@@ -17537,7 +17538,7 @@ MonoBehaviour:
   isGrounded: 0
   isMoved: 0
   isCharging: 0
-  maxJumpCount: 2
+  maxJumpCount: 1
   h: 0
   v: 0
   dialogueManager: {fileID: 1094348433}

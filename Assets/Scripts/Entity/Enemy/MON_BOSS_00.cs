@@ -9,7 +9,8 @@ public class MON_BOSS_00 : EnemyController
     HashSet <Collider2D> hitTargets = new HashSet <Collider2D>();
 
     public GameObject projectilePrefab;
-    public float fireRange = 7f;
+    public float closeRange = 8f;
+    public float farRange = 12;
     public float attackRate = 4f;
     public float spawnRate = 2f;
 
@@ -31,22 +32,32 @@ public class MON_BOSS_00 : EnemyController
     private Vector3 SpawnPosition;
 
 
-    private float lastFireTime;
+    private float lastFireTime = -9999f;
     private float lastSpawnTime;
 
-    Collider2D detectPlayer;
+    private Vector2 currentHitBoxPosForGizmo;
+    private Vector2 currentHitSizeForGizmo;
+
 
     protected bool CloseAttack()
     {
-        Collider2D detectPlayer = Physics2D.OverlapCircle(transform.position, fireRange, _playerLayer);
-        return detectPlayer != null;
+        Collider2D ClosedetectPlayer = Physics2D.OverlapCircle(transform.position, closeRange, _playerLayer);
+        return ClosedetectPlayer != null;
+    }
+
+    protected bool FarAttack()
+    {
+        Collider2D FardetectPlayer = Physics2D.OverlapCircle(transform.position, farRange, _playerLayer);
+        return FardetectPlayer != null && !CloseAttack();
     }
 
     void FireProjectile()
     {
+        rb.linearVelocity = Vector2.zero;
         GameObject projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         Vector2 direction = (player.transform.position - transform.position).normalized;
         projectile.GetComponent<BossProjectile>().Setup(direction);
+        lastFireTime = Time.time;
     }
 
     void SpawnMonster()
@@ -85,24 +96,59 @@ public class MON_BOSS_00 : EnemyController
     {
         // Gizmos 색상을 노란색으로 설정
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, fireRange);
+        // 1. 기존 원형 탐지 범위 (반투명하게)
+        Gizmos.color = new Color(1f, 0f, 0f, 0.2f); // 빨간색 반투명 원
+        Gizmos.DrawSphere(transform.position, closeRange);
+        
+        Gizmos.color = new Color(0f, 1f, 0f, 0.1f); // 초록색 반투명 원
+        Gizmos.DrawSphere(transform.position, farRange);
+
+        Gizmos.color = new Color(0f, 0f, 1f, 0.3f);
+        Gizmos.DrawSphere(transform.position, _detectRange);
+
+        // 2. 근접 공격(OverlapBox) 예상 범위 그리기
+        // 게임이 실행 중이지 않을 때도 기획자가 범위를 눈으로 볼 수 있게 합니다.
+        float direction = transform.localScale.x > 0 ? -1f : 1f;
+        Gizmos.color = Color.yellow;
+
+        // 공격 시작 지점 박스 (노란색 선)
+        Vector2 startPos = new Vector2(transform.position.x + (startAttackX * direction), transform.position.y);
+        Vector2 defaultSize = new Vector2(Math.Abs(endAttackX - startAttackX), attackHeight);
+        Gizmos.DrawWireCube(startPos, defaultSize);
+
+        // 공격 끝 지점 박스 (옅은 노란색 선)
+        Vector2 endPos = new Vector2(transform.position.x + (endAttackX * direction), transform.position.y);
+        Gizmos.color = new Color(1f, 0.92f, 0.016f, 0.5f);
+        Gizmos.DrawWireCube(endPos, defaultSize);
+
+        // 3. 실제 공격 중일 때 움직이는 히트박스 실시간 시각화 (게임 실행 중 붉은색 채워진 박스)
+        if (isAttacking && !inFarAttackRange)
+        {
+            Gizmos.color = new Color(1f, 0f, 0f, 0.6f); // 진한 빨간색 사각형
+            Gizmos.DrawCube(currentHitBoxPosForGizmo, currentHitSizeForGizmo);
+        }
     }  
     protected override void MonsterAbility()
     {
+        if(isAttacking) return;
         if(Time.time >= lastFireTime + attackRate)
         {
             if(CloseAttack())
             {
                 Debug.Log(transform.position.x);
-                StartCoroutine(SequentialAttack());
-                lastFireTime = Time.time;
+                spriteRenderer.flipX = true;
+                isAttacking = true;
+                animator.SetTrigger("CloseAttack"); 
+                return;
             }
-            else
+            else if(FarAttack())
             {
-                FireProjectile();
-                lastFireTime = Time.time;
+                inFarAttackRange = true;
+                isAttacking = true;
+                animator.SetTrigger("FarAttack");
+                return;
             }
-
+            inFarAttackRange = false;
         }
         if(HP / maxHP < 0.5f && Time.time >= lastSpawnTime + spawnRate)
         {
@@ -112,8 +158,15 @@ public class MON_BOSS_00 : EnemyController
 
     }
 
+    void StartSequentialAttack()
+    {
+        StartCoroutine(SequentialAttack());
+    }
+
     IEnumerator SequentialAttack()
     {
+        inFarAttackRange = false;
+        lastFireTime = Time.time;
         hitTargets.Clear();
         float time = 0f;
         float direction = transform.localScale.x > 0 ? -1f : 1f;
@@ -139,7 +192,13 @@ public class MON_BOSS_00 : EnemyController
             }
             Debug.DrawRay(hitBox, Vector2.up * attackHeight, Color.red);
             yield return null; 
-
         }
+
+    }
+
+    public void EndAttack()
+    {
+        isAttacking = false;
+        spriteRenderer.flipX = false;
     }
 }

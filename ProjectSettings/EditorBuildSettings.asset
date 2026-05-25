@@ -41,6 +41,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Forgotten_Ruin1.unity
     guid: e14eeac8861643c439a02617874ead78
+  - enabled: 1
+    path: Assets/Scenes/Forgotten_Ruin2.unity
+    guid: b379d9d173d4a2d4ba2b43c9cc63feb1
+  - enabled: 1
+    path: Assets/Scenes/BossRoom1.unity
+    guid: 374c5d7867137ee47a6e0e41371b44aa
+  - enabled: 1
+    path: Assets/Scenes/Hidden_Map1.unity
+    guid: da8282ba3a45b93458974e26e3af5bb2
+  - enabled: 1
+    path: Assets/Scenes/Hidden_Map2.unity
+    guid: 3c1fc101f4e1be54b938cee12f012bc9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: cbefa5ad991dc424d9223416691114e7, type: 3}
   m_UseUCBPForAssetBundles: 0
