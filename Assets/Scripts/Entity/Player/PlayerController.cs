@@ -217,10 +217,45 @@ public class PlayerController : Entity
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("무언가와 닿음: " + collision.name);
         if (collision.CompareTag("Rope"))
         {
             Rope currentrope = collision.GetComponent<Rope>();
             ropeX = currentrope.GetRopeCenterX();
+        }
+
+        if (collision.CompareTag("Enemy"))
+        {
+            EnemyHitBox hitbox = collision.GetComponent<EnemyHitBox>();
+            if (hitbox != null)
+            {
+                Debug.Log("히트박스(무기)에 맞음!");
+                if (!isInvincible)
+                {
+                    TakeDamage(hitbox.damage);
+                    // 넉백 방향은 히트박스를 생성한 몬스터(owner)의 위치를 기준으로 계산
+                    float direction = transform.position.x > hitbox.attackOwner.position.x ? 1f : -1f;
+                    ApplyKnockback(direction);
+                }
+                return; // 맞았으니 아래 코드는 실행 안 하고 종료
+            }
+            EnemyController enemyController = collision.GetComponent<EnemyController>();
+            if(enemyController != null)
+            {
+                Debug.Log("적이랑 충돌");
+                if (!isInvincible)
+                {
+                    TakeDamage(enemyController.Attack_Power);
+                    float direction = transform.position.x > collision.transform.position.x ? 1f : -1f;
+                    ApplyKnockback(direction);
+                    Debug.Log(enemyController.Attack_Power);
+                    //StartCoroutine(InvincibleCoroutine());
+                }
+            }
+            else
+            {
+                Debug.Log("에너미컨트롤러 없음");
+            }
         }
     }
     void OnCollisionEnter2D(Collision2D collision)

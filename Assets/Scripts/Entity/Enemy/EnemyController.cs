@@ -21,6 +21,8 @@ public abstract class EnemyController : Entity
     [SerializeField] protected LayerMask _playerLayer;
     protected Rigidbody2D rb;
     protected Animator animator;
+
+    protected bool isAttacking = false;
     void Awake()
     {
         base.Setup();
@@ -35,7 +37,7 @@ public abstract class EnemyController : Entity
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
+    
     void Update()
     {
         if (CanUseAbility())
@@ -54,6 +56,7 @@ public abstract class EnemyController : Entity
 
     void FixedUpdate()
     {
+        if(isAttacking) return;
         Collider2D detectPlayer = Physics2D.OverlapCircle(transform.position, _detectRange, _playerLayer);
         if(detectPlayer != null){
             if (detectPlayer.CompareTag("Player"))

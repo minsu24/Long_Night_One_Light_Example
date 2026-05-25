@@ -60,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 900
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,7 +81,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -117,7 +117,7 @@ TextureImporter:
         width: 1338
         height: 1856
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -130,77 +130,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: "\uAE30\uC5B5\uC758 \uD754\uC801 \uC784\uC2DC_1"
-      rect:
-        serializedVersion: 2
-        x: 1925
-        y: 125
-        width: 26
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c0fa335947721bc40800000000000000
-      internalID: 5526241599433191180
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uAE30\uC5B5\uC758 \uD754\uC801 \uC784\uC2DC_2"
-      rect:
-        serializedVersion: 2
-        x: 1925
-        y: 61
-        width: 62
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 88b8f8a531c38c9a0800000000000000
-      internalID: -6212649632136197240
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\uAE30\uC5B5\uC758 \uD754\uC801 \uC784\uC2DC_3"
-      rect:
-        serializedVersion: 2
-        x: 1897
-        y: 101
-        width: 24
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6b7ba6441451870d0800000000000000
-      internalID: -3424964146550360138
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: cfad07cca8bdb924fb1d049cfab13ba0
     internalID: 0
     vertices: []
     indices: 
@@ -214,6 +148,7 @@ TextureImporter:
       "\uAE30\uC5B5\uC758 \uD754\uC801 \uC784\uC2DC_1": 5526241599433191180
       "\uAE30\uC5B5\uC758 \uD754\uC801 \uC784\uC2DC_2": -6212649632136197240
       "\uAE30\uC5B5\uC758 \uD754\uC801 \uC784\uC2DC_3": -3424964146550360138
+      "\uAE30\uC5B5\uC758 \uD754\uC801 \uC784\uC2DC_4": -627161361
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

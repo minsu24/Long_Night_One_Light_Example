@@ -2465,7 +2465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5838859699990209257, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
       propertyPath: targetPointName
-      value: in_Tree3_Portal
+      value: In_Tree3_Portal
       objectReference: {fileID: 0}
     - target: {fileID: 7519353526507979026, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
       propertyPath: m_LocalPosition.x

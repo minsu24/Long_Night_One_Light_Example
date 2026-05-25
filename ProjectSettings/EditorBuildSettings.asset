@@ -29,6 +29,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tree_Of_Light3.unity
     guid: c73ce3fd3c27b1247901dbb0bd4fbb03
+  - enabled: 1
+    path: Assets/Scenes/Dark_Forest1.unity
+    guid: 110ceabc31356e6489b783f509e62640
+  - enabled: 1
+    path: Assets/Scenes/Dark_Forest2.unity
+    guid: 97b74bf1c4323024b864ac6b62d6d5ff
+  - enabled: 1
+    path: Assets/Scenes/Dark_Forest3.unity
+    guid: ce5b0df8707b329488d52185f20c2973
+  - enabled: 1
+    path: Assets/Scenes/Forgotten_Ruin1.unity
+    guid: e14eeac8861643c439a02617874ead78
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: cbefa5ad991dc424d9223416691114e7, type: 3}
   m_UseUCBPForAssetBundles: 0
