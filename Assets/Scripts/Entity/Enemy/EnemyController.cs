@@ -61,11 +61,27 @@ public abstract class EnemyController : Entity
         if(detectPlayer != null){
             if (detectPlayer.CompareTag("Player"))
             {
-                direction = (player.transform.position - transform.position);
-                direction.y = 0;
-                moveDirection = direction.normalized;
-                rb.linearVelocity = moveDirection * _moveSpeed;
-                if(rb.linearVelocityX >= 0)
+                // direction = player.transform.position - transform.position;
+                // if(direction.y > 0)
+                // {
+                //     direction.y = 0;
+                // }
+                // moveDirection = direction.normalized;
+                // rb.linearVelocity = moveDirection * _moveSpeed;
+                if (gameObject.CompareTag("Boss00"))
+                {
+                    if(rb.linearVelocityX > 0)
+                {
+                    transform.localScale = new Vector3(-5, 5, 1);
+                }
+                else
+                {
+                    transform.localScale = new Vector3(5, 5, 1);
+                }
+                }
+                else
+                {
+                    if(rb.linearVelocityX >= 0)
                 {
                     transform.localScale = new Vector3(-1, 1, 1);
                 }
@@ -73,7 +89,22 @@ public abstract class EnemyController : Entity
                 {
                     transform.localScale = new Vector3(1, 1, 1);
                 }
-            }
+                }
+                
+                float directionX = 0f;
+
+                if (player.transform.position.x > transform.position.x)
+                {
+                    directionX = 1f;  // 플레이어가 오른쪽에 있음
+                }
+                else if (player.transform.position.x < transform.position.x)
+                {
+                    directionX = -1f; // 플레이어가 왼쪽에 있음
+                }
+
+                // 2. X축은 계산된 이동 속도를 적용하고, Y축은 기존의 중력 낙하 속도를 그대로 보존합니다!
+                rb.linearVelocity = new Vector2(directionX * _moveSpeed, rb.linearVelocity.y);
+                }
         }
         else
         {

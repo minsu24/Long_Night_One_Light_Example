@@ -106,13 +106,13 @@ public class Fire : MonoBehaviour
     {
         if(!isCharge) 
         {
-            collision.GetComponent<Entity>().TakeDamage(damage); // 적에게 데미지
+            collision.GetComponent<EnemyController>().TakeDamage(damage); // 적에게 데미지
             Destroy(gameObject);
             playerAttackSystem.baseAttacking = false;
         }
         else 
         {
-            collision.GetComponent<Entity>().TakeDamage(damage);
+            collision.GetComponent<EnemyController>().TakeDamage(damage);
             playerController.MP += 5;
             Debug.Log(playerController.MP);
         }

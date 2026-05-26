@@ -1,22 +1,10 @@
 fileFormatVersion: 2
-guid: 4363566b2b8e9914da7a72744f5a06ae
+guid: bcb9a93f7b60f4744a52298ecd588acb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8638214092218000232
-    second: "\uC2E4\uB77C \uC815\uBA74_0"
-  - first:
-      213: 1918011183747449257
-    second: "\uC2E4\uB77C \uC815\uBA74_1"
-  - first:
-      213: 3412877653928168723
-    second: "\uC2E4\uB77C \uC815\uBA74_2"
-  - first:
-      213: -5121433699329860101
-    second: "\uC2E4\uB77C \uC815\uBA74_3"
-  - first:
-      213: 6922867507602010454
-    second: "\uC2E4\uB77C \uC815\uBA74_4"
+      213: -5575318970158056947
+    second: "\uB9C8\uB098 UI_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uC2E4\uB77C \uC815\uBA74_1"
+      name: "\uB9C8\uB098 UI_0"
       rect:
         serializedVersion: 2
-        x: 408
-        y: 211
-        width: 1232
-        height: 1504
+        x: 12
+        y: 4
+        width: 510
+        height: 86
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9a14e7272052e9a10800000000000000
-      internalID: 1918011183747449257
+      spriteID: d0a7b3a9fec70a2b0800000000000000
+      internalID: -5575318970158056947
       vertices: []
       indices: 
       edges: []
@@ -137,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: bf9918f86486b294fb68c7fed98dc2ee
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -147,11 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "\uC2E4\uB77C \uC815\uBA74_0": 8638214092218000232
-      "\uC2E4\uB77C \uC815\uBA74_1": 1918011183747449257
-      "\uC2E4\uB77C \uC815\uBA74_2": 3412877653928168723
-      "\uC2E4\uB77C \uC815\uBA74_3": -5121433699329860101
-      "\uC2E4\uB77C \uC815\uBA74_4": 6922867507602010454
+      "\uB9C8\uB098 UI_0": -5575318970158056947
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

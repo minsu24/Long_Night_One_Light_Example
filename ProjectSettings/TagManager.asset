@@ -13,6 +13,7 @@ TagManager:
   - Boss00
   - Rope
   - Breakable
+  - SSkillFire
   layers:
   - Default
   - TransparentFX

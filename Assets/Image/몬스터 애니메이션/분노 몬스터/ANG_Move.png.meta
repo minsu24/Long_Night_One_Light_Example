@@ -167,9 +167,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -189,9 +189,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 400
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,9 +211,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 800
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -233,9 +233,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1200
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -255,9 +255,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2000
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -277,9 +277,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2400
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -299,9 +299,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2800
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -321,9 +321,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3200
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -343,9 +343,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3600
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -365,9 +365,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4000
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -387,9 +387,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4800
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -409,9 +409,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5200
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -431,9 +431,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5600
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -453,9 +453,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1600
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -475,9 +475,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4400
-        y: 61
+        y: 39
         width: 400
-        height: 281
+        height: 303
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -506,7 +506,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":15.0,"y":1.0},"gridSpriteSize":{"x":400.0,"y":281.0},"gridSpriteOffset":{"x":0.0,"y":158.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":400.0,"y":303.0},"gridSpriteOffset":{"x":0.0,"y":158.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       ANG_Move_0: 6804638186344106160
       ANG_Move_1: 5370858101674355791

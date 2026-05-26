@@ -78,14 +78,15 @@ public class PlayerAttackSystem : MonoBehaviour
         else if(context.action.name == "S_Skill") //화염 휩쓸기
         {
             if(context.started){
-                if(playerController.MP < 50 || !sSkill.IsReady)
+                if(playerController.MP < 20 || !sSkill.IsReady)
                 {
                     Debug.Log("S스킬 사용불가");
                 }
                 else
                 {
                     Debug.Log("S스킬 사용가능");
-                    playerController.MP -= 50;
+                    playerController.animator.SetTrigger("isSSkill");
+                    playerController.MP -= 20;
                     icon = fireIcon;
                     BuffManager.instance.CreateBuff("Atk", 300f, 5f, icon); // 버프 아이콘 생성에 필요한 데이터 전달
                     sSkill.ExecuteSkill();

@@ -5,6 +5,7 @@ using System.Security.Principal;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerController : Entity
@@ -20,7 +21,7 @@ public class PlayerController : Entity
     public float FinalSpeed => Speed * speedMultiplier; // 최종 스피드 
     public float FinalDamage => Attack_Power * atkMultiplier; // 최종 데미지
 
-    public bool isDashing, isClimbing, isGrounded, isMoved, isCharging = false;
+    public bool isDashing, isClimbing, isGrounded, isMoved, isCharging, sSkilling = false;
     private bool isInvincible = false;
     private float invincibleDuration = 1.5f; // 무적 시간 (초)
     private float ropeX;
@@ -90,7 +91,7 @@ public class PlayerController : Entity
         }
 
         // 대화 중이거나 대화 직후 입력 잠금 중이면 점프/이동 입력 막기
-        if ((dialogueManager != null && dialogueManager.IsInputBlocked()) || isKnockback || isCharging)
+        if ((dialogueManager != null && dialogueManager.IsInputBlocked()) || isKnockback || isCharging || sSkilling)
         {
             animator.SetBool("isMoving", false);
             return;
@@ -119,6 +120,11 @@ public class PlayerController : Entity
         {
             Mental += 5f;
             Debug.Log(Mental);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SceneManager.LoadScene("BossRoom1");
+            MapTransferData.TargetSpawnPointname = "In_BossRoom1_Portal";
         }
 
         //애니메이션
@@ -164,7 +170,7 @@ public class PlayerController : Entity
         }
 
         // 대화 중이거나 대화 직후 입력 잠금 중이면 좌우 이동 막기
-        if ((dialogueManager != null && dialogueManager.IsInputBlocked()) || isCharging)
+        if ((dialogueManager != null && dialogueManager.IsInputBlocked()) || isCharging || sSkilling)
         {
             rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
             return;
@@ -353,6 +359,16 @@ public class PlayerController : Entity
             rb.simulated = false;
         }
         Debug.Log(HP);
+    }
+
+    void SSkillingToTrue()
+    {
+        sSkilling = true;
+    }
+
+    void SSkillingToFalse()
+    {
+        sSkilling = false;
     }
 
 }
