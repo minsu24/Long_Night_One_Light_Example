@@ -126,6 +126,16 @@ public class PlayerController : Entity
             SceneManager.LoadScene("BossRoom1");
             MapTransferData.TargetSpawnPointname = "In_BossRoom1_Portal";
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SceneManager.LoadScene("Vilage");
+            MapTransferData.TargetSpawnPointname = "In_Vilage_Portal";
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            SceneManager.LoadScene("Dark_Forest2");
+            MapTransferData.TargetSpawnPointname = "In_DarkForest2_Portal";
+        }
 
         //애니메이션
         if (isMoved) // Idle과 Run 애니메이션 제어문

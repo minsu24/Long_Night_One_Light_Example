@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.IO;
+using System.Collections.Generic;
 
 public class PlayerData
 {
@@ -18,6 +19,8 @@ public class DataManager : MonoBehaviour
     public string path;
     public int nowSlot;
     public PlayerData nowPlayer = new PlayerData();
+    private Dictionary<string, bool> destroyedWalls = new Dictionary<string, bool>();
+    
     void Awake()
     {
         #region 싱글톤
@@ -27,7 +30,8 @@ public class DataManager : MonoBehaviour
         }
         else if(instance != this)
         {
-            Destroy(instance.gameObject);
+            //Destroy(instance.gameObject); 기존 영상에서 사용한 코드
+            Destroy(this.gameObject);
         }
         DontDestroyOnLoad(this.gameObject);
         #endregion
@@ -59,5 +63,18 @@ public class DataManager : MonoBehaviour
     {
         nowSlot = -1;
         nowPlayer = new PlayerData();
+    }
+
+    // 벽이 부서졌다고 기록
+    public void SetWallDestroyed(string id)
+    {
+        if (!destroyedWalls.ContainsKey(id))
+            destroyedWalls.Add(id, true);
+    }
+
+    // 벽이 부서진 상태인지 확인
+    public bool IsWallDestroyed(string id)
+    {
+        return destroyedWalls.ContainsKey(id);
     }
 }
