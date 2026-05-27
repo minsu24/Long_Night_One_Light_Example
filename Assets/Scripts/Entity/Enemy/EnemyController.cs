@@ -108,7 +108,7 @@ public abstract class EnemyController : Entity
         }
         else
         {
-            rb.linearVelocity = new Vector2(0, 0);
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
         }
 
     }

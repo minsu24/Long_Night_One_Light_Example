@@ -36,13 +36,15 @@ public class PlayerController : Entity
 
     public DialogueManager dialogueManager; // 대화 중 입력 제어용 DialogueManager
 
+    public DeadUI deadUI;
+
     public float Stamina
     {
         set => _stamina = Mathf.Clamp(value, 0, maxStamina);
         get => _stamina;
     }
 
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     Collider2D playerCollider; //변수명 변경
     SpriteRenderer spriteRenderer;
     public Animator animator;
@@ -61,6 +63,7 @@ public class PlayerController : Entity
         animator = GetComponent<Animator>();
         EnemyLayer = LayerMask.NameToLayer("Enemy");
         playerLayer = LayerMask.NameToLayer("Player");
+        deadUI = FindAnyObjectByType<DeadUI>();
         Mental = 70f;
         Speed = 10f;
         Attack_Power = 10f;
@@ -273,10 +276,15 @@ public class PlayerController : Entity
                 Debug.Log("에너미컨트롤러 없음");
             }
         }
+        if(collision.CompareTag("BossProjectile"))
+        {
+            float direction = transform.position.x > collision.transform.position.x ? 1f : -1f;
+            ApplyKnockback(direction);
+        }
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Enemy"))
+        if (collision.collider.CompareTag("Enemy") || collision.collider.CompareTag("Boss00"))
         {
             EnemyController enemyController = collision.collider.GetComponent<EnemyController>();
             if(enemyController != null)
@@ -298,7 +306,7 @@ public class PlayerController : Entity
         }
     }
 
-    void ApplyKnockback(float direction)
+    public void ApplyKnockback(float direction)
     {
         StartCoroutine(KnockBackTRoutine()); // 이동 제어권 강탈
         rb.linearVelocity = Vector2.zero;
@@ -365,8 +373,13 @@ public class PlayerController : Entity
         }
         if (HP <= 0)
         {
-            HP = 0; //플레이어 사망처리
+            Debug.Log("사망로직 진입");
+            deadUI.OpenDeadUI();
+            Debug.Log("UI 오픈");
+            rb.linearVelocity = Vector2.zero;
             rb.simulated = false;
+            Time.timeScale = 0;
+            
         }
         Debug.Log(HP);
     }
@@ -379,6 +392,19 @@ public class PlayerController : Entity
     void SSkillingToFalse()
     {
         sSkilling = false;
+    }
+
+    public void ResetPlayerData()
+    {
+        StopAllCoroutines();
+        Color c = spriteRenderer.color;
+        c.a = 1f;
+        spriteRenderer.color = c;
+        HP = 100;
+        MP = 100;
+        Stamina = 50;
+        isInvincible = false;
+        rb.simulated = true;
     }
 
 }

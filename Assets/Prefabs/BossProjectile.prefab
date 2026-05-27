@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 662780529064712241}
   m_Layer: 0
   m_Name: BossProjectile
-  m_TagString: Untagged
+  m_TagString: BossProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossProjectile
   speed: 15
   moveDistance: 30
-  damage: 10
+  damage: 100
 --- !u!95 &-8375908280963253827
 Animator:
   serializedVersion: 7

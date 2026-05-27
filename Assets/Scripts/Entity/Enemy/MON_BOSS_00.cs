@@ -78,12 +78,12 @@ public class MON_BOSS_00 : EnemyController
             GameObject prefab;
             if(i == 0)
             {
-                SpawnPosition = new Vector3(transform.position.x + 3, transform.position.y, 1);
+                SpawnPosition = new Vector3(18f, -5f, 1);
                 prefab = ANGMonsterPrefab;
             }
             else
             {
-                SpawnPosition = new Vector3(transform.position.x - 3, transform.position.y, 1);
+                SpawnPosition = new Vector3(8f, -11f, 1);
                 prefab = ADHMonsterPrefab;
             }
             GameObject monster =  Instantiate(prefab, SpawnPosition, Quaternion.identity);
@@ -183,9 +183,11 @@ public class MON_BOSS_00 : EnemyController
 
             if (hit != null && !hitTargets.Contains(hit))
             {
-                if (hit.TryGetComponent<Entity>(out Entity entity))
+                if (hit.TryGetComponent<PlayerController>(out PlayerController playerController))
                 {
-                    entity.TakeDamage(attackDamage);
+                    playerController.TakeDamage(attackDamage);
+                    float attackdirection = transform.position.x > 0 ? -1f : 1f;
+                    playerController.ApplyKnockback(attackdirection);
                     hitTargets.Add(hit); // 이 공격 한 번에는 다시 안 맞게 추가
                     Debug.Log("플레이어 타격 성공!");
                 }
@@ -200,5 +202,17 @@ public class MON_BOSS_00 : EnemyController
     {
         isAttacking = false;
         spriteRenderer.flipX = false;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("SpecialBlock")) // 특정 태그를 가진 블록은 보스 통과
+        {
+            Collider2D bossCollider = GetComponent<Collider2D>();
+            Collider2D blockCollider = collision.collider;
+
+            // 즉시 서로의 충돌을 무시하도록 설정
+            Physics2D.IgnoreCollision(bossCollider, blockCollider, true);
+        }
     }
 }

@@ -34,7 +34,7 @@ public class BossProjectile : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<Entity>().TakeDamage(damage);
+            collision.GetComponent<PlayerController>().TakeDamage(damage);
             Destroy(gameObject);
         }
     }
