@@ -10,6 +10,8 @@ public class VideoManager : MonoBehaviour
     [SerializeField]
     private GameObject rawImage;
     public GameObject pressAnyKeyUI;
+    public EyeBlinkEffect EyeBilnkEffect;
+
     bool videoEnd = false;
     void Awake()
     {
@@ -22,6 +24,11 @@ public class VideoManager : MonoBehaviour
     }
     void Update()
     {
+        if (EyeBilnkEffect.isEnd)
+        {
+            if(pressAnyKeyUI != null) pressAnyKeyUI.SetActive(true);
+            EyeBilnkEffect.isEnd = false;
+        }
         if(videoEnd && Input.anyKeyDown)
         {
             StartCoroutine(ResumeWithDelay());
@@ -51,8 +58,8 @@ public class VideoManager : MonoBehaviour
     void OnVideoFinished(VideoPlayer source)
     {
         rawImage.SetActive(false);
-        if(pressAnyKeyUI != null) pressAnyKeyUI.SetActive(true);
         videoEnd = true;
+        EyeBilnkEffect.WakeUp();
     }
 
     IEnumerator ResumeWithDelay()

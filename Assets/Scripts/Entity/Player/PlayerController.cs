@@ -396,7 +396,8 @@ public class PlayerController : Entity
 
     public void ResetPlayerData()
     {
-        StopAllCoroutines();
+        StopCoroutine(InvincibleCoroutine());
+        Time.timeScale = 1;
         Color c = spriteRenderer.color;
         c.a = 1f;
         spriteRenderer.color = c;

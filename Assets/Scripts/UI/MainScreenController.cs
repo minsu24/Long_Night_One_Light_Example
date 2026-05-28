@@ -76,12 +76,12 @@ public class MainScreenController : MonoBehaviour
 
     public void GameStart()
     {
-        if (!savefile[DataManager.instance.nowSlot])
-        { 
-            DataManager.instance.nowPlayer.name = newPlayerName.text;
-            DataManager.instance.nowPlayer.lastPlayTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            DataManager.instance.GameSave();
-        }
+        // if (!savefile[DataManager.instance.nowSlot])
+        // { 
+        //     DataManager.instance.nowPlayer.name = newPlayerName.text;
+        //     DataManager.instance.nowPlayer.lastPlayTime = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        //     DataManager.instance.GameSave();
+        // }
         SceneManager.LoadScene(sceneName);
     }
     

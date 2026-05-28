@@ -255,6 +255,90 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &109357945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 109357948}
+  - component: {fileID: 109357947}
+  - component: {fileID: 109357946}
+  m_Layer: 0
+  m_Name: Video_Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &109357946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109357945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cec5ca71bb79a646b01074e6238f97d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VideoManager
+  rawImage: {fileID: 1712378461}
+  pressAnyKeyUI: {fileID: 428802824}
+  EyeBilnkEffect: {fileID: 1842638191}
+--- !u!328 &109357947
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109357945}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: de70f99daf924034086c2c0bd77295c0, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 5b31381249238d1468dadbf05a522fd3, type: 2}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: <noninit>
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_TimeUpdateMode: 2
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: 
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 0
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
+--- !u!4 &109357948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109357945}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1214.182, y: 485.15314, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &115771046
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,6 +621,11 @@ PlatformEffector2D:
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
+--- !u!1 &428802824 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7215258320015853537, guid: d0dc495786b5f9e4387d5c7578e0f2d9, type: 3}
+  m_PrefabInstance: {fileID: 1550231283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &501363574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,7 +1596,7 @@ Transform:
   m_GameObject: {fileID: 1025774856}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.49, y: -14.43, z: 0}
+  m_LocalPosition: {x: 4.63, y: -14.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2378,6 +2467,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 155305251744529199, guid: d0dc495786b5f9e4387d5c7578e0f2d9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 310801430909994993, guid: d0dc495786b5f9e4387d5c7578e0f2d9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2954,6 +3047,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8070176548306458923, guid: d0dc495786b5f9e4387d5c7578e0f2d9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8320643920132828960, guid: d0dc495786b5f9e4387d5c7578e0f2d9, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -3512,6 +3609,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1712378461 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8070176548306458923, guid: d0dc495786b5f9e4387d5c7578e0f2d9, type: 3}
+  m_PrefabInstance: {fileID: 1550231283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1828715744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3573,6 +3675,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 354ecf068c138b24ab6f05bca7a6abc8, type: 3}
+--- !u!114 &1842638191 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2541440401949101004, guid: d0dc495786b5f9e4387d5c7578e0f2d9, type: 3}
+  m_PrefabInstance: {fileID: 1550231283}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b11f88bb815793b41ba4b715015383f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EyeBlinkEffect
 --- !u!1 &1844507479
 GameObject:
   m_ObjectHideFlags: 0
@@ -3781,11 +3894,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 778290565142399653, guid: 65015706ba2949e469159a8bc097c7bf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.56
+      value: 4.89
       objectReference: {fileID: 0}
     - target: {fileID: 778290565142399653, guid: 65015706ba2949e469159a8bc097c7bf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -15.77
+      value: -2.38
       objectReference: {fileID: 0}
     - target: {fileID: 778290565142399653, guid: 65015706ba2949e469159a8bc097c7bf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3833,7 +3946,7 @@ PrefabInstance:
       objectReference: {fileID: 1252936699}
     - target: {fileID: 3833909434015118198, guid: 65015706ba2949e469159a8bc097c7bf, type: 3}
       propertyPath: _attackPower
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3833909434015118198, guid: 65015706ba2949e469159a8bc097c7bf, type: 3}
       propertyPath: attackSize.x
@@ -4371,6 +4484,7 @@ SceneRoots:
   - {fileID: 115771048}
   - {fileID: 504472641}
   - {fileID: 1550231283}
+  - {fileID: 109357948}
   - {fileID: 549550920}
   - {fileID: 156399077}
   - {fileID: 6540164021993940630}
