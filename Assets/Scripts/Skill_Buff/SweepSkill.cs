@@ -26,7 +26,7 @@ public class SweepSkill : SkillBase
         SSkillFire fireScript = fire.GetComponent<SSkillFire>();
         if(fireScript != null)
         {
-            fireScript.damage = sweepDamage; // 발사체 데미지 설정
+            //fireScript.damage = sweepDamage; // 발사체 데미지 설정
             Vector2 dir = GetFireDirection();
             fireScript.SetDirection(dir);
             if(transform.root.localScale.x == -1 && dir.y == 0)

@@ -78,12 +78,13 @@ public class PlayerAttackSystem : MonoBehaviour
         else if(context.action.name == "S_Skill") //화염 휩쓸기
         {
             if(context.started){
-                if(playerController.MP < 20 || !sSkill.IsReady)
+                if(playerController.MP < 20 || !sSkill.IsReady || !playerController.isGrounded || chargeAttaking || playerController.isDashing)
                 {
                     Debug.Log("S스킬 사용불가");
                 }
                 else
                 {
+                    playerController.SSkillingToTrue();
                     Debug.Log("S스킬 사용가능");
                     playerController.animator.SetTrigger("isSSkill");
                     playerController.MP -= 20;

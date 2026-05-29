@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5297650112572993575}
   - component: {fileID: 3559961562956636770}
   - component: {fileID: 8625027383077797868}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Breakable_obj
   m_TagString: Breakable
   m_Icon: {fileID: 0}
@@ -151,3 +151,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d4b4cf5fb4c524ca5d874ca7c68001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BreakableBlock
+  wallID: 

@@ -384,12 +384,12 @@ public class PlayerController : Entity
         Debug.Log(HP);
     }
 
-    void SSkillingToTrue()
+    public void SSkillingToTrue()
     {
         sSkilling = true;
     }
 
-    void SSkillingToFalse()
+    public void SSkillingToFalse()
     {
         sSkilling = false;
     }

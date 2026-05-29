@@ -171,6 +171,7 @@ MonoBehaviour:
   SecondCloseDuration: 0.6
   holdClosedDuration: 0.5
   finalOpenDuration: 1.8
+  isEnd: 0
 --- !u!1 &367239397858732903
 GameObject:
   m_ObjectHideFlags: 0
@@ -4844,7 +4845,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &4651056103013819274
 MonoBehaviour:

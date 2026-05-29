@@ -272,7 +272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &109357946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2469,7 +2469,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 155305251744529199, guid: d0dc495786b5f9e4387d5c7578e0f2d9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 310801430909994993, guid: d0dc495786b5f9e4387d5c7578e0f2d9, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3049,7 +3049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8070176548306458923, guid: d0dc495786b5f9e4387d5c7578e0f2d9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8320643920132828960, guid: d0dc495786b5f9e4387d5c7578e0f2d9, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3946,7 +3946,7 @@ PrefabInstance:
       objectReference: {fileID: 1252936699}
     - target: {fileID: 3833909434015118198, guid: 65015706ba2949e469159a8bc097c7bf, type: 3}
       propertyPath: _attackPower
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3833909434015118198, guid: 65015706ba2949e469159a8bc097c7bf, type: 3}
       propertyPath: attackSize.x
