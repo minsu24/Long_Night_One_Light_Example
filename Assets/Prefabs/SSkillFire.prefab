@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SSkillFire
   speed: 10
   damage: 20
+  playerController: {fileID: 0}
   enemy: {fileID: 0}
 --- !u!61 &530632481714960660
 BoxCollider2D:

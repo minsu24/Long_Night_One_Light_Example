@@ -13,6 +13,7 @@ public class SSkillFire : MonoBehaviour
     [SerializeField]
     private GameObject enemy;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
     
 
     BoxCollider2D boxCollider2D;
@@ -24,6 +25,7 @@ public class SSkillFire : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         boxCollider2D = GetComponent<BoxCollider2D>();
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -44,7 +46,21 @@ public class SSkillFire : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         collision.GetComponent<EnemyController>().TakeDamage(damage); // 적에게 데미지
-        Destroy(gameObject);
-    }
+        if (HitShaker.Instance != null)
+        {
+            HitShaker.Instance.TriggerShake(moveDirection, 0.4f, 0.12f);
+        }
+        else
+        {
+            Debug.LogWarning("씬에 CameraShaker 인스턴스가 존재하지 않습니다! 오브젝트를 확인해 주세요.");
+        }
+
+        // 3. 투사체 비활성화
+        if (boxCollider2D != null) boxCollider2D.enabled = false;
+        if (spriteRenderer != null) spriteRenderer.enabled = false;
+
+        // 4. 안전하게 시간차 파괴
+        Destroy(gameObject, 0.5f);
+        }
 
 }
