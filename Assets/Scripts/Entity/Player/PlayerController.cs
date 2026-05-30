@@ -66,7 +66,7 @@ public class PlayerController : Entity
         EnemyLayer = LayerMask.NameToLayer("Enemy");
         playerLayer = LayerMask.NameToLayer("Player");
         deadUI = FindAnyObjectByType<DeadUI>();
-        Mental = 70f;
+        Mental = 20f;
         Speed = 10f;
         Attack_Power = 10f;
         Stamina = maxStamina;
