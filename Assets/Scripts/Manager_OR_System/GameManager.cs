@@ -39,4 +39,5 @@ public class GameManager : MonoBehaviour
         _currentMentalState = newState;
         OnMentalStateChanged?.Invoke(newState);
     }
+
 }

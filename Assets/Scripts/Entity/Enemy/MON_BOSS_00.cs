@@ -33,7 +33,7 @@ public class MON_BOSS_00 : EnemyController
 
 
     private float lastFireTime = -9999f;
-    private float lastSpawnTime;
+    private float lastSpawnTime = -9999f;
 
     private Vector2 currentHitBoxPosForGizmo;
     private Vector2 currentHitSizeForGizmo;

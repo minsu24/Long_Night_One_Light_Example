@@ -26,6 +26,9 @@ public abstract class EnemyController : Entity
     protected Rigidbody2D rb;
     protected Animator animator;
 
+    [SerializeField] private GameObject CreditBackGround;
+    [SerializeField] private GameObject CreditComponent;
+
     protected bool isAttacking, inFarAttackRange = false;
     void Awake()
     {
@@ -147,6 +150,12 @@ public abstract class EnemyController : Entity
         }
         if(HP<=0)
         {
+            if (this.CompareTag("Boss00"))
+            {
+                Time.timeScale = 0f;
+                CreditBackGround.SetActive(true);
+                CreditComponent.SetActive(true);
+            }
             ReduceMental(); // 죽으면 멘탈 감소
             if (!IsHallucination)
             {

@@ -16,6 +16,10 @@ TagManager:
   - SSkillFire
   - SpecialBlock
   - BossProjectile
+  - GameCanvas
+  - GameManager
+  - MapManager
+  - DataManager
   layers:
   - Default
   - TransparentFX
