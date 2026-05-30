@@ -48,7 +48,7 @@
                     "name": "",
                     "id": "975816fa-c6cc-47f1-a659-2dd16f111f89",
                     "path": "<Keyboard>/a",
-                    "interactions": "Hold(duration=1)",
+                    "interactions": "Hold(duration=0.5)",
                     "processors": "",
                     "groups": "",
                     "action": "Attack",

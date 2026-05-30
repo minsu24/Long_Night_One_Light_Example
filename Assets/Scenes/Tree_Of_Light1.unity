@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 23946286}
   - component: {fileID: 23946285}
+  - component: {fileID: 23946287}
   m_Layer: 0
   m_Name: KakaoTalk_20260514_202330848_10 (2)
   m_TagString: Untagged
@@ -210,6 +211,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 549550920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &23946287
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23946284}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.009438515, y: -0.084947586}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.18, y: 4.15}
+    newSize: {x: 6.5980115, y: 4.15}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 2
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 6.465128, y: 3.9801044}
+  m_EdgeRadius: 0
 --- !u!1 &85939267
 GameObject:
   m_ObjectHideFlags: 0
@@ -636,7 +683,8 @@ GameObject:
   m_Component:
   - component: {fileID: 501363576}
   - component: {fileID: 501363575}
-  m_Layer: 0
+  - component: {fileID: 501363577}
+  m_Layer: 6
   m_Name: KakaoTalk_20260514_202330848_10 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,6 +765,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 549550920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &501363577
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501363574}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.017917871, y: -0.07167387}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.18, y: 4.15}
+    newSize: {x: 6.5980115, y: 4.15}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 2
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 6.5162644, y: 4.006653}
+  m_EdgeRadius: 0
 --- !u!1 &504472639
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,6 +1835,8 @@ MonoBehaviour:
   knockbackPower: 15
   atkMultiplier: 1
   speedMultiplier: 1
+  mentalAtkMultiplier: 1
+  mentalSpeedMultiplier: 1
   climbingSpeed: 5
   isDashing: 0
   isClimbing: 0
@@ -2880,8 +2976,8 @@ MonoBehaviour:
   BaseAttackPrefab: {fileID: 3780673957017645484, guid: 0675f0d519a5c154f935031189c4ac4c, type: 3}
   sSkill: {fileID: 1387673289}
   dashSkill: {fileID: 1387673288}
-  cooltime: 2
-  chargeCooltime: 2
+  cooltime: 1
+  chargeCooltime: 1
   fireIcon: {fileID: 8273116211110717698, guid: d0acf4cba730f4f48aedff0e0f5d8f4b, type: 3}
   speedIcon: {fileID: -2003576716167278366, guid: 004eebd4536d09a4f9d50d87168c97a2, type: 3}
   baseAttacking: 0
@@ -4307,6 +4403,135 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8070176548306458923, guid: d0dc495786b5f9e4387d5c7578e0f2d9, type: 3}
   m_PrefabInstance: {fileID: 1550231283}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1765084473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1765084475}
+  - component: {fileID: 1765084474}
+  m_Layer: 0
+  m_Name: BGM_Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1765084474
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765084473}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: dec17527ba6154c459dd839ff5cafd20, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.198
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1765084475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1765084473}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 16.59896, y: -6.78761, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1828715744
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4589,6 +4814,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1877578389}
   - component: {fileID: 1877578388}
+  - component: {fileID: 1877578390}
   m_Layer: 0
   m_Name: KakaoTalk_20260514_202330848_10 (1)
   m_TagString: Untagged
@@ -4670,6 +4896,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 549550920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1877578390
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877578387}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.037754774, y: -0.06607008}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.18, y: 4.15}
+    newSize: {x: 6.56596, y: 4.15}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 2
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 6.4462504, y: 4.0178595}
+  m_EdgeRadius: 0
 --- !u!1001 &1884021008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4760,7 +5032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3833909434015118198, guid: 65015706ba2949e469159a8bc097c7bf, type: 3}
       propertyPath: closeAttackRange
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3833909434015118198, guid: 65015706ba2949e469159a8bc097c7bf, type: 3}
       propertyPath: attackHitboxPrefab
@@ -4941,7 +5213,7 @@ PlatformEffector2D:
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 180
+  m_SurfaceArc: 360
   m_UseSideFriction: 0
   m_UseSideBounce: 0
   m_SideArc: 1
@@ -5336,3 +5608,4 @@ SceneRoots:
   - {fileID: 4156122592453139347}
   - {fileID: 1830743147}
   - {fileID: 1870916868}
+  - {fileID: 1765084475}

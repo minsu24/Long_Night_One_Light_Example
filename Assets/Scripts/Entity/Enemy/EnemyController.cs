@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 
@@ -10,6 +11,9 @@ public abstract class EnemyController : Entity
     [SerializeField] protected float _detectRange;
     [SerializeField] private float _onDeath_Mental;
     [SerializeField] private float _reward_EXP;
+
+    public GameObject damageTextPrefab; // Inspector에서 프리팹 할당
+    public Transform textSpawnPoint;    // 텍스트가 뜰 위치 (예: 몬스터 머리 위 빈 오브젝트)
 
     // EnemySpawner가 환각 몬스터 스폰 시 true로 설정
     // 환각 몬스터는 보상을 드롭하지 않음 (정신력 패널티는 그대로 적용)
@@ -124,6 +128,22 @@ public abstract class EnemyController : Entity
         if(HP > 0)
         {
             HP -= damage;
+            // 1. 데미지 텍스트 생성
+            // 몬스터 머리 위 위치 기준, 약간의 랜덤성을 주면 글자가 겹치지 않아 더 자연스럽습니다.
+            Vector3 spawnPosition = textSpawnPoint.position + new Vector3(Random.Range(-0.2f, 0.2f), 0, 0);
+            GameObject textObj = Instantiate(damageTextPrefab, spawnPosition, Quaternion.identity);
+
+            // 2. 데미지 수치 전달
+            DamageText damageText = textObj.GetComponent<DamageText>();
+            if(this.CompareTag("Boss00"))
+            {
+                damageText.SetFontSize(30f);
+                damageText.moveSpeed = 8f;
+            }
+            if (damageText != null)
+            {
+                damageText.Setup(damage);
+            }
         }
         if(HP<=0)
         {

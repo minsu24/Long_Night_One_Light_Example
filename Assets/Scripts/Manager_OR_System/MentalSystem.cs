@@ -50,8 +50,8 @@ public class MentalSystem : MonoBehaviour
     private void ApplyMentalEffect(MentalState state)
     {
         // 상태가 바뀔 때 이전 배율이 남아있지 않도록 먼저 기본값으로 초기화
-        player.speedMultiplier = 1f;
-        player.atkMultiplier   = 1f;
+        player.mentalSpeedMultiplier = 1f;
+        player.mentalAtkMultiplier   = 1f;
 
         switch (state)
         {
@@ -60,15 +60,15 @@ public class MentalSystem : MonoBehaviour
                 break;
 
             case MentalState.Depression:
-                player.atkMultiplier = 1.15f; // 우울: 공격력 15% 증가
+                player.mentalAtkMultiplier = 1.15f; // 우울: 공격력 15% 증가
                 break;
 
             case MentalState.Anxiety:
-                player.speedMultiplier = 1.1f; // 불안: 이동속도 10% 증가
+                player.mentalSpeedMultiplier = 1.1f; // 불안: 이동속도 10% 증가
                 break;
 
             case MentalState.Collapse:
-                player.atkMultiplier = 1.3f; // 붕괴: 공격력 30% 증가
+                player.mentalAtkMultiplier = 1.3f; // 붕괴: 공격력 30% 증가
                 break;
         }
     }

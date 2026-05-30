@@ -5,7 +5,17 @@ public class BuffManager : MonoBehaviour
     public static BuffManager instance;
     private void Awake()
     {
-        instance = this;
+        if(instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject); // 첫 매니저만 파괴되지 않고 유지
+        }
+        else
+        {
+            Destroy(gameObject); 
+            return;
+        }
+        
     }
     public GameObject buffPrefab;
 

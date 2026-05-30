@@ -35,6 +35,8 @@ public class PlayerAttackSystem : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
         fireSpirit = GameObject.FindGameObjectWithTag("Friend");
+        curtime = 0.2f;
+        chargeCurtime = 0.2f;
     }
 
     void Update()
@@ -64,14 +66,19 @@ public class PlayerAttackSystem : MonoBehaviour
             {
                 if (curtime <= 0 && !chargeAttaking) // 차지 공격 중이 아니고 쿨타임이 돌았다면 
                 {
+                    Debug.Log(chargeAttaking);
                     if (context.duration < 0.5f) // 공격 키를 0.5초 미만으로 눌렀을 때
                     {
                         StartCoroutine(BaseAttackRoutine());
                     }
                 }
-                else if (curtime <= 0 && chargeAttaking)
+                else if (chargeCurtime <= 0 && chargeAttaking)
                 {
-                    StartCoroutine(ChargeAttackRoutine());
+                    if(context.duration >= 0.5f)
+                    {
+                        StartCoroutine(ChargeAttackRoutine());
+                    }
+                    
                 }
 
             }
@@ -91,6 +98,7 @@ public class PlayerAttackSystem : MonoBehaviour
                     playerController.animator.SetTrigger("isSSkill");
                     playerController.MP -= 20;
                     icon = fireIcon;
+                    
                     BuffManager.instance.CreateBuff("Atk", 300f, 5f, icon); // 버프 아이콘 생성에 필요한 데이터 전달
                     sSkill.ExecuteSkill();
                 }
@@ -135,6 +143,7 @@ public class PlayerAttackSystem : MonoBehaviour
 
     private IEnumerator BaseAttackRoutine()
     {
+        curtime = cooltime;
         playerController.animator.SetBool("AttackMotion", true);
         baseAttacking = true;
         yield return new WaitForFixedUpdate();
@@ -152,11 +161,12 @@ public class PlayerAttackSystem : MonoBehaviour
             if (transform.root.localScale.x == -1 && dir.y == 0)
                 fire.GetComponent<SpriteRenderer>().flipX = true;
         }
-        curtime = cooltime;
+        
     }
 
     private IEnumerator ChargeAttackRoutine()
     {
+        chargeCurtime = chargeCooltime;
         fireSpirit.SetActive(false);
         playerController.animator.SetTrigger("AttackMotion");
         playerController.animator.SetBool("isCharging", false);
@@ -182,6 +192,6 @@ public class PlayerAttackSystem : MonoBehaviour
             if (transform.root.localScale.x == -1 && dir.y == 0)
                 fire.GetComponent<SpriteRenderer>().flipX = true;
         }
-        curtime = cooltime;
+        
     }
 }

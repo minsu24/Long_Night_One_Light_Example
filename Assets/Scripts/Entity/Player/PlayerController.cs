@@ -17,9 +17,11 @@ public class PlayerController : Entity
     private float _stamina;
     public float atkMultiplier = 1f; // 데미지 배율
     public float speedMultiplier = 1f; // 스피드 배율
+    public float mentalAtkMultiplier = 1f;
+    public float mentalSpeedMultiplier = 1f;
     public float climbingSpeed = 5f; // 줄 오르는 속도
-    public float FinalSpeed => Speed * speedMultiplier; // 최종 스피드 
-    public float FinalDamage => Attack_Power * atkMultiplier; // 최종 데미지
+    public float FinalSpeed => Speed * speedMultiplier * mentalSpeedMultiplier; // 최종 스피드 
+    public float FinalDamage => Attack_Power * atkMultiplier * mentalAtkMultiplier; // 최종 데미지
 
     public bool isDashing, isClimbing, isGrounded, isMoved, isCharging, sSkilling = false;
     private bool isInvincible = false;
