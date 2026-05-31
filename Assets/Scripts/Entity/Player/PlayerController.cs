@@ -141,6 +141,11 @@ public class PlayerController : Entity
             SceneManager.LoadScene("Dark_Forest2");
             MapTransferData.TargetSpawnPointname = "In_DarkForest2_Portal";
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            SceneManager.LoadScene("Forgotten_Ruin1");
+            MapTransferData.TargetSpawnPointname = "In_ForgottenRuin1_Portal";
+        }
 
         //애니메이션
         if (isMoved) // Idle과 Run 애니메이션 제어문
@@ -173,6 +178,10 @@ public class PlayerController : Entity
         if (Stamina < maxStamina)
         {
             Stamina += 2f * Time.deltaTime; //기획서 내용에 따라 2로 변경 3/28
+        }
+        if (MP < maxMP)
+        {
+            MP += 2f * Time.deltaTime;
         }
 
     }

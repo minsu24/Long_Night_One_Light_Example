@@ -292,7 +292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MON_ANG_001
   target: {fileID: 0}
-  _maxHP: 10
+  _maxHP: 100
   _attackPower: 15
   _moveSpeed: 5
   _detectRange: 10
@@ -304,6 +304,8 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  CreditBackGround: {fileID: 0}
+  CreditComponent: {fileID: 0}
   closeAttackRange: 2
   attackPoint: {fileID: 630859390879025105}
   attackHitboxPrefab: {fileID: 2865071944793861691, guid: a5e98e17f6df0bc49b302bf63f7e381f, type: 3}

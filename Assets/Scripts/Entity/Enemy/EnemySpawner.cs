@@ -7,8 +7,10 @@ public class EnemySpawner : MonoBehaviour
     [Header("일반 스폰 설정")]
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private int maxEnemyCount = 10;
-    [SerializeField] private float spawnInterval = 3f;
-    [SerializeField] private float spawnRadius = 10f;
+    [SerializeField] private float spawnInterval = 5f;
+    [SerializeField] private float minSpawnX = 10f;
+    [SerializeField] private float maxSpawnX = 10f;
+
     [SerializeField] private float minSpawnDistance = 4f;
 
     [Header("환각 몬스터 설정")]
@@ -88,14 +90,19 @@ public class EnemySpawner : MonoBehaviour
 
     private Vector2 GetRandomSpawnPosition()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < maxEnemyCount; i++)
         {
-            Vector2 randomOffset = Random.insideUnitCircle * spawnRadius;
-            Vector2 candidate = (Vector2)player.position + randomOffset;
+            
+            // 2. 최소 거리 ~ 최대 거리 사이의 무작위 X 오프셋 계산
+            float randomXOffset = Random.Range(minSpawnX, maxSpawnX);
+            
+            // 3. 플레이어 위치를 기반으로 최종 좌표 생성
+            float spawnX = transform.position.x + randomXOffset;
+            float spawnY = transform.position.y; // Y값은 플레이어 기준으로 항상 일정하게 고정
 
-            if (Vector2.Distance(candidate, player.position) < minSpawnDistance)
-                continue;
+            Vector2 candidate = new Vector2(spawnX, spawnY);
 
+            // 이전 원형 스폰과 달리 이미 X축 최소 거리가 보장되므로 Distance 체크는 생략해도 안전합니다.
             return candidate;
         }
 

@@ -375,6 +375,66 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdce857bb8ae9bd40863b7127bc9bfa6, type: 3}
+--- !u!1 &714331895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 714331897}
+  - component: {fileID: 714331896}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &714331896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714331895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f7d57eaefb17842bea96888336841b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
+  enemyPrefabs:
+  - {fileID: 5994884336995220372, guid: 106f170cebb6b684091b9627c144bc94, type: 3}
+  - {fileID: 7626374523421282312, guid: 65015706ba2949e469159a8bc097c7bf, type: 3}
+  maxEnemyCount: 4
+  spawnInterval: 2.5
+  minSpawnX: 15
+  maxSpawnX: 15
+  minSpawnDistance: 2
+  hallucinationPrefabs:
+  - {fileID: 1402618425614360093, guid: 9048c5282a69c0d4db7c45bced4412a1, type: 3}
+  - {fileID: 7747000068179289803, guid: 3c1c17f494febe942a7573b387c0bbb7, type: 3}
+  hallucinationChancePerState:
+  - 0
+  - 0.2
+  - 0.5
+  - 0.8
+--- !u!4 &714331897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714331895}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.44, y: -17.27, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &742331031
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,6 +1772,7 @@ SceneRoots:
   - {fileID: 1627246085}
   - {fileID: 1065977051}
   - {fileID: 870750562}
+  - {fileID: 714331897}
   - {fileID: 787218874}
   - {fileID: 1742901650}
   - {fileID: 857577169}

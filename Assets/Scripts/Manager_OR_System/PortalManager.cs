@@ -9,6 +9,7 @@ public class PortalManager : MonoBehaviour
     private string sceneName;
     [SerializeField]
     private string targetPointName;
+    private string currentSceneName;
     private bool isPlayerInPortal = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,6 +28,11 @@ public class PortalManager : MonoBehaviour
 
     private void MoveToScene()
     {
+        // currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        // if(currentSceneName == "BossRoom1")
+        // {
+        //     return;
+        // }
         SceneManager.LoadScene(sceneName);    
     }
 
