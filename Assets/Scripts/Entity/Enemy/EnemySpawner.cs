@@ -7,11 +7,11 @@ public class EnemySpawner : MonoBehaviour
     [Header("일반 스폰 설정")]
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private int maxEnemyCount = 10;
-    [SerializeField] private float spawnInterval = 5f;
+    [SerializeField] private float spawnInterval = 2f;
     [SerializeField] private float minSpawnX = 10f;
     [SerializeField] private float maxSpawnX = 10f;
 
-    [SerializeField] private float minSpawnDistance = 4f;
+    [SerializeField] private float minSpawnTime = 4f;
 
     [Header("환각 몬스터 설정")]
     [SerializeField] private GameObject[] hallucinationPrefabs;  // 환각 전용 프리팹 (없으면 일반 프리팹 사용)
@@ -24,6 +24,8 @@ public class EnemySpawner : MonoBehaviour
     private Transform player;
     private List<GameObject> activeEnemies = new List<GameObject>();
 
+    bool firstSpawn = true;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -34,11 +36,42 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(spawnInterval);
-            CleanUpDeadEnemies();
-
-            if (activeEnemies.Count < maxEnemyCount)
+            // yield return new WaitForSeconds(spawnInterval);
+            // CleanUpDeadEnemies();
+            // Debug.Log("현재 적의 수 : " + activeEnemies.Count);
+            
+            // if (activeEnemies.Count < maxEnemyCount){
+            //     Debug.Log(firstSpawn);
+            //     if(activeEnemies.Count == 0 && !firstSpawn)
+            //     {
+            //         yield return new WaitForSeconds(minSpawnTime);
+            //         SpawnEnemy();
+            //     }
+            //     else
+            //     {
+            //         SpawnEnemy();
+            //         firstSpawn = false;
+            //     }
+                
+            // }
+                // [1단계: 스폰] maxEnemyCount에 도달할 때까지 몬스터를 소환합니다.
+            while (activeEnemies.Count < maxEnemyCount)
+            {
                 SpawnEnemy();
+                yield return new WaitForSeconds(spawnInterval); // spawnInterval 간격으로 1마리씩 소환
+                CleanUpDeadEnemies(); // 소환하는 도중에 적이 죽을 수도 있으므로 리스트 정리
+            }
+
+            // [2단계: 전투 대기] 몬스터가 모두 죽을 때까지 더 이상 소환하지 않고 기다립니다.
+            while (activeEnemies.Count > 0)
+            {
+                yield return new WaitForSeconds(0.5f); // 0.5초마다 적이 전멸했는지 확인 (성능 최적화)
+                CleanUpDeadEnemies(); // 죽은 몬스터를 리스트에서 제거하여 Count를 줄임
+            }
+
+            // [3단계: 휴식] 몬스터가 0마리가 되면 루프를 빠져나와 휴식 시간을 가집니다.
+            Debug.Log($"웨이브 클리어! {minSpawnTime}초 뒤에 다음 스폰을 시작합니다.");
+            yield return new WaitForSeconds(minSpawnTime);
         }
     }
 

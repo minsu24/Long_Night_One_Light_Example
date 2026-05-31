@@ -283,7 +283,7 @@ Transform:
   m_GameObject: {fileID: 28209639}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.0143485, y: -1.3416286, z: -10}
+  m_LocalPosition: {x: 2.0985618, y: -1.3416286, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1115,6 +1115,7 @@ GameObject:
   m_Component:
   - component: {fileID: 472166063}
   - component: {fileID: 472166062}
+  - component: {fileID: 472166064}
   m_Layer: 13
   m_Name: MonsterWall (2)
   m_TagString: Untagged
@@ -1153,10 +1154,10 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.2816205, y: 0.9124527}
+  m_Offset: {x: -0.2816205, y: 2.2163112}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1166,7 +1167,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.84229183, y: 4.807519}
+  m_Size: {x: 0.84229183, y: 7.415236}
   m_EdgeRadius: 0
 --- !u!4 &472166063
 Transform:
@@ -1183,6 +1184,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &472166064
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472166061}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 16247
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 360
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &501597169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,6 +1213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 501597171}
   - component: {fileID: 501597170}
+  - component: {fileID: 501597172}
   m_Layer: 13
   m_Name: MonsterWall (3)
   m_TagString: Untagged
@@ -1231,10 +1252,10 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.2816205, y: 0.9124527}
+  m_Offset: {x: -0.2816205, y: 2.076612}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1244,7 +1265,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.84229183, y: 4.807519}
+  m_Size: {x: 0.84229183, y: 7.1358385}
   m_EdgeRadius: 0
 --- !u!4 &501597171
 Transform:
@@ -1261,6 +1282,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &501597172
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501597169}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 16247
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 360
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &569244256
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,6 +1311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 569244258}
   - component: {fileID: 569244257}
+  - component: {fileID: 569244259}
   m_Layer: 13
   m_Name: MonsterWall
   m_TagString: Untagged
@@ -1309,10 +1350,10 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.2816205, y: 0.9124527}
+  m_Offset: {x: -0.2816205, y: 1.9369125}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1322,7 +1363,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.84229183, y: 4.807519}
+  m_Size: {x: 0.84229183, y: 6.8564396}
   m_EdgeRadius: 0
 --- !u!4 &569244258
 Transform:
@@ -1339,6 +1380,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &569244259
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 569244256}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 16247
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 360
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &806827218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,10 +1886,10 @@ MonoBehaviour:
   - {fileID: 5994884336995220372, guid: 106f170cebb6b684091b9627c144bc94, type: 3}
   - {fileID: 7626374523421282312, guid: 65015706ba2949e469159a8bc097c7bf, type: 3}
   maxEnemyCount: 2
-  spawnInterval: 4
+  spawnInterval: 2
   minSpawnX: 3
   maxSpawnX: 3
-  minSpawnDistance: 1
+  minSpawnTime: 4
   hallucinationPrefabs:
   - {fileID: 1402618425614360093, guid: 9048c5282a69c0d4db7c45bced4412a1, type: 3}
   - {fileID: 7747000068179289803, guid: 3c1c17f494febe942a7573b387c0bbb7, type: 3}
@@ -2140,6 +2200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1271782146}
   - component: {fileID: 1271782145}
+  - component: {fileID: 1271782147}
   m_Layer: 13
   m_Name: MonsterWall (1)
   m_TagString: Untagged
@@ -2178,10 +2239,10 @@ BoxCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.2816205, y: 0.9124527}
+  m_Offset: {x: -0.2816205, y: 1.4130414}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2191,7 +2252,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.84229183, y: 4.807519}
+  m_Size: {x: 0.84229183, y: 6.181227}
   m_EdgeRadius: 0
 --- !u!4 &1271782146
 Transform:
@@ -2208,6 +2269,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!251 &1271782147
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271782144}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 16247
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 0
+  m_SurfaceArc: 360
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1 &1292394202
 GameObject:
   m_ObjectHideFlags: 0
@@ -2332,10 +2412,10 @@ MonoBehaviour:
   - {fileID: 5994884336995220372, guid: 106f170cebb6b684091b9627c144bc94, type: 3}
   - {fileID: 7626374523421282312, guid: 65015706ba2949e469159a8bc097c7bf, type: 3}
   maxEnemyCount: 2
-  spawnInterval: 4
+  spawnInterval: 2
   minSpawnX: 3
   maxSpawnX: 3
-  minSpawnDistance: 1
+  minSpawnTime: 4
   hallucinationPrefabs:
   - {fileID: 1402618425614360093, guid: 9048c5282a69c0d4db7c45bced4412a1, type: 3}
   - {fileID: 7747000068179289803, guid: 3c1c17f494febe942a7573b387c0bbb7, type: 3}
