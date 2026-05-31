@@ -75,6 +75,16 @@ public class PlayerController : Entity
     // Update is called once per frame
     void Update()
     {
+        if(Mental == 0)
+        {
+            Debug.Log("사망로직 진입");
+            deadUI.OpenDeadUI();
+            Debug.Log("UI 오픈");
+            rb.linearVelocity = Vector2.zero;
+            rb.simulated = false;
+            Time.timeScale = 0;
+            return;
+        }
         //줄을 오르는 중이라면 별개의 이동 로직 작동
         if (isClimbing)
         {
@@ -183,7 +193,6 @@ public class PlayerController : Entity
         {
             MP += 2f * Time.deltaTime;
         }
-
     }
     void FixedUpdate()
     {
@@ -390,7 +399,6 @@ public class PlayerController : Entity
             rb.linearVelocity = Vector2.zero;
             rb.simulated = false;
             Time.timeScale = 0;
-            
         }
         Debug.Log(HP);
     }
@@ -415,6 +423,7 @@ public class PlayerController : Entity
         HP = 100;
         MP = 100;
         Stamina = 50;
+        Mental = 70;
         isInvincible = false;
         rb.simulated = true;
     }

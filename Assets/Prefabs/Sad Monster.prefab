@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1765228439418595952}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TextSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 388462746173245343}
   - component: {fileID: 6635479136531809491}
   - component: {fileID: 7708279731490562220}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sad Monster
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -201,6 +201,8 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 128
+  CreditBackGround: {fileID: 0}
+  CreditComponent: {fileID: 0}
 --- !u!70 &7708279731490562220
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

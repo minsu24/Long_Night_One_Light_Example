@@ -105,7 +105,7 @@ public class EnemySpawner : MonoBehaviour
             // 이전 원형 스폰과 달리 이미 X축 최소 거리가 보장되므로 Distance 체크는 생략해도 안전합니다.
             return candidate;
         }
-
+        
         return Vector2.zero;
     }
 

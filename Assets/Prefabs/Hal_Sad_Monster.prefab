@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1514899078999247393}
   - component: {fileID: 3426993249768452640}
   - component: {fileID: 124497103196020576}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Hal_Sad_Monster
   m_TagString: Untagged
   m_Icon: {fileID: 0}

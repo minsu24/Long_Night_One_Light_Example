@@ -26,11 +26,14 @@ public class DashSkill : SkillBase
     IEnumerator DashRoutine()
     {
         playerController.isDashing = true;
+        float originalGravity = playerController.rb.gravityScale;
+        playerController.rb.gravityScale = 0f;        
 
         float direction = Math.Sign(player.transform.localScale.x);
         rb.linearVelocity = new Vector2(direction * dashDistance, 0); 
 
         yield return new WaitForSeconds(0.5f);
+        playerController.rb.gravityScale = originalGravity;
 
         playerController.isDashing = false;
         rb.linearVelocity = Vector2.zero;
