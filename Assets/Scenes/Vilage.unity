@@ -1817,7 +1817,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec11a0055435fe147bd292065e84e5f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BonFire
-  recoverAmount: 20
+  mentalRecoverAmount: 10
+  hpRecoverAmount: 10
 --- !u!70 &1369781707
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

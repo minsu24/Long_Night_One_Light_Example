@@ -526,7 +526,7 @@ public class TutorialManager : MonoBehaviour
         DialogueLine[] lines = new DialogueLine[]
         {
             new DialogueLine { speaker = "에이", text = "좋아!" },
-            new DialogueLine { speaker = "에이", text = "방금처럼 D 키를 누르면 잠시 동안 더 빠르게 움직일 수 있어!" },
+            new DialogueLine { speaker = "에이", text = "방금처럼 C 키를 누르면 잠시 동안 더 빠르게 움직일 수 있어!" },
             new DialogueLine { speaker = "에이", text = "멀리 이동하거나, 위험한 곳을 빠르게 벗어날 때 써보자!" },
             new DialogueLine { speaker = "에이", text = "이제 기본 움직임과 전투 감각은 거의 돌아온 것 같아." },
             new DialogueLine { speaker = "에이", text = "마지막으로, 여행에 필요한 화면들도 확인해보자!" },
