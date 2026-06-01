@@ -8,6 +8,9 @@ public class VideoManager : MonoBehaviour
 {
     private VideoPlayer videoPlayer;
     [SerializeField]
+    private GameObject VideoCanvas;
+
+    [SerializeField]
     private GameObject rawImage;
     public GameObject pressAnyKeyUI;
     public EyeBlinkEffect EyeBilnkEffect;
@@ -20,6 +23,11 @@ public class VideoManager : MonoBehaviour
 
     void Start()
     {
+        if (GameManager.instance.hasWatchedIntroVideo)
+        {
+            Destroy(gameObject);
+            return;
+        }
         GameManager.instance.LockInput();
     }
     void Update()
@@ -57,6 +65,8 @@ public class VideoManager : MonoBehaviour
     
     void OnVideoFinished(VideoPlayer source)
     {
+        GameManager.instance.hasWatchedIntroVideo = true;
+        VideoCanvas.SetActive(false);
         rawImage.SetActive(false);
         videoEnd = true;
         EyeBilnkEffect.WakeUp();

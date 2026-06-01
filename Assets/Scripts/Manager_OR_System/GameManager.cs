@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 
     [Header("키 입력 잠금")]
     public bool isInputLocked = false;
-
+    public bool hasWatchedIntroVideo = false;
     [Header("정신력 상태 (읽기 전용 - MentalSystem이 설정)")]
     [SerializeField] public MentalState _currentMentalState = MentalState.Normal;
 

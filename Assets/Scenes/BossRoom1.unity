@@ -2238,7 +2238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MON_BOSS_00
   target: {fileID: 0}
-  _maxHP: 100
+  _maxHP: 500
   _attackPower: 25
   _moveSpeed: 1
   _detectRange: 40

@@ -24,7 +24,7 @@ public class PlayerController : Entity
     public float FinalDamage => Attack_Power * atkMultiplier * mentalAtkMultiplier; // 최종 데미지
 
     public bool isDashing, isClimbing, isGrounded, isMoved, isCharging, sSkilling = false;
-    private bool isInvincible = false;
+    public bool isInvincible = false;
     private float invincibleDuration = 1.5f; // 무적 시간 (초)
     private float ropeX;
     private int playerLayer, EnemyLayer;

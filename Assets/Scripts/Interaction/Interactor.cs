@@ -17,7 +17,7 @@ public class Interactor : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Vector2 dir = transform.localScale.x > 0 ? Vector2.right : Vector2.left;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, InteractRange, LayerMask.GetMask("Interact"));
